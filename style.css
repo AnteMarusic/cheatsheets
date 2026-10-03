@@ -1,5 +1,12 @@
+html * {
+  font-family: Helvetica;
+  margin: 0;
+}
 var {
   color: red;
+}
+kbd var {
+  font-family: monospace;
 }
 .grid {
   display: grid;
@@ -12,8 +19,28 @@ var {
 section article {
   background-color: green;
 }
+section > article + article {
+  margin-top: 1em;
+}
 article article {
   background-color: orange;
+}
+h1,
+h2 {
+  text-align: center;
+}
+h3,
+h4 {
+  margin-left: 0.5em;
+}
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  row-gap: 0.5em;
+  column-gap: 1em;
+  margin-left: 1em;
+}
+dd {
 }
 body {
   background-color: blanchedalmond;
@@ -21,13 +48,16 @@ body {
 }
 h2 {
   background-color: fuchsia;
-  width: 50%;
-  margin: 0 auto;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+dd {
+  display: inline;
+}
+dd::before {
+  content: "// ";
 }
 h3 {
-  margin: 0;
   background-color: salmon;
-}
-dl {
-  margin: 0;
 }
