@@ -1,0 +1,33 @@
+var {
+  color: red;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  background-color: blue;
+}
+.grid section {
+  background-color: cyan;
+}
+section article {
+  background-color: green;
+}
+article article {
+  background-color: orange;
+}
+body {
+  background-color: blanchedalmond;
+  border: 5px solid black;
+}
+h2 {
+  background-color: fuchsia;
+  width: 50%;
+  margin: 0 auto;
+}
+h3 {
+  margin: 0;
+  background-color: salmon;
+}
+dl {
+  margin: 0;
+}
