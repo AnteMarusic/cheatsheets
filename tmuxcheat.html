@@ -1,0 +1,322 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tmux cheatsheet</title>
+    <style>
+      var {
+        color: red;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        background-color: blue;
+      }
+      .grid section {
+        background-color: cyan;
+      }
+      section article {
+        background-color: green;
+      }
+      article article {
+        background-color: orange;
+      }
+      body {
+        background-color: blanchedalmond;
+        border: 5px solid black;
+      }
+      h1 h2 h3 h4 dl {
+        margin: 0 auto;
+      }
+      h2 {
+        background-color: fuchsia;
+        width: 50%;
+      }
+      h3 {
+        background-color: salmon;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tmux cheatsheet</h1>
+    <section>&lt;prefix&gt;: <kbd>ctrl b</kbd></section>
+
+    <div class="grid">
+      <section>
+        <h2>Sessions</h2>
+        <article>
+          <h3>Create</h3>
+          <dl>
+            <dt><kbd>Tmux</kbd></dt>
+            <dt><kbd>Tmux new</kbd></dt>
+            <dt><kbd>&lt;leader&gt;:new</kbd></dt>
+          </dl>
+
+          <article>
+            <h4>Options</h4>
+            <dl>
+              <dt>
+                <kbd>-s <var>&lt;name&gt;</var></kbd>
+              </dt>
+            </dl>
+          </article>
+        </article>
+
+        <article>
+          <h3>Kill</h3>
+          <dl>
+            <dt><kbd>Tmux kill-session</kbd></dt>
+            <dd>kill last session</dd>
+          </dl>
+
+          <article>
+            <h4>Options</h4>
+            <dl>
+              <dt><kbd>-a</kbd></dt>
+              <dd>all but the current</dd>
+              <dt>
+                <kbd>-t <var>&lt;name&gt;</var></kbd>
+              </dt>
+              <dd>kill session name</dd>
+              <dt>
+                <kbd>-at <var>&lt;name&gt;</var></kbd>
+              </dt>
+              <dd>kill all but session name</dd>
+            </dl>
+          </article>
+        </article>
+
+        <article>
+          <h3>Attach session</h3>
+          <dl>
+            <dt><kbd>tmux a</kbd></dt>
+            <dd>attach last session</dd>
+          </dl>
+          <article>
+            <h4>options</h4>
+            <dl>
+              <dt>
+                <kbd>-t <var>&lt;name&gt;</var></kbd>
+              </dt>
+              <dd>attach session name</dd>
+            </dl>
+          </article>
+        </article>
+        <article>
+          <h3>List sessions</h3>
+          <dl>
+            <dt><kbd>tmux ls</kbd></dt>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var>s</kbd>
+            </dt>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Manage</h3>
+          <dl>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> d</kbd>
+            </dt>
+            <dd>detach from the session</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> $</kbd>
+            </dt>
+            <dd>rename the current session</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> w</kbd>
+            </dt>
+            <dd>list sessions and windows (choose-tree)</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> (</kbd>
+            </dt>
+            <dd>switch to the previous session</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> )</kbd>
+            </dt>
+            <dd>switch to the next session</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Windows</h2>
+        <article>
+          <h3>Manage</h3>
+          <dl>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> c</kbd>
+            </dt>
+            <dd>create a new window</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> ,</kbd>
+            </dt>
+            <dd>rename the current window</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> &amp;</kbd>
+            </dt>
+            <dd>kill the current window</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> l</kbd>
+            </dt>
+            <dd>last (previously active) window</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> w</kbd>
+            </dt>
+            <dd>list and choose a window</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> 1..9</kbd>
+            </dt>
+            <dd>select window by number</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> p</kbd>
+            </dt>
+            <dd>previous window</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> n</kbd>
+            </dt>
+            <dd>next window</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> :</kbd>
+            </dt>
+            <dd>open the command prompt</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> :movew -r</kbd>
+            </dt>
+            <dd>renumber windows to close gaps</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Panes</h2>
+        <article>
+          <h3>Navigate</h3>
+          <dl>
+            <dt><kbd>Ctrl h/j/k/l</kbd></dt>
+            <dd>move between panes</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> ;</kbd>
+            </dt>
+            <dd>last active pane</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Split &amp; manage</h3>
+          <dl>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> %</kbd>
+            </dt>
+            <dd>split into left/right panes</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> "</kbd>
+            </dt>
+            <dd>split into top/bottom panes</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> z</kbd>
+            </dt>
+            <dd>toggle pane zoom</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> !</kbd>
+            </dt>
+            <dd>break pane into a new window</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> x</kbd>
+            </dt>
+            <dd>kill the pane</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> H/J/K/L</kbd>
+            </dt>
+            <dd>resize left/down/up/right by 5 (custom binding)</dd>
+            <dt>
+              <kbd
+                ><var>&lt;prefix&gt;</var> :join-pane -s
+                <var>&lt;src&gt;</var> -t <var>&lt;dst&gt;</var></kbd
+              >
+            </dt>
+            <dd>move a pane into another window</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Copy &amp; paste</h2>
+        <article>
+          <h3>Copy mode</h3>
+          <dl>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> [</kbd>
+            </dt>
+            <dd>enter copy mode</dd>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> ]</kbd>
+            </dt>
+            <dd>paste the buffer</dd>
+            <dt><kbd>q</kbd></dt>
+            <dd>quit copy mode</dd>
+          </dl>
+
+          <article>
+            <h4>Selection (vi keys)</h4>
+            <dl>
+              <dt><kbd>Space</kbd></dt>
+              <dd>start selection</dd>
+              <dt><kbd>v</kbd></dt>
+              <dd>toggle rectangle/block selection</dd>
+              <dt><kbd>Enter</kbd></dt>
+              <dd>copy selection and exit</dd>
+              <dt><kbd>Escape</kbd></dt>
+              <dd>clear the selection</dd>
+            </dl>
+          </article>
+
+          <article>
+            <h4>Search</h4>
+            <dl>
+              <dt><kbd>/</kbd></dt>
+              <dd>search forward</dd>
+              <dt><kbd>?</kbd></dt>
+              <dd>search backward</dd>
+              <dt><kbd>n / N</kbd></dt>
+              <dd>next/previous match</dd>
+            </dl>
+          </article>
+        </article>
+
+        <article>
+          <h3>Buffers</h3>
+          <dl>
+            <dt>
+              <kbd><var>&lt;prefix&gt;</var> =</kbd>
+            </dt>
+            <dd>list buffers and choose one to paste</dd>
+            <dt><kbd>tmux list-buffers</kbd></dt>
+            <dd>list buffers from the shell</dd>
+            <dt>
+              <kbd>tmux save-buffer <var>&lt;file&gt;</var></kbd>
+            </dt>
+            <dd>save the buffer to a file</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Delete buffer</h3>
+          <dl>
+            <dt><kbd>tmux delete-buffer</kbd></dt>
+            <dd>delete the most recent buffer</dd>
+          </dl>
+
+          <article>
+            <h4>Options</h4>
+            <dl>
+              <dt>
+                <kbd>-b <var>&lt;name&gt;</var></kbd>
+              </dt>
+              <dd>delete buffer name</dd>
+            </dl>
+          </article>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>
