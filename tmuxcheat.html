@@ -6,7 +6,11 @@
   </head>
   <body>
     <h1>Tmux cheatsheet</h1>
-    <section>&lt;prefix&gt;: <kbd>ctrl b</kbd></section>
+    <section>
+      <dl>
+        <dt><var>&lt;prefix&gt;</var>: <kbd>ctrl b</kbd></dt>
+      </dl>
+    </section>
 
     <div class="grid">
       <section>
@@ -19,11 +23,11 @@
             <dt><kbd>&lt;leader&gt;:new</kbd></dt>
           </dl>
 
-          <article>
+          <article class="options">
             <h4>Options</h4>
             <dl>
               <dt>
-                <kbd>-s <var>&lt;name&gt;</var></kbd>
+                <kbd>-s&nbsp;<var>&lt;name&gt;</var></kbd>
               </dt>
             </dl>
           </article>
@@ -36,17 +40,17 @@
             <dd>kill last session</dd>
           </dl>
 
-          <article>
+          <article class="options">
             <h4>Options</h4>
             <dl>
               <dt><kbd>-a</kbd></dt>
               <dd>all but the current</dd>
               <dt>
-                <kbd>-t <var>&lt;name&gt;</var></kbd>
+                <kbd>-t&nbsp;<var>&lt;name&gt;</var></kbd>
               </dt>
               <dd>kill session name</dd>
               <dt>
-                <kbd>-at <var>&lt;name&gt;</var></kbd>
+                <kbd>-at&nbsp;<var>&lt;name&gt;</var></kbd>
               </dt>
               <dd>kill all but session name</dd>
             </dl>
@@ -59,11 +63,11 @@
             <dt><kbd>tmux a</kbd></dt>
             <dd>attach last session</dd>
           </dl>
-          <article>
-            <h4>options</h4>
+          <article class="options">
+            <h4>Options</h4>
             <dl>
               <dt>
-                <kbd>-t <var>&lt;name&gt;</var></kbd>
+                <kbd>-t&nbsp;<var>&lt;name&gt;</var></kbd>
               </dt>
               <dd>attach session name</dd>
             </dl>
@@ -198,8 +202,9 @@
             <dd>resize left/down/up/right by 5 (custom binding)</dd>
             <dt>
               <kbd
-                ><var>&lt;prefix&gt;</var> :join-pane -s
-                <var>&lt;src&gt;</var> -t <var>&lt;dst&gt;</var></kbd
+                ><var>&lt;prefix&gt;</var> :join-pane
+                <span class="opt">-s&nbsp;<var>&lt;src&gt;</var></span>
+                <span class="opt">-t&nbsp;<var>&lt;dst&gt;</var></span></kbd
               >
             </dt>
             <dd>move a pane into another window</dd>
@@ -274,11 +279,11 @@
             <dd>delete the most recent buffer</dd>
           </dl>
 
-          <article>
+          <article class="options">
             <h4>Options</h4>
             <dl>
               <dt>
-                <kbd>-b <var>&lt;name&gt;</var></kbd>
+                <kbd>-b&nbsp;<var>&lt;name&gt;</var></kbd>
               </dt>
               <dd>delete buffer name</dd>
             </dl>

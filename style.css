@@ -3,18 +3,20 @@ html * {
   margin: 0;
 }
 var {
-  color: red;
+  color: orangered;
+  font-weight: bolder;
+  font-style: italic;
+  font-family: monospace;
 }
 kbd var {
   font-family: monospace;
+  background-color: lightgray;
 }
 .grid {
+  margin: 1em;
   display: grid;
+  gap: 1em;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  background-color: blue;
-}
-.grid section {
-  background-color: cyan;
 }
 section article {
   background-color: green;
@@ -23,7 +25,7 @@ section > article + article {
   margin-top: 1em;
 }
 article article {
-  background-color: orange;
+  margin-left: 1em;
 }
 h1,
 h2 {
@@ -35,16 +37,23 @@ h4 {
 }
 dl {
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: fit-content(50%) 1fr;
   row-gap: 0.5em;
   column-gap: 1em;
   margin-left: 1em;
 }
+.options {
+  border: dashed;
+  margin-left: 1em;
+  stroke: darkblue;
+  background-color: orange;
+}
 dd {
+  font-weight: lighter;
+  font-style: italic;
 }
 body {
-  background-color: blanchedalmond;
-  border: 5px solid black;
+  border: 5px solid lightcoral;
 }
 h2 {
   background-color: fuchsia;
@@ -57,6 +66,14 @@ dd {
 }
 dd::before {
   content: "// ";
+}
+dt {
+  background-color: lightcoral;
+  justify-self: start;
+  align-self: start;
+}
+.opt {
+  white-space: nowrap;
 }
 h3 {
   background-color: salmon;
