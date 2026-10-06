@@ -5,7 +5,25 @@
   </head>
   <body>
     <h1>Vim Cheat Sheet</h1>
-
+    <section>
+      <h2>Keyboard key names</h2>
+      <dl>
+        <dt><kbd>&lt;leader&gt;</kbd></dt>
+        <dd>leader key (mapped to Space)</dd>
+        <dt><kbd>&lt;C-&gt;</kbd></dt>
+        <dd>Control</dd>
+        <dt><kbd>&lt;S-&gt;</kbd></dt>
+        <dd>Shift</dd>
+        <dt><kbd>&lt;Del&gt;</kbd></dt>
+        <dd>Delete</dd>
+        <dt><kbd>&lt;BS&gt;</kbd></dt>
+        <dd>Backspace</dd>
+        <dt><kbd>&lt;CR&gt;</kbd></dt>
+        <dd>Enter / Return</dd>
+        <dt><kbd>&lt;Tab&gt;</kbd></dt>
+        <dd>Tab</dd>
+      </dl>
+    </section>
     <section>
       <h2>Global</h2>
       <dl>
@@ -13,14 +31,10 @@
         <dd>open help for keyword</dd>
         <dt><kbd>:sav[eas] file</kbd></dt>
         <dd>save file as</dd>
-        <dt><kbd>:clo[se]</kbd></dt>
-        <dd>close current pane</dd>
-        <dt><kbd>:ter[minal]</kbd></dt>
-        <dd>open a terminal window</dd>
-        <dt><kbd>K</kbd></dt>
-        <dd>open man page for word under the cursor</dd>
         <dt><kbd>:enew</kbd></dt>
         <dd>create temporary file</dd>
+        <dt><kbd>:e</kbd><var> file_name </var></dt>
+        <dd>create named file</dd>
       </dl>
     </section>
 
@@ -48,21 +62,32 @@
         <dt><kbd>w</kbd></dt>
         <dd>jump forwards to the start of a word</dd>
         <dt><kbd>W</kbd></dt>
-        <dd>jump forwards to the start of a word (words can contain punctuation)</dd>
+        <dd>
+          jump forwards to the start of a word (words can contain punctuation)
+        </dd>
         <dt><kbd>e</kbd></dt>
         <dd>jump forwards to the end of a word</dd>
         <dt><kbd>E</kbd></dt>
-        <dd>jump forwards to the end of a word (words can contain punctuation)</dd>
+        <dd>
+          jump forwards to the end of a word (words can contain punctuation)
+        </dd>
         <dt><kbd>b</kbd></dt>
         <dd>jump backwards to the start of a word</dd>
         <dt><kbd>B</kbd></dt>
-        <dd>jump backwards to the start of a word (words can contain punctuation)</dd>
+        <dd>
+          jump backwards to the start of a word (words can contain punctuation)
+        </dd>
         <dt><kbd>ge</kbd></dt>
         <dd>jump backwards to the end of a word</dd>
         <dt><kbd>gE</kbd></dt>
-        <dd>jump backwards to the end of a word (words can contain punctuation)</dd>
+        <dd>
+          jump backwards to the end of a word (words can contain punctuation)
+        </dd>
         <dt><kbd>%</kbd></dt>
-        <dd>move cursor to matching character (default supported pairs: '()', '{}', '[]' - use :h matchpairs in vim for more info)</dd>
+        <dd>
+          move cursor to matching character (default supported pairs: '()',
+          '{}', '[]' - use :h matchpairs in vim for more info)
+        </dd>
         <dt><kbd>0</kbd></dt>
         <dd>jump to the start of the line</dd>
         <dt><kbd>^</kbd></dt>
@@ -96,7 +121,9 @@
         <dt><kbd>}</kbd></dt>
         <dd>jump to next paragraph (or function/block, when editing code)</dd>
         <dt><kbd>{</kbd></dt>
-        <dd>jump to previous paragraph (or function/block, when editing code)</dd>
+        <dd>
+          jump to previous paragraph (or function/block, when editing code)
+        </dd>
         <dt><kbd>zz</kbd></dt>
         <dd>center cursor on screen</dd>
         <dt><kbd>zt</kbd></dt>
@@ -146,13 +173,20 @@
         <dt><kbd>Ctrl + d</kbd></dt>
         <dd>de-indent (move left) line one shiftwidth during insert mode</dd>
         <dt><kbd>Ctrl + n</kbd></dt>
-        <dd>insert (auto-complete) next match before the cursor during insert mode</dd>
+        <dd>
+          insert (auto-complete) next match before the cursor during insert mode
+        </dd>
         <dt><kbd>Ctrl + p</kbd></dt>
-        <dd>insert (auto-complete) previous match before the cursor during insert mode</dd>
+        <dd>
+          insert (auto-complete) previous match before the cursor during insert
+          mode
+        </dd>
         <dt><kbd>Ctrl + rx</kbd></dt>
         <dd>insert the contents of register x</dd>
         <dt><kbd>Ctrl + ox</kbd></dt>
-        <dd>Temporarily enter normal mode to issue one normal-mode command x.</dd>
+        <dd>
+          Temporarily enter normal mode to issue one normal-mode command x.
+        </dd>
         <dt><kbd>Esc or Ctrl + c</kbd></dt>
         <dd>exit insert mode</dd>
       </dl>
@@ -328,11 +362,16 @@
         <dt><kbd>2yy</kbd></dt>
         <dd>yank (copy) 2 lines</dd>
         <dt><kbd>yw</kbd></dt>
-        <dd>yank (copy) the characters of the word from the cursor position to the start of the next word</dd>
+        <dd>
+          yank (copy) the characters of the word from the cursor position to the
+          start of the next word
+        </dd>
         <dt><kbd>yiw</kbd></dt>
         <dd>yank (copy) word under the cursor</dd>
         <dt><kbd>yaw</kbd></dt>
-        <dd>yank (copy) word under the cursor and the space after or before it</dd>
+        <dd>
+          yank (copy) word under the cursor and the space after or before it
+        </dd>
         <dt><kbd>y$ or Y</kbd></dt>
         <dd>yank (copy) to end of line</dd>
         <dt><kbd>p</kbd></dt>
@@ -340,7 +379,10 @@
         <dt><kbd>P</kbd></dt>
         <dd>put (paste) before cursor</dd>
         <dt><kbd>gp</kbd></dt>
-        <dd>put (paste) the clipboard after cursor and leave cursor after the new text</dd>
+        <dd>
+          put (paste) the clipboard after cursor and leave cursor after the new
+          text
+        </dd>
         <dt><kbd>gP</kbd></dt>
         <dd>put (paste) before cursor and leave cursor after the new text</dd>
         <dt><kbd>dd</kbd></dt>
@@ -348,11 +390,16 @@
         <dt><kbd>2dd</kbd></dt>
         <dd>delete (cut) 2 lines</dd>
         <dt><kbd>dw</kbd></dt>
-        <dd>delete (cut) the characters of the word from the cursor position to the start of the next word</dd>
+        <dd>
+          delete (cut) the characters of the word from the cursor position to
+          the start of the next word
+        </dd>
         <dt><kbd>diw</kbd></dt>
         <dd>delete (cut) word under the cursor</dd>
         <dt><kbd>daw</kbd></dt>
-        <dd>delete (cut) word under the cursor and the space after or before it</dd>
+        <dd>
+          delete (cut) word under the cursor and the space after or before it
+        </dd>
         <dt><kbd>:3,5d</kbd></dt>
         <dd>delete lines starting from 3 to 5</dd>
         <dt><kbd>:g/{pattern}/d</kbd></dt>
@@ -420,7 +467,10 @@
         <dt><kbd>?pattern</kbd></dt>
         <dd>search backward for pattern</dd>
         <dt><kbd>\vpattern</kbd></dt>
-        <dd>'very magic' pattern: non-alphanumeric characters are interpreted as special regex symbols (no escaping needed)</dd>
+        <dd>
+          'very magic' pattern: non-alphanumeric characters are interpreted as
+          special regex symbols (no escaping needed)
+        </dd>
         <dt><kbd>n</kbd></dt>
         <dd>repeat search in same direction</dd>
         <dt><kbd>N</kbd></dt>
@@ -470,7 +520,9 @@
         <dt><kbd>:tabo[nly]</kbd></dt>
         <dd>close all tabs except for the current one</dd>
         <dt><kbd>:tabdo command</kbd></dt>
-        <dd>run the command on all tabs (e.g. :tabdo q - closes all opened tabs)</dd>
+        <dd>
+          run the command on all tabs (e.g. :tabdo q - closes all opened tabs)
+        </dd>
       </dl>
     </section>
 
@@ -520,13 +572,24 @@
         <dt><kbd>Ctrl + wk</kbd></dt>
         <dd>move cursor to the window above (horizontal split)</dd>
         <dt><kbd>Ctrl + wH</kbd></dt>
-        <dd>make current window full height at far left (leftmost vertical window)</dd>
+        <dd>
+          make current window full height at far left (leftmost vertical window)
+        </dd>
         <dt><kbd>Ctrl + wL</kbd></dt>
-        <dd>make current window full height at far right (rightmost vertical window)</dd>
+        <dd>
+          make current window full height at far right (rightmost vertical
+          window)
+        </dd>
         <dt><kbd>Ctrl + wJ</kbd></dt>
-        <dd>make current window full width at the very bottom (bottommost horizontal window)</dd>
+        <dd>
+          make current window full width at the very bottom (bottommost
+          horizontal window)
+        </dd>
         <dt><kbd>Ctrl + wK</kbd></dt>
-        <dd>make current window full width at the very top (topmost horizontal window)</dd>
+        <dd>
+          make current window full width at the very top (topmost horizontal
+          window)
+        </dd>
       </dl>
     </section>
 
@@ -569,34 +632,71 @@
     <section>
       <h2>Marks &amp; bookmarks (extended)</h2>
       <dl>
-        <dt><kbd>mx</kbd></dt>
-        <dd>Set mark x</dd>
-        <dt><kbd>m,</kbd></dt>
-        <dd>Set the next available alphabetical (lowercase) mark</dd>
-        <dt><kbd>m;</kbd></dt>
-        <dd>Toggle the next available mark at the current line</dd>
-        <dt><kbd>dmx</kbd></dt>
-        <dd>Delete mark x</dd>
-        <dt><kbd>dm-</kbd></dt>
-        <dd>Delete all marks on the current line</dd>
-        <dt><kbd>dm&lt;space&gt;</kbd></dt>
-        <dd>Delete all marks in the current buffer</dd>
-        <dt><kbd>m]</kbd></dt>
-        <dd>Move to next mark</dd>
-        <dt><kbd>m[</kbd></dt>
-        <dd>Move to previous mark</dd>
-        <dt><kbd>m:</kbd></dt>
-        <dd>Preview mark. This will prompt you for a specific mark to preview; press &lt;cr&gt; to preview the next mark.</dd>
-        <dt><kbd>m[0-9]</kbd></dt>
-        <dd>Add a bookmark from bookmark group[0-9].</dd>
-        <dt><kbd>dm[0-9]</kbd></dt>
-        <dd>Delete all bookmarks from bookmark group[0-9].</dd>
-        <dt><kbd>m}</kbd></dt>
-        <dd>Move to the next bookmark having the same type as the bookmark under the cursor. Works across buffers.</dd>
-        <dt><kbd>m{</kbd></dt>
-        <dd>Move to the previous bookmark having the same type as the bookmark under the cursor. Works across buffers.</dd>
-        <dt><kbd>dm=</kbd></dt>
-        <dd>Delete the bookmark under the cursor.</dd>
+        <div>
+          <dt><kbd>mx</kbd></dt>
+          <dd>Set mark x</dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>m,</kbd></dt>
+          <dd>Set the next available alphabetical (lowercase) mark</dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>m;</kbd></dt>
+          <dd>Toggle the next available mark at the current line</dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>dmx</kbd></dt>
+          <dd>Delete mark x</dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>dm-</kbd></dt>
+          <dd>Delete all marks on the current line</dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>dm&lt;space&gt;</kbd></dt>
+          <dd>Delete all marks in the current buffer</dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>m]</kbd></dt>
+          <dd>Move to next mark</dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>m[</kbd></dt>
+          <dd>Move to previous mark</dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>m:</kbd></dt>
+          <dd>
+            Preview mark. This will prompt you for a specific mark to preview;
+            press &lt;cr&gt; to preview the next mark.
+          </dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>m[0-9]</kbd></dt>
+          <dd>Add a bookmark from bookmark group[0-9].</dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>dm[0-9]</kbd></dt>
+          <dd>Delete all bookmarks from bookmark group[0-9].</dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>m}</kbd></dt>
+          <dd>
+            Move to the next bookmark having the same type as the bookmark under
+            the cursor. Works across buffers.
+          </dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>m{</kbd></dt>
+          <dd>
+            Move to the previous bookmark having the same type as the bookmark
+            under the cursor. Works across buffers.
+          </dd>
+        </div>
+        <div class="marks-nvim">
+          <dt><kbd>dm=</kbd></dt>
+          <dd>Delete the bookmark under the cursor.</dd>
+        </div>
       </dl>
     </section>
 
@@ -614,7 +714,9 @@
         <dt>Medium to long-distance horizontal movement</dt>
         <dd>Use f F t T , ; 0 ^ $.</dd>
         <dt>Operators</dt>
-        <dd>Use operator + motion/text-object (eg: ci{ y5j dap) whenever possible.</dd>
+        <dd>
+          Use operator + motion/text-object (eg: ci{ y5j dap) whenever possible.
+        </dd>
         <dt>Jump between brackets</dt>
         <dd>Use % and square bracket commands (see :h [).</dd>
       </dl>
@@ -623,70 +725,82 @@
     <section>
       <h2>Find files (LazyVim)</h2>
       <dl>
-        <dt><kbd>&lt;leader&gt;&lt;space&gt;</kbd></dt>
-        <dd>find files in project root</dd>
-        <dt><kbd>&lt;leader&gt;ff</kbd></dt>
-        <dd>find files (root)</dd>
-        <dt><kbd>&lt;leader&gt;fF</kbd></dt>
-        <dd>find files (cwd)</dd>
-        <dt><kbd>&lt;leader&gt;fr</kbd></dt>
-        <dd>recent files</dd>
-        <dt><kbd>&lt;leader&gt;fb</kbd></dt>
-        <dd>open buffers</dd>
-        <dt><kbd>&lt;leader&gt;/</kbd></dt>
-        <dd>grep text in project (also &lt;leader&gt;sg)</dd>
-        <dt><kbd>&lt;leader&gt;sw</kbd></dt>
-        <dd>grep word under cursor</dd>
+        <div class="snacks-nvim">
+          <dt><kbd>&lt;leader&gt;&lt;space&gt;</kbd></dt>
+          <dd>find files in project root</dd>
+        </div>
+        <div class="snacks-nvim">
+          <dt><kbd>&lt;leader&gt;ff</kbd></dt>
+          <dd>find files (root)</dd>
+        </div>
+        <div class="snacks-nvim">
+          <dt><kbd>&lt;leader&gt;fF</kbd></dt>
+          <dd>find files (cwd)</dd>
+        </div>
+        <div class="snacks-nvim">
+          <dt><kbd>&lt;leader&gt;fr</kbd></dt>
+          <dd>recent files</dd>
+        </div>
+        <div class="snacks-nvim">
+          <dt><kbd>&lt;leader&gt;fb</kbd></dt>
+          <dd>open buffers</dd>
+        </div>
+        <div class="snacks-nvim">
+          <dt><kbd>&lt;leader&gt;/</kbd></dt>
+          <dd>grep text in project (also &lt;leader&gt;sg)</dd>
+        </div>
+        <div class="snacks-nvim">
+          <dt><kbd>&lt;leader&gt;sw</kbd></dt>
+          <dd>grep word under cursor</dd>
+        </div>
       </dl>
     </section>
 
     <section>
       <h2>File explorer (sidebar tree)</h2>
       <dl>
-        <dt><kbd>&lt;leader&gt;e</kbd></dt>
-        <dd>explorer at root</dd>
-        <dt><kbd>&lt;leader&gt;E</kbd></dt>
-        <dd>explorer at cwd</dd>
-        <dt>Inside it</dt>
-        <dd>a add, d delete, r rename, &lt;CR&gt; open, H toggle hidden</dd>
+        <div class="snacks-nvim">
+          <dt><kbd>&lt;leader&gt;e</kbd></dt>
+          <dd>explorer at root</dd>
+        </div>
+        <div class="snacks-nvim">
+          <dt><kbd>&lt;leader&gt;E</kbd></dt>
+          <dd>explorer at cwd</dd>
+        </div>
+        <div class="snacks-nvim">
+          <dt>Inside it</dt>
+          <dd>a add, d delete, r rename, &lt;CR&gt; open, H toggle hidden</dd>
+        </div>
       </dl>
     </section>
 
     <section>
       <h2>Jump around code / buffers</h2>
       <dl>
-        <dt><kbd>gd</kbd></dt>
-        <dd>definition</dd>
-        <dt><kbd>gr</kbd></dt>
-        <dd>references</dd>
-        <dt><kbd>gD</kbd></dt>
-        <dd>declaration</dd>
-        <dt><kbd>&lt;C-o&gt; / &lt;C-i&gt;</kbd></dt>
-        <dd>jump back / forward</dd>
-        <dt><kbd>&lt;S-h&gt; / &lt;S-l&gt;</kbd></dt>
-        <dd>previous / next buffer</dd>
-        <dt><kbd>&lt;leader&gt;,</kbd></dt>
-        <dd>switch buffer</dd>
-      </dl>
-    </section>
-
-    <section>
-      <h2>Keyboard key names</h2>
-      <dl>
-        <dt><kbd>&lt;leader&gt;</kbd></dt>
-        <dd>leader key (mapped to Space)</dd>
-        <dt><kbd>&lt;C-&gt;</kbd></dt>
-        <dd>Control</dd>
-        <dt><kbd>&lt;S-&gt;</kbd></dt>
-        <dd>Shift</dd>
-        <dt><kbd>&lt;Del&gt;</kbd></dt>
-        <dd>Delete</dd>
-        <dt><kbd>&lt;BS&gt;</kbd></dt>
-        <dd>Backspace</dd>
-        <dt><kbd>&lt;CR&gt;</kbd></dt>
-        <dd>Enter / Return</dd>
-        <dt><kbd>&lt;Tab&gt;</kbd></dt>
-        <dd>Tab</dd>
+        <div class="lsp">
+          <dt><kbd>gd</kbd></dt>
+          <dd>definition</dd>
+        </div>
+        <div class="lsp">
+          <dt><kbd>gr</kbd></dt>
+          <dd>references</dd>
+        </div>
+        <div class="lsp">
+          <dt><kbd>gD</kbd></dt>
+          <dd>declaration</dd>
+        </div>
+        <div>
+          <dt><kbd>&lt;C-o&gt; / &lt;C-i&gt;</kbd></dt>
+          <dd>jump back / forward</dd>
+        </div>
+        <div class="lazyvim">
+          <dt><kbd>&lt;S-h&gt; / &lt;S-l&gt;</kbd></dt>
+          <dd>previous / next buffer</dd>
+        </div>
+        <div class="lazyvim">
+          <dt><kbd>&lt;leader&gt;,</kbd></dt>
+          <dd>switch buffer</dd>
+        </div>
       </dl>
     </section>
   </body>
