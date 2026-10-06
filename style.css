@@ -1,16 +1,25 @@
 html * {
-  font-family: Helvetica;
   margin: 0;
-}
-var {
-  color: orangered;
-  font-weight: bolder;
-  font-style: italic;
+  color: black;
+  background-color: white;
   font-family: monospace;
 }
-kbd var {
-  font-family: monospace;
-  background-color: lightgray;
+h1,
+h2,
+h3,
+h4 {
+  color: #3d4d00;
+  margin-bottom: 0.9em;
+  text-align: center;
+}
+h1 {
+  text-align: center;
+  white-space: nowrap;
+  font-size: 9vw;
+  line-height: 1;
+  transform: scaleY(2.5);
+  transform-origin: top center;
+  margin-bottom: 14vw; /* reserve the stretched overflow: (2.5-1) x 9vw */
 }
 .grid {
   column-width: 300px;
@@ -19,64 +28,58 @@ kbd var {
 .grid > section {
   break-inside: avoid;
   margin-bottom: 1em;
-}
-section article {
-  background-color: green;
+  border: 3px solid black;
+  padding: 1em;
 }
 section > article + article {
-  margin-top: 1em;
+  border-top: 2px solid black;
+  /* negative side margins cancel the section's 1em padding so the line spans full width */
+  margin: 1em -1em 0;
+  padding: 1em 1em 0;
 }
 article article {
   margin-left: 1em;
+  margin-top: 1em;
 }
-h1,
-h2 {
-  text-align: center;
+.options {
+  padding: 1em;
+  border: 2px solid black;
+  margin-left: 1em;
+  margin-top: 1em;
 }
-h3,
-h4 {
-  margin-left: 0.5em;
-}
+
 dl {
   display: grid;
   grid-template-columns: fit-content(50%) 1fr;
   row-gap: 0.5em;
-  column-gap: 1em;
-  margin-left: 1em;
-}
-.options {
-  border: dashed;
-  margin-left: 1em;
-  stroke: darkblue;
-  background-color: orange;
-}
-dd {
-  font-weight: lighter;
-  font-style: italic;
-}
-body {
-  border: 5px solid lightcoral;
-}
-h2 {
-  background-color: fuchsia;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-}
-dd {
-  display: inline;
-}
-dd::before {
-  content: "// ";
 }
 dt {
-  background-color: lightcoral;
-  justify-self: start;
-  align-self: start;
+  padding-right: 1em;
+}
+
+/* commands (kbd) → monospace + gray highlight */
+kbd {
+  font-family: Menlo, monospace;
+  background: lightgray;
 }
 .opt {
   white-space: nowrap;
 }
-h3 {
-  background-color: salmon;
+
+var {
+  font-family: Monaco, "Andale Mono", monospace;
+  font-weight: bold;
+  font-style: italic;
+  color: black;
+  background: none;
+}
+
+dd {
+  display: inline;
+  font-family: Georgia, serif;
+  font-style: italic;
+  color: #333;
+}
+dd::before {
+  content: "// ";
 }
