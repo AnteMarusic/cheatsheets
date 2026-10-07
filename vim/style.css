@@ -51,7 +51,7 @@ article article {
 dl {
   display: grid;
   grid-template-columns: fit-content(50%) 1fr;
-  row-gap: 0.5em;
+  row-gap: 1em;
 }
 dt {
   grid-column: 1;
