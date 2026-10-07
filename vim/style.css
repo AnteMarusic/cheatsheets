@@ -79,3 +79,19 @@ dd {
 dd::before {
   content: "// ";
 }
+.marks-nvim kbd {
+  background: blue;
+  color: white;
+}
+.snacks-nvim kbd {
+  background: fuchsia;
+  color: white;
+}
+.lsp kbd {
+  background: green;
+  color: white;
+}
+.bufferline-nvim kbd {
+  background: teal;
+  color: white;
+}
