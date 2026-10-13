@@ -95,3 +95,7 @@ dd::before {
   background: teal;
   color: white;
 }
+.flash-nvim kbd {
+  background: darkorange;
+  color: white;
+}
