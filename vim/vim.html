@@ -757,7 +757,6 @@
           <dd>open help for keyword</dd>
         </dl>
       </section>
-      <!-- TODO: file-tree navigation keys (netrw and snacks explorer) -->
       <section>
         <h2>Grep</h2>
         <dl>
@@ -866,8 +865,24 @@
           <dd>explorer at root</dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;E</kbd></dt>
           <dd>explorer at cwd</dd>
-          <dt class="snacks-nvim">Inside it</dt>
-          <dd>a add, d delete, r rename, &lt;CR&gt; open, H toggle hidden</dd>
+          <dt class="snacks-nvim"><kbd>l</kbd> / <kbd>&lt;CR&gt;</kbd></dt>
+          <dd>open file / expand directory</dd>
+          <dt class="snacks-nvim"><kbd>h</kbd></dt>
+          <dd>close (collapse) directory</dd>
+          <dt class="snacks-nvim">
+            <kbd>a</kbd> / <kbd>d</kbd> / <kbd>r</kbd>
+          </dt>
+          <dd>add / delete / rename</dd>
+          <dt class="snacks-nvim"><kbd>u</kbd></dt>
+          <dd>refresh the tree</dd>
+          <dt class="snacks-nvim"><kbd>.</kbd></dt>
+          <dd>set the directory under the cursor as root</dd>
+          <dt class="snacks-nvim"><kbd>Z</kbd></dt>
+          <dd>close all directories</dd>
+          <dt class="snacks-nvim"><kbd>]g</kbd> / <kbd>[g</kbd></dt>
+          <dd>jump to next / previous file with git changes (in the tree)</dd>
+          <dt class="snacks-nvim"><kbd>H</kbd></dt>
+          <dd>toggle hidden files</dd>
         </dl>
       </section>
 
@@ -879,7 +894,24 @@
           <dd>list current mappings and where they are set</dd>
         </dl>
       </section>
-      <!-- TODO: terminal (open/close in nvim), change cwd -->
+      <section>
+        <h2>Terminal</h2>
+        <dl>
+          <dt class="lazyvim"><kbd>&lt;C-/&gt;</kbd></dt>
+          <dd>
+            toggle / focus a terminal at the root dir (works from normal and
+            terminal mode)
+          </dd>
+          <dt class="lazyvim">
+            <kbd>&lt;leader&gt;ft</kbd> / <kbd>&lt;leader&gt;fT</kbd>
+          </dt>
+          <dd>open a terminal at root dir / cwd</dd>
+          <dt><kbd>&lt;C-\&gt;&lt;C-n&gt;</kbd></dt>
+          <dd>leave terminal insert mode (go to normal mode)</dd>
+          <dt><kbd>:cd</kbd> / <kbd>:lcd</kbd> / <kbd>:tcd</kbd></dt>
+          <dd>change cwd: global / current window / current tab</dd>
+        </dl>
+      </section>
 
       <!-- Git -->
       <section>
@@ -916,7 +948,25 @@
           <dd>notifications</dd>
         </dl>
       </section>
-      <!-- TODO: config files (options.lua, keymaps.lua, plugin specs) -->
+      <section>
+        <h2>Config files (LazyVim)</h2>
+        <dl>
+          <dt><kbd>~/.config/nvim/init.lua</kbd></dt>
+          <dd>entry point (bootstraps LazyVim)</dd>
+          <dt><kbd>lua/config/options.lua</kbd></dt>
+          <dd>vim options (set before plugins load)</dd>
+          <dt><kbd>lua/config/keymaps.lua</kbd></dt>
+          <dd>your keymaps (loaded on VeryLazy)</dd>
+          <dt><kbd>lua/config/autocmds.lua</kbd></dt>
+          <dd>autocommands</dd>
+          <dt><kbd>lua/config/lazy.lua</kbd></dt>
+          <dd>lazy.nvim setup and the plugin import list</dd>
+          <dt><kbd>lua/plugins/*.lua</kbd></dt>
+          <dd>plugin specs: each file returns a table to add or override</dd>
+          <dt><kbd>lazyvim.json</kbd></dt>
+          <dd>enabled LazyVim extras</dd>
+        </dl>
+      </section>
     </div>
   </body>
 </html>
