@@ -246,6 +246,38 @@
           <dd>toggle flash labels while typing a <kbd>/</kbd> search</dd>
         </dl>
       </section>
+      <section>
+        <h2>Folds</h2>
+        <dl>
+          <dt><kbd>&lt;BS&gt;</kbd></dt>
+          <dd>toggle the fold (function) under the cursor</dd>
+          <dt><kbd>zd</kbd></dt>
+          <dd>delete the fold under the cursor (text stays)</dd>
+          <dt><kbd>zR</kbd></dt>
+          <dd>open (Reveal) all folds</dd>
+          <dt><kbd>zM</kbd></dt>
+          <dd>close (Max) all folds</dd>
+          <dt><kbd>zr</kbd></dt>
+          <dd>open (reduce) the folding by one level</dd>
+          <dt><kbd>zm</kbd></dt>
+          <dd>close (minimize) the text by one level</dd>
+        </dl>
+      </section>
+      <section>
+        <h2>Move in snacks</h2>
+        <dl>
+          <dt><kbd>&lt;C-n&gt;</kbd></dt>
+          <dd>
+            insert (auto-complete) next match before the cursor during insert
+            mode
+          </dd>
+          <dt><kbd>&lt;C-p&gt;</kbd></dt>
+          <dd>
+            insert (auto-complete) previous match before the cursor during
+            insert mode
+          </dd>
+        </dl>
+      </section>
 
       <!-- Editing -->
       <dl>
@@ -574,23 +606,6 @@
         </dl>
       </section>
       <section>
-        <h2>Folds</h2>
-        <dl>
-          <dt><kbd>&lt;BS&gt;</kbd></dt>
-          <dd>toggle the fold (function) under the cursor</dd>
-          <dt><kbd>zd</kbd></dt>
-          <dd>delete the fold under the cursor (text stays)</dd>
-          <dt><kbd>zR</kbd></dt>
-          <dd>open (Reveal) all folds</dd>
-          <dt><kbd>zM</kbd></dt>
-          <dd>close (Max) all folds</dd>
-          <dt><kbd>zr</kbd></dt>
-          <dd>open (reduce) the folding by one level</dd>
-          <dt><kbd>zm</kbd></dt>
-          <dd>close (minimize) the text by one level</dd>
-        </dl>
-      </section>
-      <section>
         <h2>Diff</h2>
         <dl>
           <dt><kbd>]c</kbd></dt>
@@ -637,7 +652,7 @@
         </dl>
       </section>
       <section>
-        <h2>Join, format, case</h2>
+        <h2>Join, add line in n mode</h2>
         <dl>
           <dt><kbd>J</kbd></dt>
           <dd>join the line below to the current one with a space</dd>
@@ -694,21 +709,6 @@
         </dl>
       </section>
       <section>
-        <h2>Move in snacks</h2>
-        <dl>
-          <dt><kbd>&lt;C-n&gt;</kbd></dt>
-          <dd>
-            insert (auto-complete) next match before the cursor during insert
-            mode
-          </dd>
-          <dt><kbd>&lt;C-p&gt;</kbd></dt>
-          <dd>
-            insert (auto-complete) previous match before the cursor during
-            insert mode
-          </dd>
-        </dl>
-      </section>
-      <section>
         <h2>Comment Uncomment</h2>
         <dl>
           <dt>gcc</dt>
@@ -728,16 +728,10 @@
           <dd>write (save) and quit</dd>
           <dt><kbd>:q</kbd></dt>
           <dd>quit (fails if there are unsaved changes)</dd>
-          <dt><kbd>:q! or ZQ</kbd></dt>
+          <dt><kbd>:q!</kbd></dt>
           <dd>quit and throw away unsaved changes</dd>
           <dt><kbd>:wqa</kbd></dt>
           <dd>write (save) and quit on all tabs</dd>
-          <dt class="bufferline-nvim">
-            <kbd>&lt;S-h&gt;</kbd> / <kbd>&lt;S-l&gt;</kbd>
-          </dt>
-          <dd>previous / next buffer</dd>
-          <dt class="snacks-nvim"><kbd>&lt;leader&gt;,</kbd></dt>
-          <dd>switch buffer</dd>
         </dl>
       </section>
       <section>
@@ -765,18 +759,14 @@
       </section>
       <!-- TODO: file-tree navigation keys (netrw and snacks explorer) -->
       <section>
-        <h2>Search in multiple files</h2>
+        <h2>Grep</h2>
         <dl>
-          <dt><kbd>:vim[grep] /pattern/ {file}</kbd></dt>
+          <dt class=".snack-picker"><kbd>&lt;leader&gt;/</kbd></dt>
           <dd>search for pattern in multiple files</dd>
-          <dt><kbd>:cn[ext]</kbd></dt>
-          <dd>jump to the next match</dd>
-          <dt><kbd>:cp[revious]</kbd></dt>
-          <dd>jump to the previous match</dd>
-          <dt><kbd>:cope[n]</kbd></dt>
-          <dd>open a window containing the list of matches</dd>
-          <dt><kbd>:ccl[ose]</kbd></dt>
-          <dd>close the quickfix window</dd>
+          <dt class="snacks-nvim"><kbd>&lt;leader&gt;sw</kbd></dt>
+          <dd>grep word under cursor</dd>
+          <dt class="snacks-nvim"><kbd>&lt;leader&gt;sb</kbd></dt>
+          <dd>search lines in the current buffer</dd>
         </dl>
       </section>
       <section>
@@ -786,9 +776,9 @@
           <dd>open a file in a new tab</dd>
           <dt><kbd>&lt;C-w&gt;T</kbd></dt>
           <dd>move the current split window into its own tab</dd>
-          <dt><kbd>gt or :tabn[ext]</kbd></dt>
+          <dt><kbd>gt</kbd></dt>
           <dd>move to the next tab</dd>
-          <dt><kbd>gT or :tabp[revious]</kbd></dt>
+          <dt><kbd>gT</kbd></dt>
           <dd>move to the previous tab</dd>
           <dt><kbd>#gt</kbd></dt>
           <dd>move to tab number #</dd>
@@ -807,41 +797,35 @@
       <section>
         <h2>Buffers</h2>
         <dl>
+          <dt class="bufferline-nvim">
+            <kbd>&lt;S-h&gt;</kbd> / <kbd>&lt;S-l&gt;</kbd>
+          </dt>
+          <dd>previous / next buffer</dd>
+          <dt class="snacks-nvim"><kbd>&lt;leader&gt;fb</kbd></dt>
+          <dd>switch buffer</dd>
           <dt><kbd>:e[dit] file</kbd></dt>
           <dd>edit a file in a new buffer</dd>
-          <dt><kbd>:bn[ext]</kbd></dt>
-          <dd>go to the next buffer</dd>
-          <dt><kbd>:bp[revious]</kbd></dt>
           <dd>go to the previous buffer</dd>
           <dt><kbd>:bd[elete]</kbd></dt>
           <dd>delete a buffer (close a file)</dd>
-          <dt><kbd>:b[uffer]#</kbd></dt>
-          <dd>go to a buffer by index #</dd>
-          <dt><kbd>:b[uffer] file</kbd></dt>
-          <dd>go to a buffer by file</dd>
-          <dt><kbd>:ls or :buffers</kbd></dt>
-          <dd>list all open buffers</dd>
         </dl>
       </section>
       <section>
         <h2>Windows &amp; splits</h2>
         <dl>
-          <dt><kbd>:sp[lit] file</kbd></dt>
-          <dd>open a file in a horizontal split</dd>
-          <dt><kbd>:vs[plit] file</kbd></dt>
-          <dd>open a file in a vertical split</dd>
           <dt><kbd>:vert[ical] ba[ll]</kbd></dt>
           <dd>edit all buffers as vertical windows</dd>
-          <dt><kbd>:tab ba[ll]</kbd></dt>
-          <dd>edit all buffers as tabs</dd>
           <dt><kbd>&lt;C-w&gt;s</kbd> / <kbd>&lt;C-w&gt;v</kbd></dt>
           <dd>split horizontally / vertically</dd>
-          <dt><kbd>&lt;C-w&gt;w</kbd></dt>
-          <dd>switch to the next window</dd>
           <dt><kbd>&lt;C-w&gt;q</kbd></dt>
           <dd>quit a window</dd>
-          <dt><kbd>&lt;C-w&gt;x</kbd></dt>
-          <dd>exchange current window with the next one</dd>
+          <dt class="lazyvim">
+            <kbd>&lt;C-Left&gt;</kbd> / <kbd>&lt;C-Right&gt;</kbd> /
+            <kbd>&lt;C-Up&gt;</kbd> / <kbd>&lt;C-Down&gt;</kbd>
+          </dt>
+          <dd class="lazyvim">
+            resize window: narrower / wider / taller / shorter
+          </dd>
           <dt><kbd>&lt;C-w&gt;=</kbd></dt>
           <dd>make all windows equal height &amp; width</dd>
           <dt><kbd>&lt;C-w&gt;h/l/j/k</kbd></dt>
@@ -850,33 +834,31 @@
           <dd>move the window to the far left / right / bottom / top</dd>
         </dl>
       </section>
-      <section>
-        <h2>Find files (LazyVim)</h2>
+      <section class="snacks-nvim">
+        <h2>Find files</h2>
         <dl>
-          <dt class="snacks-nvim"><kbd>&lt;leader&gt;&lt;space&gt;</kbd></dt>
-          <dd>find files in project root</dd>
+          <dt class="snacks-nvim">
+            <kbd>&lt;leader&gt;&lt;space&gt; or &lt;leader&gt;ff</kbd>
+          </dt>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;ff</kbd></dt>
-          <dd>find files (root)</dd>
+          <dd>
+            find files from root (root is the closest parent nvim or git
+            project)
+          </dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;fF</kbd></dt>
           <dd>find files (cwd)</dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;fg</kbd></dt>
           <dd>git files</dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;fp</kbd></dt>
-          <dd>projects</dd>
+          <dd>
+            find projects. snacks defines them as a folder with a .git folder,
+            or under ~/dev folder. the definition can be changed in the plugin
+            configs.
+          </dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;fr</kbd></dt>
           <dd>recent files</dd>
-          <dt class="snacks-nvim"><kbd>&lt;leader&gt;fb</kbd></dt>
-          <dd>open buffers</dd>
-          <dt class="snacks-nvim"><kbd>&lt;leader&gt;/</kbd></dt>
-          <dd>grep text in project (also &lt;leader&gt;sg)</dd>
-          <dt class="snacks-nvim"><kbd>&lt;leader&gt;sw</kbd></dt>
-          <dd>grep word under cursor</dd>
-          <dt class="snacks-nvim"><kbd>&lt;leader&gt;sb</kbd></dt>
-          <dd>search lines in the current buffer</dd>
         </dl>
       </section>
-
-      this is an example
       <section>
         <h2>File explorer (sidebar tree)</h2>
         <dl>
@@ -888,6 +870,7 @@
           <dd>a add, d delete, r rename, &lt;CR&gt; open, H toggle hidden</dd>
         </dl>
       </section>
+
       <!-- Terminal and commands -->
       <section>
         <h2>Commands</h2>
