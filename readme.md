@@ -1,7 +1,5 @@
 # Cheatsheets
 
-Styled HTML reference pages for tmux and vim.
-
 Run this in the repo root to open a live server on localhost that displays the cheat-sheets:
 
 ```bash

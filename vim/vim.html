@@ -48,6 +48,15 @@
           <dd>repeat last change 3 times (replaces its original count)</dd>
         </dl>
       </section>
+      <section>
+        <h2>Help</h2>
+        <dl>
+          <dt class=".neovim">
+            <kbd>&lt;leader&gt;sk</kbd>
+          </dt>
+          <dd>List all the keymaps and show the file of definition.</dd>
+        </dl>
+      </section>
 
       <!-- Movement -->
       <dl>
@@ -62,7 +71,6 @@
         <dt>Jump between brackets</dt>
         <dd>Use % and square bracket commands (see :h [).</dd>
       </dl>
-
       <section>
         <h2>Within the line</h2>
         <dl>
@@ -77,28 +85,29 @@
           <dt><kbd>g_</kbd></dt>
           <dd>last non-blank character</dd>
           <dt><kbd>fx</kbd> / <kbd>tx</kbd></dt>
-          <dd>jump onto / just before next <kbd>x</kbd></dd>
+          <dd>jump next inclusive / exclusive<kbd>x</kbd></dd>
           <dt><kbd>Fx</kbd> / <kbd>Tx</kbd></dt>
-          <dd>jump onto / just after previous <kbd>x</kbd></dd>
+          <dd>jump previous inclusive / exclusive<kbd>x</kbd></dd>
           <dt><kbd>;</kbd> / <kbd>,</kbd></dt>
           <dd>repeat last f/t/F/T forward / backward</dd>
         </dl>
       </section>
-
       <section>
         <h2>By word</h2>
         <dl>
           <dt><kbd>w</kbd> / <kbd>W</kbd></dt>
-          <dd>start of next word / WORD (WORD ignores punctuation)</dd>
+          <dd>
+            start of next word / WORD exclusive(WORD is a sequence of non-blank
+            characters)
+          </dd>
           <dt><kbd>e</kbd> / <kbd>E</kbd></dt>
-          <dd>end of next word / WORD</dd>
-          <dt><kbd>b</kbd> / <kbd>B</kbd></dt>
-          <dd>start of previous word / WORD</dd>
+          <dd>end of next word / WORD inclusive</dd>
           <dt><kbd>ge</kbd> / <kbd>gE</kbd></dt>
-          <dd>end of previous word / WORD</dd>
+          <dd>end of previous word / WORD inclusive</dd>
+          <dt><kbd>b</kbd> / <kbd>B</kbd></dt>
+          <dd>start of previous word / WORD exclusive</dd>
         </dl>
       </section>
-
       <section>
         <h2>By structure</h2>
         <dl>
@@ -108,39 +117,34 @@
           <dd>next / previous paragraph (or block, in code)</dd>
         </dl>
       </section>
-
       <section>
-        <h2>Vertical: line &amp; file</h2>
+        <h2>Scroll</h2>
         <dl>
           <dt><kbd>j</kbd> / <kbd>k</kbd></dt>
           <dd>down / up one real line (prefix a count, e.g. <kbd>5j</kbd>)</dd>
           <dt><kbd>gj</kbd> / <kbd>gk</kbd></dt>
           <dd>down / up one screen line (for wrapped lines)</dd>
-          <dt><kbd>H</kbd> / <kbd>M</kbd> / <kbd>L</kbd></dt>
-          <dd>top / middle / bottom of the screen</dd>
+          <dt><kbd>M</kbd></dt>
+          <dd>middle of the screen</dd>
+          <dt class="lazyvim"><kbd>H</kbd> / <kbd>L</kbd></dt>
+          <dd class="lazyvim">
+            previous / next buffer (LazyVim remaps these; default is top /
+            bottom of the screen)
+          </dd>
           <dt><kbd>gg</kbd> / <kbd>G</kbd></dt>
           <dd>first / last line of the file</dd>
           <dt><kbd>5gg</kbd> / <kbd>5G</kbd></dt>
           <dd>go to line 5</dd>
-        </dl>
-      </section>
-
-      <section>
-        <h2>Scroll / view</h2>
-        <dl>
           <dt><kbd>&lt;C-d&gt;</kbd> / <kbd>&lt;C-u&gt;</kbd></dt>
           <dd>cursor and screen down / up half a page</dd>
           <dt><kbd>&lt;C-f&gt;</kbd> / <kbd>&lt;C-b&gt;</kbd></dt>
           <dd>screen down / up one page</dd>
           <dt><kbd>&lt;C-e&gt;</kbd> / <kbd>&lt;C-y&gt;</kbd></dt>
-          <dd>scroll down / up one line (cursor stays)</dd>
-          <dt><kbd>zz</kbd> / <kbd>zt</kbd> / <kbd>zb</kbd></dt>
-          <dd>put current line at center / top / bottom</dd>
+          <dd>scroll down (extra line) / up one line (cursor stays)</dd>
         </dl>
       </section>
-
       <section>
-        <h2>Jumps &amp; history</h2>
+        <h2>Marks, jumps &amp; history</h2>
         <dl>
           <dt><kbd>&lt;C-o&gt;</kbd> / <kbd>&lt;C-i&gt;</kbd></dt>
           <dd>jump to older / newer position (jump list)</dd>
@@ -150,30 +154,24 @@
           <dd>older / newer position in the change list</dd>
           <dt><kbd>:changes</kbd></dt>
           <dd>list of changes</dd>
-          <dt><kbd>``</kbd></dt>
-          <dd>position before the last jump</dd>
-          <dt><kbd>`.</kbd></dt>
-          <dd>position of the last change</dd>
-          <dt><kbd>`0</kbd></dt>
-          <dd>position where Vim was last exited</dd>
-          <dt><kbd>`"</kbd></dt>
-          <dd>position when last editing this file</dd>
-          <dt><kbd>&lt;C-]&gt;</kbd></dt>
-          <dd>jump to the tag under the cursor</dd>
-        </dl>
-      </section>
-
-      <section>
-        <h2>Marks</h2>
-        <dl>
-          <dt><kbd>:marks</kbd></dt>
-          <dd>list of marks</dd>
           <dt><kbd>ma</kbd></dt>
           <dd>set mark a at the cursor</dd>
-          <dt><kbd>`a</kbd></dt>
-          <dd>jump to mark a</dd>
-          <dt><kbd>y`a</kbd></dt>
+          <dt><kbd>'a</kbd></dt>
+          <dd>jump to the line of mark a (<kbd>`a</kbd> = exact column)</dd>
+          <dt><kbd>y'a</kbd></dt>
           <dd>yank text up to mark a</dd>
+          <dt><kbd>:marks</kbd></dt>
+          <dd>list of marks</dd>
+          <dt><kbd>''</kbd></dt>
+          <dd>line before the last jump</dd>
+          <dt><kbd>'.</kbd></dt>
+          <dd>line of the last change</dd>
+          <dt><kbd>'0</kbd></dt>
+          <dd>line where Vim was last exited</dd>
+          <dt><kbd>'"</kbd></dt>
+          <dd>line when last editing this file</dd>
+          <dt><kbd>&lt;C-]&gt;</kbd></dt>
+          <dd>jump to the tag under the cursor</dd>
         </dl>
       </section>
       <section>
@@ -219,7 +217,7 @@
         </dl>
       </section>
       <section>
-        <h2>Code &amp; buffers</h2>
+        <h2>Code &amp;</h2>
         <dl>
           <dt class="lsp"><kbd>gd</kbd></dt>
           <dd>go to definition</dd>
@@ -227,13 +225,8 @@
           <dd>references</dd>
           <dt class="lsp"><kbd>gD</kbd></dt>
           <dd>declaration</dd>
-          <dt class="bufferline-nvim"><kbd>&lt;S-h&gt;</kbd> / <kbd>&lt;S-l&gt;</kbd></dt>
-          <dd>previous / next buffer</dd>
-          <dt class="snacks-nvim"><kbd>&lt;leader&gt;,</kbd></dt>
-          <dd>switch buffer</dd>
         </dl>
       </section>
-
       <section>
         <h2>Flash (jump)</h2>
         <dl>
@@ -242,9 +235,13 @@
           <dt class="flash-nvim"><kbd>S</kbd></dt>
           <dd>Treesitter: label syntax nodes to select code structurally</dd>
           <dt class="flash-nvim"><kbd>r</kbd></dt>
-          <dd>remote (operator-pending): act at a far spot, then return</dd>
+          <dd>
+            remote operations: press y to access yank mode, use r to access
+            flash, reach the destination, select with a text object or with a
+            motion and paste at the original position with p
+          </dd>
           <dt class="flash-nvim"><kbd>R</kbd></dt>
-          <dd>Treesitter search</dd>
+          <dd>same as r but with Treesitter search</dd>
           <dt class="flash-nvim"><kbd>&lt;C-s&gt;</kbd></dt>
           <dd>toggle flash labels while typing a <kbd>/</kbd> search</dd>
         </dl>
@@ -257,7 +254,6 @@
           Use operator + motion/text-object (eg: ci{ y5j dap) whenever possible.
         </dd>
       </dl>
-
       <section>
         <h2>Registers</h2>
         <dl>
@@ -411,7 +407,6 @@
           </dl>
         </article>
       </section>
-
       <section>
         <h2>Text objects (<kbd>i</kbd> inner / <kbd>a</kbd> around)</h2>
         <article>
@@ -438,7 +433,6 @@
           </dl>
         </article>
       </section>
-
       <section>
         <h2>Copy (yank)</h2>
         <dl>
@@ -458,7 +452,6 @@
           </dd>
         </dl>
       </section>
-
       <section>
         <h2>Delete (cut)</h2>
         <dl>
@@ -484,7 +477,6 @@
           <dd>delete all lines NOT matching pattern</dd>
         </dl>
       </section>
-
       <section>
         <h2>Paste (put)</h2>
         <dl>
@@ -502,7 +494,6 @@
           <dd>paste on a new line below (linewise), even for charwise text</dd>
         </dl>
       </section>
-
       <section>
         <h2>Replace</h2>
         <dl>
@@ -583,42 +574,43 @@
         </dl>
       </section>
       <section>
+        <h2>Folds</h2>
+        <dl>
+          <dt><kbd>&lt;BS&gt;</kbd></dt>
+          <dd>toggle the fold (function) under the cursor</dd>
+          <dt><kbd>zd</kbd></dt>
+          <dd>delete the fold under the cursor (text stays)</dd>
+          <dt><kbd>zR</kbd></dt>
+          <dd>open (Reveal) all folds</dd>
+          <dt><kbd>zM</kbd></dt>
+          <dd>close (Max) all folds</dd>
+          <dt><kbd>zr</kbd></dt>
+          <dd>open (reduce) the folding by one level</dd>
+          <dt><kbd>zm</kbd></dt>
+          <dd>close (minimize) the text by one level</dd>
+        </dl>
+      </section>
+      <section>
         <h2>Diff</h2>
         <dl>
-          <dt><kbd>zf</kbd></dt>
-          <dd>manually define a fold up to motion</dd>
-          <dt><kbd>zd</kbd></dt>
-          <dd>delete fold under the cursor</dd>
-          <dt><kbd>za</kbd></dt>
-          <dd>toggle fold under the cursor</dd>
-          <dt><kbd>zo</kbd></dt>
-          <dd>open fold under the cursor</dd>
-          <dt><kbd>zc</kbd></dt>
-          <dd>close fold under the cursor</dd>
-          <dt><kbd>zr</kbd></dt>
-          <dd>reduce (open) all folds by one level</dd>
-          <dt><kbd>zm</kbd></dt>
-          <dd>fold more (close) all folds by one level</dd>
-          <dt><kbd>zi</kbd></dt>
-          <dd>toggle folding functionality</dd>
           <dt><kbd>]c</kbd></dt>
-          <dd>jump to start of next change</dd>
+          <dd>jump to start of next hunk</dd>
           <dt><kbd>[c</kbd></dt>
-          <dd>jump to start of previous change</dd>
+          <dd>jump to start of</dd>
           <dt><kbd>do or :diffg[et]</kbd></dt>
           <dd>obtain (get) difference (from other buffer)</dd>
           <dt><kbd>dp or :diffpu[t]</kbd></dt>
           <dd>put difference (to other buffer)</dd>
-          <dt><kbd>:diffthis</kbd></dt>
-          <dd>make current window part of diff</dd>
-          <dt><kbd>:dif[fupdate]</kbd></dt>
-          <dd>update differences</dd>
-          <dt><kbd>:diffo[ff]</kbd></dt>
-          <dd>switch off diff mode for current window</dd>
+          <dt class=".invisible"><kbd>:diffthis</kbd></dt>
+          <dd class=".invisible">make current window part of diff</dd>
+          <dt class=".invisible"><kbd>:dif[fupdate]</kbd></dt>
+          <dd class=".invisible">update differences</dd>
+          <dt class=".invisible"><kbd>:diffo[ff]</kbd></dt>
+          <dd class=".invisible">switch off diff mode for current window</dd>
         </dl>
       </section>
       <section>
-        <h2>Insert mode - inserting/appending text</h2>
+        <h2>Insert Mode</h2>
         <dl>
           <dt><kbd>i</kbd></dt>
           <dd>insert before the cursor</dd>
@@ -632,67 +624,27 @@
           <dd>append (open) a new line below the current line</dd>
           <dt><kbd>O</kbd></dt>
           <dd>append (open) a new line above the current line</dd>
-          <dt><kbd>ea</kbd></dt>
-          <dd>insert (append) at the end of the word</dd>
-          <dt><kbd>&lt;C-h&gt;</kbd></dt>
-          <dd>delete the character before the cursor during insert mode</dd>
           <dt><kbd>&lt;C-w&gt;</kbd></dt>
           <dd>delete word before the cursor during insert mode</dd>
-          <dt><kbd>&lt;C-j&gt;</kbd></dt>
-          <dd>add a line break at the cursor position during insert mode</dd>
           <dt><kbd>&lt;C-t&gt;</kbd></dt>
           <dd>indent (move right) line one shiftwidth during insert mode</dd>
           <dt><kbd>&lt;C-d&gt;</kbd></dt>
           <dd>de-indent (move left) line one shiftwidth during insert mode</dd>
-          <dt><kbd>&lt;C-n&gt;</kbd></dt>
-          <dd>
-            insert (auto-complete) next match before the cursor during insert
-            mode
-          </dd>
-          <dt><kbd>&lt;C-p&gt;</kbd></dt>
-          <dd>
-            insert (auto-complete) previous match before the cursor during
-            insert mode
-          </dd>
           <dt><kbd>&lt;C-r&gt;x</kbd></dt>
           <dd>insert the contents of register x</dd>
-          <dt><kbd>&lt;C-o&gt;x</kbd></dt>
-          <dd>
-            Temporarily enter normal mode to issue one normal-mode command x.
-          </dd>
           <dt><kbd>&lt;Esc&gt;</kbd> / <kbd>&lt;C-c&gt;</kbd></dt>
           <dd>exit insert mode</dd>
         </dl>
       </section>
-
       <section>
         <h2>Join, format, case</h2>
         <dl>
           <dt><kbd>J</kbd></dt>
           <dd>join the line below to the current one with a space</dd>
-          <dt><kbd>gJ</kbd></dt>
-          <dd>join the line below without a space</dd>
-          <dt><kbd>&lt;leader&gt;j</kbd></dt>
-          <dd>
-            break the line at the cursor (your map
-            <kbd>i&lt;CR&gt;&lt;Esc&gt;</kbd>, the inverse of <kbd>J</kbd>)
-          </dd>
-          <dt>
-            <kbd>gq<var>motion</var></kbd> / <kbd>gw<var>motion</var></kbd>
-          </dt>
-          <dd>
-            reflow text to 'textwidth' (<kbd>gw</kbd> keeps the cursor put)
-          </dd>
-          <dt><kbd>gwip</kbd> / <kbd>gqq</kbd></dt>
-          <dd>reflow the paragraph / the current line</dd>
-          <dt>
-            <kbd>gu<var>m</var></kbd> / <kbd>gU<var>m</var></kbd> /
-            <kbd>g~<var>m</var></kbd>
-          </dt>
-          <dd>lowercase / uppercase / toggle case up to motion</dd>
+          <dt><kbd>[&lt;space&gt; / [&lt;space&gt;</kbd></dt>
+          <dd>(normal mode) add line above / below cursor</dd>
         </dl>
       </section>
-
       <section>
         <h2>Macros</h2>
         <dl>
@@ -714,7 +666,6 @@
           <dd>rerun last run macro</dd>
         </dl>
       </section>
-
       <section>
         <h2>Indent text</h2>
         <dl>
@@ -742,6 +693,28 @@
           <dd>paste and adjust indent to current line</dd>
         </dl>
       </section>
+      <section>
+        <h2>Move in snacks</h2>
+        <dl>
+          <dt><kbd>&lt;C-n&gt;</kbd></dt>
+          <dd>
+            insert (auto-complete) next match before the cursor during insert
+            mode
+          </dd>
+          <dt><kbd>&lt;C-p&gt;</kbd></dt>
+          <dd>
+            insert (auto-complete) previous match before the cursor during
+            insert mode
+          </dd>
+        </dl>
+      </section>
+      <section>
+        <h2>Comment Uncomment</h2>
+        <dl>
+          <dt>gcc</dt>
+          <dd>Toggle comment uncomment a line</dd>
+        </dl>
+      </section>
 
       <!-- Navigate files -->
       <section>
@@ -759,9 +732,14 @@
           <dd>quit and throw away unsaved changes</dd>
           <dt><kbd>:wqa</kbd></dt>
           <dd>write (save) and quit on all tabs</dd>
+          <dt class="bufferline-nvim">
+            <kbd>&lt;S-h&gt;</kbd> / <kbd>&lt;S-l&gt;</kbd>
+          </dt>
+          <dd>previous / next buffer</dd>
+          <dt class="snacks-nvim"><kbd>&lt;leader&gt;,</kbd></dt>
+          <dd>switch buffer</dd>
         </dl>
       </section>
-
       <section>
         <h2>Buffers, windows, tabs</h2>
         <dl>
@@ -778,7 +756,6 @@
           <dd>cycle to the next / previous tab</dd>
         </dl>
       </section>
-
       <section>
         <h2>help</h2>
         <dl>
@@ -787,7 +764,6 @@
         </dl>
       </section>
       <!-- TODO: file-tree navigation keys (netrw and snacks explorer) -->
-
       <section>
         <h2>Search in multiple files</h2>
         <dl>
@@ -803,7 +779,6 @@
           <dd>close the quickfix window</dd>
         </dl>
       </section>
-
       <section>
         <h2>Tabs</h2>
         <dl>
@@ -829,7 +804,6 @@
           </dd>
         </dl>
       </section>
-
       <section>
         <h2>Buffers</h2>
         <dl>
@@ -849,7 +823,6 @@
           <dd>list all open buffers</dd>
         </dl>
       </section>
-
       <section>
         <h2>Windows &amp; splits</h2>
         <dl>
@@ -877,7 +850,6 @@
           <dd>move the window to the far left / right / bottom / top</dd>
         </dl>
       </section>
-
       <section>
         <h2>Find files (LazyVim)</h2>
         <dl>
@@ -904,6 +876,7 @@
         </dl>
       </section>
 
+      this is an example
       <section>
         <h2>File explorer (sidebar tree)</h2>
         <dl>

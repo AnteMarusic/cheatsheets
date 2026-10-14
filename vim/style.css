@@ -79,6 +79,12 @@ dd {
 dd::before {
   content: "// ";
 }
+.invisible {
+  opacity: 0;
+}
+.my-mapping {
+  background: cadetblue;
+}
 .marks-nvim kbd {
   background: blue;
   color: white;
