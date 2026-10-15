@@ -4,6 +4,9 @@ html * {
   background-color: white;
   font-family: monospace;
 }
+html {
+  margin: 0.5em;
+}
 h1,
 h2,
 h3,
@@ -78,6 +81,12 @@ dd {
 }
 dd::before {
   content: "// ";
+}
+.alt {
+  color: lightgray;
+  margin-left: 0.25em;
+  margin-right: 0.25em;
+  font-size: 0.85em;
 }
 .invisible {
   opacity: 0;

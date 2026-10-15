@@ -22,10 +22,10 @@
           <dt><kbd>&lt;BS&gt;</kbd></dt>
           <dd>Backspace</dd>
           <dt><kbd>&lt;CR&gt;</kbd></dt>
-          <dd>Enter / Return</dd>
+          <dd>Enter<span class="alt"> / </span>Return</dd>
           <dt><kbd>&lt;Tab&gt;</kbd></dt>
           <dd>Tab</dd>
-          <dt>&lt;C&gt;-smth</dt>
+          <dt>&lt;C-smth&gt;</dt>
           <dd>notation to say: write control + smth at the same time</dd>
         </dl>
       </section>
@@ -51,107 +51,146 @@
       <section>
         <h2>Help</h2>
         <dl>
-          <dt class=".neovim">
+          <dt class="neovim">
             <kbd>&lt;leader&gt;sk</kbd>
           </dt>
           <dd>List all the keymaps and show the file of definition.</dd>
+          <dt><kbd>:h[elp] keyword</kbd></dt>
+          <dd>help manual for the keyword</dd>
         </dl>
       </section>
 
       <!-- Movement -->
-      <dl>
-        <dt>Vertical movement within the screen</dt>
-        <dd>Use relative jump (eg: 5j 12-).</dd>
-        <dt>Vertical movement outside the screen</dt>
-        <dd>Use CTRL-U CTRL-D CTRL-B CTRL-F gg G.</dd>
-        <dt>Short-distance horizontal movement</dt>
-        <dd>Use word-motion (w W b B e E ge gE).</dd>
-        <dt>Medium to long-distance horizontal movement</dt>
-        <dd>Use f F t T , ; 0 ^ $.</dd>
-        <dt>Jump between brackets</dt>
-        <dd>Use % and square bracket commands (see :h [).</dd>
-      </dl>
       <section>
-        <h2>Within the line</h2>
-        <dl>
-          <dt><kbd>h</kbd> / <kbd>l</kbd></dt>
-          <dd>left / right one character</dd>
-          <dt><kbd>0</kbd></dt>
-          <dd>first column of the line</dd>
-          <dt><kbd>^</kbd></dt>
-          <dd>first non-blank character</dd>
-          <dt><kbd>$</kbd></dt>
-          <dd>end of the line</dd>
-          <dt><kbd>g_</kbd></dt>
-          <dd>last non-blank character</dd>
-          <dt><kbd>fx</kbd> / <kbd>tx</kbd></dt>
-          <dd>jump next inclusive / exclusive<kbd>x</kbd></dd>
-          <dt><kbd>Fx</kbd> / <kbd>Tx</kbd></dt>
-          <dd>jump previous inclusive / exclusive<kbd>x</kbd></dd>
-          <dt><kbd>;</kbd> / <kbd>,</kbd></dt>
-          <dd>repeat last f/t/F/T forward / backward</dd>
-        </dl>
-      </section>
-      <section>
-        <h2>By word</h2>
-        <dl>
-          <dt><kbd>w</kbd> / <kbd>W</kbd></dt>
-          <dd>
-            start of next word / WORD exclusive(WORD is a sequence of non-blank
-            characters)
-          </dd>
-          <dt><kbd>e</kbd> / <kbd>E</kbd></dt>
-          <dd>end of next word / WORD inclusive</dd>
-          <dt><kbd>ge</kbd> / <kbd>gE</kbd></dt>
-          <dd>end of previous word / WORD inclusive</dd>
-          <dt><kbd>b</kbd> / <kbd>B</kbd></dt>
-          <dd>start of previous word / WORD exclusive</dd>
-        </dl>
-      </section>
-      <section>
-        <h2>By structure</h2>
-        <dl>
-          <dt><kbd>%</kbd></dt>
-          <dd>matching pair () {} [] (see :h matchpairs)</dd>
-          <dt><kbd>}</kbd> / <kbd>{</kbd></dt>
-          <dd>next / previous paragraph (or block, in code)</dd>
-        </dl>
+        <h2>Movements</h2>
+        <article>
+          <h3>Within the line</h3>
+          <dl>
+            <dt><kbd>h</kbd><span class="alt"> / </span><kbd>l</kbd></dt>
+            <dd>left<span class="alt"> / </span>right one character</dd>
+            <dt><kbd>0</kbd></dt>
+            <dd>first column of the line</dd>
+            <dt><kbd>^</kbd></dt>
+            <dd>first non-blank character</dd>
+            <dt><kbd>$</kbd></dt>
+            <dd>end of the line</dd>
+            <dt><kbd>g_</kbd></dt>
+            <dd>last non-blank character</dd>
+            <dt><kbd>fx</kbd><span class="alt"> / </span><kbd>tx</kbd></dt>
+            <dd>
+              jump next inclusive<span class="alt"> / </span>exclusive<kbd
+                >x</kbd
+              >
+            </dd>
+            <dt><kbd>Fx</kbd><span class="alt"> / </span><kbd>Tx</kbd></dt>
+            <dd>
+              jump previous inclusive<span class="alt"> / </span>exclusive<kbd
+                >x</kbd
+              >
+            </dd>
+            <dt><kbd>;</kbd><span class="alt"> / </span><kbd>,</kbd></dt>
+            <dd>
+              repeat last f/t/F/T forward<span class="alt"> / </span>backward
+            </dd>
+          </dl>
+        </article>
+        <article>
+          <h3>By word</h3>
+          <dl>
+            <dt><kbd>w</kbd><span class="alt"> / </span><kbd>W</kbd></dt>
+            <dd>
+              start of next word<span class="alt"> / </span>WORD exclusive(WORD
+              is a sequence of non-blank characters)
+            </dd>
+            <dt><kbd>e</kbd><span class="alt"> / </span><kbd>E</kbd></dt>
+            <dd>end of next word<span class="alt"> / </span>WORD inclusive</dd>
+            <dt><kbd>ge</kbd><span class="alt"> / </span><kbd>gE</kbd></dt>
+            <dd>
+              end of previous word<span class="alt"> / </span>WORD inclusive
+            </dd>
+            <dt><kbd>b</kbd><span class="alt"> / </span><kbd>B</kbd></dt>
+            <dd>
+              start of previous word<span class="alt"> / </span>WORD exclusive
+            </dd>
+          </dl>
+        </article>
+        <article>
+          <h3>By structure</h3>
+          <dl>
+            <dt><kbd>%</kbd></dt>
+            <dd>matching pair () {} [] (see :h matchpairs)</dd>
+            <dt><kbd>}</kbd><span class="alt"> / </span><kbd>{</kbd></dt>
+            <dd>
+              next<span class="alt"> / </span>previous paragraph (or block, in
+              code)
+            </dd>
+          </dl>
+        </article>
       </section>
       <section>
         <h2>Scroll</h2>
         <dl>
-          <dt><kbd>j</kbd> / <kbd>k</kbd></dt>
-          <dd>down / up one real line (prefix a count, e.g. <kbd>5j</kbd>)</dd>
-          <dt><kbd>gj</kbd> / <kbd>gk</kbd></dt>
-          <dd>down / up one screen line (for wrapped lines)</dd>
+          <dt><kbd>j</kbd><span class="alt"> / </span><kbd>k</kbd></dt>
+          <dd>
+            down<span class="alt"> / </span>up one real line (prefix a count,
+            e.g. <kbd>5j</kbd>)
+          </dd>
+          <dt><kbd>gj</kbd><span class="alt"> / </span><kbd>gk</kbd></dt>
+          <dd>
+            down<span class="alt"> / </span>up one screen line (for wrapped
+            lines)
+          </dd>
           <dt><kbd>M</kbd></dt>
           <dd>middle of the screen</dd>
-          <dt class="lazyvim"><kbd>H</kbd> / <kbd>L</kbd></dt>
+          <dt class="lazyvim">
+            <kbd>H</kbd><span class="alt"> / </span><kbd>L</kbd>
+          </dt>
           <dd class="lazyvim">
-            previous / next buffer (LazyVim remaps these; default is top /
-            bottom of the screen)
+            previous<span class="alt"> / </span>next buffer (LazyVim remaps
+            these; default is top / bottom of the screen)
           </dd>
-          <dt><kbd>gg</kbd> / <kbd>G</kbd></dt>
-          <dd>first / last line of the file</dd>
-          <dt><kbd>5gg</kbd> / <kbd>5G</kbd></dt>
+          <dt><kbd>gg</kbd><span class="alt"> / </span><kbd>G</kbd></dt>
+          <dd>first<span class="alt"> / </span>last line of the file</dd>
+          <dt><kbd>5gg</kbd><span class="alt"> / </span><kbd>5G</kbd></dt>
           <dd>go to line 5</dd>
-          <dt><kbd>&lt;C-d&gt;</kbd> / <kbd>&lt;C-u&gt;</kbd></dt>
-          <dd>cursor and screen down / up half a page</dd>
-          <dt><kbd>&lt;C-f&gt;</kbd> / <kbd>&lt;C-b&gt;</kbd></dt>
-          <dd>screen down / up one page</dd>
-          <dt><kbd>&lt;C-e&gt;</kbd> / <kbd>&lt;C-y&gt;</kbd></dt>
-          <dd>scroll down (extra line) / up one line (cursor stays)</dd>
+          <dt>
+            <kbd>&lt;C-d&gt;</kbd><span class="alt">/</span
+            ><kbd>&lt;C-u&gt;</kbd>
+          </dt>
+          <dd>
+            cursor and screen down<span class="alt"> / </span>up half a page
+          </dd>
+          <dt>
+            <kbd>&lt;C-f&gt;</kbd><span class="alt">/</span
+            ><kbd>&lt;C-b&gt;</kbd>
+          </dt>
+          <dd>screen down<span class="alt"> / </span>up one page</dd>
+          <dt>
+            <kbd>&lt;C-e&gt;</kbd><span class="alt">/</span
+            ><kbd>&lt;C-y&gt;</kbd>
+          </dt>
+          <dd>
+            scroll down (extra line)<span class="alt"> / </span>up one line
+            (cursor stays)
+          </dd>
         </dl>
       </section>
       <section>
         <h2>Marks, jumps &amp; history</h2>
         <dl>
-          <dt><kbd>&lt;C-o&gt;</kbd> / <kbd>&lt;C-i&gt;</kbd></dt>
-          <dd>jump to older / newer position (jump list)</dd>
+          <dt>
+            <kbd>&lt;C-o&gt;</kbd><span class="alt">/</span
+            ><kbd>&lt;C-i&gt;</kbd>
+          </dt>
+          <dd>
+            jump to older<span class="alt"> / </span>newer position (jump list)
+          </dd>
           <dt><kbd>:ju[mps]</kbd></dt>
           <dd>list of jumps</dd>
-          <dt><kbd>g;</kbd> / <kbd>g,</kbd></dt>
-          <dd>older / newer position in the change list</dd>
+          <dt><kbd>g;</kbd><span class="alt"> / </span><kbd>g,</kbd></dt>
+          <dd>
+            older<span class="alt"> / </span>newer position in the change list
+          </dd>
           <dt><kbd>:changes</kbd></dt>
           <dd>list of changes</dd>
           <dt><kbd>ma</kbd></dt>
@@ -217,7 +256,7 @@
         </dl>
       </section>
       <section>
-        <h2>Code &amp;</h2>
+        <h2>Code</h2>
         <dl>
           <dt class="lsp"><kbd>gd</kbd></dt>
           <dd>go to definition</dd>
@@ -280,12 +319,6 @@
       </section>
 
       <!-- Editing -->
-      <dl>
-        <dt>Operators</dt>
-        <dd>
-          Use operator + motion/text-object (eg: ci{ y5j dap) whenever possible.
-        </dd>
-      </dl>
       <section>
         <h2>Registers</h2>
         <dl>
@@ -327,7 +360,10 @@
           <dt>
             <kbd>&lt;C-r&gt;<var>x</var></kbd>
           </dt>
-          <dd>insert register <var>x</var> in insert / command-line mode</dd>
+          <dd>
+            insert register <var>x</var> in insert<span class="alt">/</span
+            >command-line mode
+          </dd>
           <dt><kbd>:reg</kbd></dt>
           <dd>show all registers and their contents</dd>
           <dt><kbd>"</kbd></dt>
@@ -391,26 +427,47 @@
             <dt><kbd>V</kbd></dt>
             <dd>linewise: select whole lines</dd>
             <dt><kbd>&lt;C-v&gt;</kbd></dt>
-            <dd>blockwise: select a rectangle / column</dd>
+            <dd>
+              blockwise: select a rectangle<span class="alt"> / </span>column
+            </dd>
             <dt><kbd>gv</kbd></dt>
             <dd>reselect the last selection</dd>
-            <dt><kbd>o</kbd> / <kbd>O</kbd></dt>
-            <dd>other end of the selection / other corner (block)</dd>
-            <dt><kbd>viw</kbd> / <kbd>vaw</kbd></dt>
-            <dd>select inner word / a word</dd>
-            <dt><kbd>&lt;Esc&gt;</kbd> / <kbd>&lt;C-c&gt;</kbd></dt>
+            <dt><kbd>o</kbd><span class="alt"> / </span><kbd>O</kbd></dt>
+            <dd>
+              other end of the selection<span class="alt"> / </span>other corner
+              (block)
+            </dd>
+            <dt><kbd>viw</kbd><span class="alt"> / </span><kbd>vaw</kbd></dt>
+            <dd>select inner word<span class="alt"> / </span>a word</dd>
+            <dt>
+              <kbd>&lt;Esc&gt;</kbd><span class="alt">/</span
+              ><kbd>&lt;C-c&gt;</kbd>
+            </dt>
             <dd>leave visual mode</dd>
           </dl>
         </article>
         <article>
           <h3>Act on the selection (same in all three)</h3>
           <dl>
-            <dt><kbd>y</kbd> / <kbd>d</kbd> / <kbd>c</kbd></dt>
-            <dd>yank / delete / change the selection</dd>
-            <dt><kbd>&gt;</kbd> / <kbd>&lt;</kbd></dt>
-            <dd>indent / unindent</dd>
-            <dt><kbd>u</kbd> / <kbd>U</kbd> / <kbd>~</kbd></dt>
-            <dd>lowercase / uppercase / toggle case</dd>
+            <dt>
+              <kbd>y</kbd><span class="alt"> / </span><kbd>d</kbd
+              ><span class="alt"> / </span><kbd>c</kbd>
+            </dt>
+            <dd>
+              yank<span class="alt"> / </span>delete<span class="alt">/</span
+              >change the selection
+            </dd>
+            <dt><kbd>&gt;</kbd><span class="alt"> / </span><kbd>&lt;</kbd></dt>
+            <dd>indent<span class="alt"> / </span>unindent</dd>
+            <dt>
+              <kbd>u</kbd><span class="alt"> / </span><kbd>U</kbd
+              ><span class="alt"> / </span><kbd>~</kbd>
+            </dt>
+            <dd>
+              lowercase<span class="alt"> / </span>uppercase<span class="alt"
+                >/</span
+              >toggle case
+            </dd>
             <dt>
               <kbd>r<var>c</var></kbd>
             </dt>
@@ -440,28 +497,41 @@
         </article>
       </section>
       <section>
-        <h2>Text objects (<kbd>i</kbd> inner / <kbd>a</kbd> around)</h2>
+        <h2>
+          Text objects (<kbd>i</kbd> inner<span class="alt">/</span
+          ><kbd>a</kbd> around)
+        </h2>
         <article>
           <h3>The objects</h3>
           <dl>
-            <dt><kbd>iw</kbd> / <kbd>aw</kbd></dt>
-            <dd>word / a word (with surrounding space)</dd>
-            <dt><kbd>is</kbd> / <kbd>as</kbd></dt>
-            <dd>sentence / a sentence</dd>
-            <dt><kbd>ip</kbd> / <kbd>ap</kbd></dt>
-            <dd>paragraph / a paragraph</dd>
-            <dt><kbd>i"</kbd> / <kbd>a"</kbd></dt>
+            <dt><kbd>iw</kbd><span class="alt"> / </span><kbd>aw</kbd></dt>
             <dd>
-              inside quotes / incl. the quotes (<kbd>'</kbd> <kbd>`</kbd> too)
+              word<span class="alt"> / </span>a word (with surrounding space)
             </dd>
-            <dt><kbd>i(</kbd> / <kbd>a(</kbd></dt>
-            <dd>inside / incl. parentheses (also <kbd>b</kbd>)</dd>
-            <dt><kbd>i{</kbd> / <kbd>a{</kbd></dt>
-            <dd>inside / incl. braces (also <kbd>B</kbd>)</dd>
-            <dt><kbd>i[</kbd> / <kbd>i&lt;</kbd></dt>
-            <dd>inside brackets / angle brackets</dd>
-            <dt><kbd>it</kbd> / <kbd>at</kbd></dt>
-            <dd>inside / incl. an HTML/XML tag</dd>
+            <dt><kbd>is</kbd><span class="alt"> / </span><kbd>as</kbd></dt>
+            <dd>sentence<span class="alt"> / </span>a sentence</dd>
+            <dt><kbd>ip</kbd><span class="alt"> / </span><kbd>ap</kbd></dt>
+            <dd>paragraph<span class="alt"> / </span>a paragraph</dd>
+            <dt><kbd>i"</kbd><span class="alt"> / </span><kbd>a"</kbd></dt>
+            <dd>
+              inside quotes<span class="alt"> / </span>incl. the quotes (<kbd
+                >'</kbd
+              >
+              <kbd>`</kbd> too)
+            </dd>
+            <dt><kbd>i(</kbd><span class="alt"> / </span><kbd>a(</kbd></dt>
+            <dd>
+              inside<span class="alt"> / </span>incl. parentheses (also
+              <kbd>b</kbd>)
+            </dd>
+            <dt><kbd>i{</kbd><span class="alt"> / </span><kbd>a{</kbd></dt>
+            <dd>
+              inside<span class="alt"> / </span>incl. braces (also <kbd>B</kbd>)
+            </dd>
+            <dt><kbd>i[</kbd><span class="alt"> / </span><kbd>i&lt;</kbd></dt>
+            <dd>inside brackets<span class="alt"> / </span>angle brackets</dd>
+            <dt><kbd>it</kbd><span class="alt"> / </span><kbd>at</kbd></dt>
+            <dd>inside<span class="alt"> / </span>incl. an HTML/XML tag</dd>
           </dl>
         </article>
       </section>
@@ -474,8 +544,11 @@
           <dd>yank 2 lines</dd>
           <dt><kbd>yw</kbd></dt>
           <dd>yank from the cursor to the start of the next word</dd>
-          <dt><kbd>yiw</kbd> / <kbd>yaw</kbd></dt>
-          <dd>yank inner word / a word (incl. surrounding space)</dd>
+          <dt><kbd>yiw</kbd><span class="alt"> / </span><kbd>yaw</kbd></dt>
+          <dd>
+            yank inner word<span class="alt"> / </span>a word (incl. surrounding
+            space)
+          </dd>
           <dt><kbd>y$</kbd> or <kbd>Y</kbd></dt>
           <dd>yank to end of line</dd>
           <dt><kbd>"<var>x</var>y</kbd></dt>
@@ -493,8 +566,11 @@
           <dd>delete 2 lines</dd>
           <dt><kbd>dw</kbd></dt>
           <dd>delete from the cursor to the start of the next word</dd>
-          <dt><kbd>diw</kbd> / <kbd>daw</kbd></dt>
-          <dd>delete inner word / a word (incl. surrounding space)</dd>
+          <dt><kbd>diw</kbd><span class="alt"> / </span><kbd>daw</kbd></dt>
+          <dd>
+            delete inner word<span class="alt"> / </span>a word (incl.
+            surrounding space)
+          </dd>
           <dt><kbd>d$</kbd> or <kbd>D</kbd></dt>
           <dd>delete to end of line</dd>
           <dt><kbd>x</kbd></dt>
@@ -512,13 +588,15 @@
       <section>
         <h2>Paste (put)</h2>
         <dl>
-          <dt><kbd>p</kbd> / <kbd>P</kbd></dt>
-          <dd>put (paste) after / before the cursor</dd>
+          <dt><kbd>p</kbd><span class="alt"> / </span><kbd>P</kbd></dt>
+          <dd>
+            put (paste) after<span class="alt"> / </span>before the cursor
+          </dd>
           <dt><kbd>"<var>x</var>p</kbd></dt>
           <dd>paste from register <var>x</var></dd>
           <dt><kbd>"0p</kbd></dt>
           <dd>paste the last yank (ignores deletes)</dd>
-          <dt><kbd>gp</kbd> / <kbd>gP</kbd></dt>
+          <dt><kbd>gp</kbd><span class="alt"> / </span><kbd>gP</kbd></dt>
           <dd>paste, then leave the cursor after the new text</dd>
           <dt><kbd>]p</kbd></dt>
           <dd>paste and adjust indent to the current line</dd>
@@ -537,10 +615,12 @@
           <dd>Replace mode: overwrite until <kbd>&lt;Esc&gt;</kbd></dd>
           <dt><kbd>~</kbd></dt>
           <dd>toggle case of the character under the cursor</dd>
-          <dt><kbd>cw</kbd> / <kbd>ciw</kbd></dt>
-          <dd>change word / inner word</dd>
-          <dt><kbd>cc</kbd> / <kbd>C</kbd></dt>
-          <dd>change the whole line / to end of line</dd>
+          <dt><kbd>cw</kbd><span class="alt"> / </span><kbd>ciw</kbd></dt>
+          <dd>change word<span class="alt"> / </span>inner word</dd>
+          <dt><kbd>cc</kbd><span class="alt"> / </span><kbd>C</kbd></dt>
+          <dd>
+            change the whole line<span class="alt"> / </span>to end of line
+          </dd>
           <dt><kbd>cl</kbd></dt>
           <dd>
             change one character (same as the default <kbd>s</kbd>, which flash
@@ -553,12 +633,22 @@
         <article>
           <h3>Search</h3>
           <dl>
-            <dt><kbd>/pattern</kbd> / <kbd>?pattern</kbd></dt>
-            <dd>search forward / backward for pattern</dd>
-            <dt><kbd>n</kbd> / <kbd>N</kbd></dt>
-            <dd>repeat search in the same / opposite direction</dd>
-            <dt><kbd>*</kbd> / <kbd>#</kbd></dt>
-            <dd>search the word under the cursor forward / backward</dd>
+            <dt>
+              <kbd>/pattern</kbd><span class="alt"> / </span><kbd>?pattern</kbd>
+            </dt>
+            <dd>
+              search forward<span class="alt"> / </span>backward for pattern
+            </dd>
+            <dt><kbd>n</kbd><span class="alt"> / </span><kbd>N</kbd></dt>
+            <dd>
+              repeat search in the same<span class="alt"> / </span>opposite
+              direction
+            </dd>
+            <dt><kbd>*</kbd><span class="alt"> / </span><kbd>#</kbd></dt>
+            <dd>
+              search the word under the cursor forward<span class="alt">/</span
+              >backward
+            </dd>
             <dt>
               <kbd>\v<var>pat</var></kbd>
             </dt>
@@ -570,8 +660,14 @@
         <article>
           <h3>Replace (substitute)</h3>
           <dl>
-            <dt><kbd>:s/old/new/</kbd> / <kbd>:s/old/new/g</kbd></dt>
-            <dd>replace first / every match on the current line</dd>
+            <dt>
+              <kbd>:s/old/new/</kbd><span class="alt">/</span
+              ><kbd>:s/old/new/g</kbd>
+            </dt>
+            <dd>
+              replace first<span class="alt"> / </span>every match on the
+              current line
+            </dd>
             <dt><kbd>:%s/old/new/g</kbd></dt>
             <dd>replace every match in the whole file</dd>
             <dt><kbd>:%s/old/new/gc</kbd></dt>
@@ -591,7 +687,7 @@
         </article>
       </section>
       <section>
-        <h2>Undo / redo</h2>
+        <h2>Undo<span class="alt"> / </span>redo</h2>
         <dl>
           <dt><kbd>u</kbd></dt>
           <dd>undo the last change</dd>
@@ -599,10 +695,20 @@
           <dd>redo (reverse the last undo)</dd>
           <dt><kbd>U</kbd></dt>
           <dd>undo all recent changes on the last-edited line (toggle)</dd>
-          <dt><kbd>g-</kbd> / <kbd>g+</kbd></dt>
-          <dd>older / newer text state (walks the whole undo tree by time)</dd>
-          <dt><kbd>:earlier 5m</kbd> / <kbd>:later 5m</kbd></dt>
-          <dd>time-travel to how the file was 5 minutes ago / forward</dd>
+          <dt><kbd>g-</kbd><span class="alt"> / </span><kbd>g+</kbd></dt>
+          <dd>
+            older<span class="alt"> / </span>newer text state (walks the whole
+            undo tree by time)
+          </dd>
+          <dt>
+            <kbd>:earlier 5m</kbd><span class="alt"> / </span
+            ><kbd>:later 5m</kbd>
+          </dt>
+          <dd>
+            time-travel to how the file was 5 minutes ago<span class="alt"
+              >/</span
+            >forward
+          </dd>
         </dl>
       </section>
       <section>
@@ -616,12 +722,12 @@
           <dd>obtain (get) difference (from other buffer)</dd>
           <dt><kbd>dp or :diffpu[t]</kbd></dt>
           <dd>put difference (to other buffer)</dd>
-          <dt class=".invisible"><kbd>:diffthis</kbd></dt>
-          <dd class=".invisible">make current window part of diff</dd>
-          <dt class=".invisible"><kbd>:dif[fupdate]</kbd></dt>
-          <dd class=".invisible">update differences</dd>
-          <dt class=".invisible"><kbd>:diffo[ff]</kbd></dt>
-          <dd class=".invisible">switch off diff mode for current window</dd>
+          <dt class="invisible"><kbd>:diffthis</kbd></dt>
+          <dd class="invisible">make current window part of diff</dd>
+          <dt class="invisible"><kbd>:dif[fupdate]</kbd></dt>
+          <dd class="invisible">update differences</dd>
+          <dt class="invisible"><kbd>:diffo[ff]</kbd></dt>
+          <dd class="invisible">switch off diff mode for current window</dd>
         </dl>
       </section>
       <section>
@@ -647,7 +753,10 @@
           <dd>de-indent (move left) line one shiftwidth during insert mode</dd>
           <dt><kbd>&lt;C-r&gt;x</kbd></dt>
           <dd>insert the contents of register x</dd>
-          <dt><kbd>&lt;Esc&gt;</kbd> / <kbd>&lt;C-c&gt;</kbd></dt>
+          <dt>
+            <kbd>&lt;Esc&gt;</kbd><span class="alt">/</span
+            ><kbd>&lt;C-c&gt;</kbd>
+          </dt>
           <dd>exit insert mode</dd>
         </dl>
       </section>
@@ -656,8 +765,12 @@
         <dl>
           <dt><kbd>J</kbd></dt>
           <dd>join the line below to the current one with a space</dd>
-          <dt><kbd>[&lt;space&gt; / [&lt;space&gt;</kbd></dt>
-          <dd>(normal mode) add line above / below cursor</dd>
+          <dt>
+            <kbd>[&lt;space&gt;<span class="alt"> / </span>[&lt;space&gt;</kbd>
+          </dt>
+          <dd>
+            (normal mode) add line above<span class="alt"> / </span>below cursor
+          </dd>
         </dl>
       </section>
       <section>
@@ -746,21 +859,12 @@
           </dd>
           <dt>Tab</dt>
           <dd>a layout of windows; use one per task or area of the project</dd>
-          <dt><kbd>gt</kbd> / <kbd>gT</kbd></dt>
-          <dd>cycle to the next / previous tab</dd>
-        </dl>
-      </section>
-      <section>
-        <h2>help</h2>
-        <dl>
-          <dt><kbd>:h[elp] keyword</kbd></dt>
-          <dd>open help for keyword</dd>
         </dl>
       </section>
       <section>
         <h2>Grep</h2>
         <dl>
-          <dt class=".snack-picker"><kbd>&lt;leader&gt;/</kbd></dt>
+          <dt class="snacks-nvim"><kbd>&lt;leader&gt;/</kbd></dt>
           <dd>search for pattern in multiple files</dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;sw</kbd></dt>
           <dd>grep word under cursor</dd>
@@ -797,16 +901,22 @@
         <h2>Buffers</h2>
         <dl>
           <dt class="bufferline-nvim">
-            <kbd>&lt;S-h&gt;</kbd> / <kbd>&lt;S-l&gt;</kbd>
+            <kbd>&lt;S-h&gt;</kbd><span class="alt">/</span
+            ><kbd>&lt;S-l&gt;</kbd>
           </dt>
-          <dd>previous / next buffer</dd>
+          <dd>previous<span class="alt"> / </span>next buffer</dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;fb</kbd></dt>
-          <dd>switch buffer</dd>
+          <dd>
+            switch buffer (in the picker, <kbd>&lt;C-x&gt;</kbd> closes the
+            highlighted buffer)
+          </dd>
           <dt><kbd>:e[dit] file</kbd></dt>
           <dd>edit a file in a new buffer</dd>
           <dd>go to the previous buffer</dd>
           <dt><kbd>:bd[elete]</kbd></dt>
           <dd>delete a buffer (close a file)</dd>
+          <dt>&lt;leader&gt;bd</dt>
+          <dd>Delete current buffer</dd>
         </dl>
       </section>
       <section>
@@ -814,23 +924,39 @@
         <dl>
           <dt><kbd>:vert[ical] ba[ll]</kbd></dt>
           <dd>edit all buffers as vertical windows</dd>
-          <dt><kbd>&lt;C-w&gt;s</kbd> / <kbd>&lt;C-w&gt;v</kbd></dt>
-          <dd>split horizontally / vertically</dd>
+          <dt>
+            <kbd>&lt;C-w&gt;s</kbd><span class="alt">/</span
+            ><kbd>&lt;C-w&gt;v</kbd>
+          </dt>
+          <dd>split horizontally<span class="alt"> / </span>vertically</dd>
           <dt><kbd>&lt;C-w&gt;q</kbd></dt>
           <dd>quit a window</dd>
           <dt class="lazyvim">
-            <kbd>&lt;C-Left&gt;</kbd> / <kbd>&lt;C-Right&gt;</kbd> /
-            <kbd>&lt;C-Up&gt;</kbd> / <kbd>&lt;C-Down&gt;</kbd>
+            <kbd>&lt;C-Left&gt;</kbd><span class="alt">/</span
+            ><kbd>&lt;C-Right&gt;</kbd> / <kbd>&lt;C-Up&gt;</kbd
+            ><span class="alt"> / </span><kbd>&lt;C-Down&gt;</kbd>
           </dt>
           <dd class="lazyvim">
-            resize window: narrower / wider / taller / shorter
+            resize window: narrower<span class="alt"> / </span>wider<span
+              class="alt"
+              >/</span
+            >taller<span class="alt"> / </span>shorter
           </dd>
           <dt><kbd>&lt;C-w&gt;=</kbd></dt>
           <dd>make all windows equal height &amp; width</dd>
           <dt><kbd>&lt;C-w&gt;h/l/j/k</kbd></dt>
-          <dd>move to the window left / right / down / up</dd>
+          <dd>
+            move to the window left<span class="alt"> / </span>right<span
+              class="alt"
+              >/</span
+            >down<span class="alt"> / </span>up
+          </dd>
           <dt><kbd>&lt;C-w&gt;H/L/J/K</kbd></dt>
-          <dd>move the window to the far left / right / bottom / top</dd>
+          <dd>
+            move the window to the far left<span class="alt"> / </span
+            >right<span class="alt">/</span>bottom<span class="alt"> / </span
+            >top
+          </dd>
         </dl>
       </section>
       <section class="snacks-nvim">
@@ -865,35 +991,39 @@
           <dd>explorer at root</dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;E</kbd></dt>
           <dd>explorer at cwd</dd>
-          <dt class="snacks-nvim"><kbd>l</kbd> / <kbd>&lt;CR&gt;</kbd></dt>
-          <dd>open file / expand directory</dd>
+          <dt class="snacks-nvim">
+            <kbd>l</kbd><span class="alt"> / </span><kbd>&lt;CR&gt;</kbd>
+          </dt>
+          <dd>open file<span class="alt"> / </span>expand directory</dd>
           <dt class="snacks-nvim"><kbd>h</kbd></dt>
           <dd>close (collapse) directory</dd>
           <dt class="snacks-nvim">
-            <kbd>a</kbd> / <kbd>d</kbd> / <kbd>r</kbd>
+            <kbd>a</kbd><span class="alt"> / </span><kbd>d</kbd
+            ><span class="alt"> / </span><kbd>r</kbd>
           </dt>
-          <dd>add / delete / rename</dd>
+          <dd>
+            add<span class="alt"> / </span>delete<span class="alt"> / </span
+            >rename
+          </dd>
           <dt class="snacks-nvim"><kbd>u</kbd></dt>
           <dd>refresh the tree</dd>
           <dt class="snacks-nvim"><kbd>.</kbd></dt>
           <dd>set the directory under the cursor as root</dd>
           <dt class="snacks-nvim"><kbd>Z</kbd></dt>
           <dd>close all directories</dd>
-          <dt class="snacks-nvim"><kbd>]g</kbd> / <kbd>[g</kbd></dt>
-          <dd>jump to next / previous file with git changes (in the tree)</dd>
+          <dt class="snacks-nvim">
+            <kbd>]g</kbd><span class="alt"> / </span><kbd>[g</kbd>
+          </dt>
+          <dd>
+            jump to next<span class="alt"> / </span>previous file with git
+            changes (in the tree)
+          </dd>
           <dt class="snacks-nvim"><kbd>H</kbd></dt>
           <dd>toggle hidden files</dd>
         </dl>
       </section>
 
       <!-- Terminal and commands -->
-      <section>
-        <h2>Commands</h2>
-        <dl>
-          <dt><kbd>:map</kbd></dt>
-          <dd>list current mappings and where they are set</dd>
-        </dl>
-      </section>
       <section>
         <h2>Terminal</h2>
         <dl>
@@ -903,14 +1033,43 @@
             terminal mode)
           </dd>
           <dt class="lazyvim">
-            <kbd>&lt;leader&gt;ft</kbd> / <kbd>&lt;leader&gt;fT</kbd>
+            <kbd>&lt;leader&gt;ft</kbd><span class="alt">/</span
+            ><kbd>&lt;leader&gt;fT</kbd>
           </dt>
-          <dd>open a terminal at root dir / cwd</dd>
+          <dd>open a terminal at root dir<span class="alt"> / </span>cwd</dd>
           <dt><kbd>&lt;C-\&gt;&lt;C-n&gt;</kbd></dt>
           <dd>leave terminal insert mode (go to normal mode)</dd>
-          <dt><kbd>:cd</kbd> / <kbd>:lcd</kbd> / <kbd>:tcd</kbd></dt>
-          <dd>change cwd: global / current window / current tab</dd>
         </dl>
+      </section>
+      <section>
+        <h2>Ex Commands</h2>
+        <article>
+          <dt>
+            <kbd>:cd</kbd><span class="alt"> / </span><kbd>:lcd</kbd
+            ><span class="alt"> / </span><kbd>:tcd</kbd>
+          </dt>
+          <dd>
+            change cwd: global<span class="alt"> / </span>current window<span
+              class="alt"
+              >/</span
+            >current tab
+          </dd>
+        </article>
+        <article>
+          <dl>
+            <dt>q:</dt>
+            <dd>
+              open command history as editable scratch file (changes are
+              discarded)
+            </dd>
+            <dt>&lt;C-c&gt;</dt>
+            <dd>
+              put command in command line (to see the preview of the effects)
+            </dd>
+            <dt>&lt;CR&gt;</dt>
+            <dd>execute command</dd>
+          </dl>
+        </article>
       </section>
 
       <!-- Git -->
