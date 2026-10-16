@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <title>Vim grammar</title>
+  </head>
+  <body>
+    <h1>Vim Grammar — compose, don't memorize</h1>
+    <div class="grid">
+      <!-- The map -->
+      <section class="span-all">
+        <h2>The map: categories of Vim commands</h2>
+        <div class="scroll-x">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>What it is</th>
+                <th>Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Motions</td>
+                <td>move the cursor; also serve as operator targets</td>
+                <td>
+                  <kbd>w</kbd> <kbd>}</kbd> <kbd>$</kbd> <kbd>f{c}</kbd>
+                  <kbd>G</kbd>
+                </td>
+              </tr>
+              <tr>
+                <td>Operators</td>
+                <td>act over a motion / text object</td>
+                <td>
+                  <kbd>d</kbd> <kbd>y</kbd> <kbd>c</kbd> <kbd>&gt;</kbd>
+                  <kbd>=</kbd> <kbd>gu</kbd> <kbd>gq</kbd>
+                </td>
+              </tr>
+              <tr>
+                <td>Text objects</td>
+                <td>a region (not a motion) for operators / visual</td>
+                <td>
+                  <kbd>iw</kbd> <kbd>ip</kbd> <kbd>i"</kbd> <kbd>it</kbd>
+                </td>
+              </tr>
+              <tr>
+                <td>Standalone commands</td>
+                <td>do something now, take no motion</td>
+                <td>
+                  <kbd>x</kbd> <kbd>p</kbd> <kbd>r</kbd> <kbd>J</kbd>
+                  <kbd>~</kbd> <kbd>u</kbd> <kbd>.</kbd> <kbd>&lt;C-r&gt;</kbd>
+                </td>
+              </tr>
+              <tr>
+                <td>Modifiers</td>
+                <td>counts and registers that prefix the above</td>
+                <td><kbd>3</kbd> <kbd>"a</kbd></td>
+              </tr>
+              <tr>
+                <td>Modes</td>
+                <td>the state you're in</td>
+                <td>
+                  normal, insert, visual (char / line / block),
+                  operator-pending, command-line, replace, terminal
+                </td>
+              </tr>
+              <tr>
+                <td>Ex commands</td>
+                <td>a separate <kbd>:</kbd> command language with ranges</td>
+                <td>
+                  <kbd>:s</kbd> <kbd>:g</kbd> <kbd>:w</kbd> <kbd>:normal</kbd>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- The formula -->
+      <section>
+        <h2>The formula</h2>
+        <dl>
+          <dt><kbd>{op}{motion}</kbd></dt>
+          <dd>operator acts from the cursor to where the motion lands</dd>
+          <dt><kbd>{op}{i|a}{object}</kbd></dt>
+          <dd>operator acts on a whole text object (a region)</dd>
+          <dt><kbd>{op}{op}</kbd></dt>
+          <dd>double the operator = act on the whole line (<kbd>dd</kbd>)</dd>
+          <dt><kbd>{count}{op}{count}{target}</kbd></dt>
+          <dd>counts multiply (<kbd>2d3w</kbd> = delete 6 words)</dd>
+        </dl>
+        <p>
+          Pick one <strong>operator</strong> (verb) and one
+          <strong>target</strong> — a motion (a place) or a text object (a
+          region). Any verb × any target is a valid command. You never memorize
+          <kbd>di"</kbd>, <kbd>ci"</kbd>, <kbd>yi"</kbd>: you build them.
+        </p>
+      </section>
+
+      <!-- Operators -->
+      <section>
+        <h2>Operators (verbs)</h2>
+        <dl>
+          <dt><kbd>d</kbd></dt>
+          <dd>delete (cut)</dd>
+          <dt><kbd>c</kbd></dt>
+          <dd>change (delete, then insert)</dd>
+          <dt><kbd>y</kbd></dt>
+          <dd>yank (copy)</dd>
+          <dt><kbd>&gt;</kbd> / <kbd>&lt;</kbd></dt>
+          <dd>indent / dedent</dd>
+          <dt><kbd>=</kbd></dt>
+          <dd>auto-indent (re-indent)</dd>
+          <dt><kbd>gu</kbd> / <kbd>gU</kbd> / <kbd>g~</kbd></dt>
+          <dd>lowercase / uppercase / toggle case</dd>
+          <dt><kbd>gq</kbd> / <kbd>gw</kbd></dt>
+          <dd>reflow to textwidth (gw keeps the cursor)</dd>
+          <dt><kbd>!</kbd></dt>
+          <dd>filter the lines through an external command</dd>
+          <dt><kbd>zf</kbd></dt>
+          <dd>create a fold over the target</dd>
+        </dl>
+        <p>
+          <kbd>v</kbd> isn't an operator but composes the same way: it
+          <em>selects</em> the target instead of acting on it (<kbd>vi"</kbd>).
+        </p>
+      </section>
+
+      <!-- Text objects -->
+      <section>
+        <h2>Text objects (nouns)</h2>
+        <article>
+          <h3>Pick the scope</h3>
+          <dl>
+            <dt><kbd>i</kbd></dt>
+            <dd>inner: the contents only</dd>
+            <dt><kbd>a</kbd></dt>
+            <dd>around: contents plus the delimiters / trailing space</dd>
+          </dl>
+        </article>
+        <article>
+          <h3>Pick the object</h3>
+          <dl>
+            <dt><kbd>w</kbd> / <kbd>W</kbd></dt>
+            <dd>word / WORD</dd>
+            <dt><kbd>s</kbd></dt>
+            <dd>sentence</dd>
+            <dt><kbd>p</kbd></dt>
+            <dd>paragraph</dd>
+            <dt><kbd>"</kbd> <kbd>'</kbd> <kbd>`</kbd></dt>
+            <dd>inside the quotes</dd>
+            <dt><kbd>(</kbd> <kbd>)</kbd> <kbd>b</kbd></dt>
+            <dd>parentheses</dd>
+            <dt><kbd>{</kbd> <kbd>}</kbd> <kbd>B</kbd></dt>
+            <dd>braces</dd>
+            <dt><kbd>[</kbd> / <kbd>&lt;</kbd></dt>
+            <dd>brackets / angle brackets</dd>
+            <dt><kbd>t</kbd></dt>
+            <dd>HTML/XML tag</dd>
+          </dl>
+        </article>
+      </section>
+
+      <!-- Motions as targets -->
+      <section>
+        <h2>Motions (targets)</h2>
+        <dl>
+          <dt><kbd>w</kbd> / <kbd>e</kbd> / <kbd>b</kbd></dt>
+          <dd>word start / end / back</dd>
+          <dt><kbd>f{c}</kbd> / <kbd>t{c}</kbd></dt>
+          <dd>to / before a char on the line</dd>
+          <dt><kbd>0</kbd> / <kbd>^</kbd> / <kbd>$</kbd></dt>
+          <dd>line start / first non-blank / end</dd>
+          <dt><kbd>}</kbd> / <kbd>{</kbd></dt>
+          <dd>next / previous paragraph</dd>
+          <dt><kbd>gg</kbd> / <kbd>G</kbd></dt>
+          <dd>first / last line</dd>
+          <dt><kbd>%</kbd></dt>
+          <dd>matching bracket</dd>
+          <dt><kbd>/pat</kbd></dt>
+          <dd>to the next search match</dd>
+        </dl>
+        <p>
+          Inclusive motions include the landing char (<kbd>de</kbd>), exclusive
+          ones stop before it (<kbd>dw</kbd>). That's the only subtlety when an
+          operator meets a motion.
+        </p>
+      </section>
+
+      <!-- Compose -->
+      <section>
+        <h2>Compose = verb × target</h2>
+        <dl>
+          <dt><kbd>d</kbd> + <kbd>iw</kbd></dt>
+          <dd><kbd>diw</kbd> delete inner word</dd>
+          <dt><kbd>c</kbd> + <kbd>i"</kbd></dt>
+          <dd><kbd>ci"</kbd> change inside quotes</dd>
+          <dt><kbd>y</kbd> + <kbd>a(</kbd></dt>
+          <dd><kbd>ya(</kbd> yank incl. the parentheses</dd>
+          <dt><kbd>v</kbd> + <kbd>it</kbd></dt>
+          <dd><kbd>vit</kbd> select inside a tag</dd>
+          <dt><kbd>&gt;</kbd> + <kbd>ip</kbd></dt>
+          <dd><kbd>&gt;ip</kbd> indent the paragraph</dd>
+          <dt><kbd>gq</kbd> + <kbd>ap</kbd></dt>
+          <dd><kbd>gqap</kbd> reflow the paragraph</dd>
+          <dt><kbd>d</kbd> + <kbd>f;</kbd></dt>
+          <dd><kbd>df;</kbd> delete up to and incl. the next <kbd>;</kbd></dd>
+        </dl>
+        <p>
+          Swap the verb, keep the target: <kbd>di"</kbd> → <kbd>ci"</kbd> →
+          <kbd>yi"</kbd> → <kbd>vi"</kbd>. Swap the target, keep the verb:
+          <kbd>diw</kbd> → <kbd>di(</kbd> → <kbd>dit</kbd>.
+        </p>
+      </section>
+
+      <!-- Modifiers -->
+      <section>
+        <h2>Modifiers &amp; repeat</h2>
+        <dl>
+          <dt><kbd>{count}</kbd></dt>
+          <dd>repeat the whole command (<kbd>3dw</kbd>, <kbd>2ci(</kbd>)</dd>
+          <dt><kbd>"{reg}</kbd></dt>
+          <dd>pick a register first (<kbd>"ayiw</kbd> yanks into <kbd>a</kbd>)</dd>
+          <dt><kbd>.</kbd></dt>
+          <dd>repeat the last change — the reason composition pays off</dd>
+        </dl>
+      </section>
+
+      <!-- Shortcuts are compositions -->
+      <section>
+        <h2>The "standalone" keys are compositions</h2>
+        <dl>
+          <dt><kbd>x</kbd></dt>
+          <dd>= <kbd>dl</kbd> (delete one char right)</dd>
+          <dt><kbd>X</kbd></dt>
+          <dd>= <kbd>dh</kbd> (delete one char left)</dd>
+          <dt><kbd>D</kbd></dt>
+          <dd>= <kbd>d$</kbd> (delete to end of line)</dd>
+          <dt><kbd>C</kbd></dt>
+          <dd>= <kbd>c$</kbd> (change to end of line)</dd>
+          <dt><kbd>Y</kbd></dt>
+          <dd>= <kbd>y$</kbd> (yank to end of line)</dd>
+          <dt><kbd>s</kbd></dt>
+          <dd>= <kbd>cl</kbd> (substitute one char)</dd>
+          <dt><kbd>S</kbd></dt>
+          <dd>= <kbd>cc</kbd> (substitute the whole line)</dd>
+        </dl>
+        <p>
+          Learn the grammar and these fall out for free — they're just common
+          verb+target pairs with a one-key name.
+        </p>
+      </section>
+    </div>
+  </body>
+</html>

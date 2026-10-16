@@ -106,11 +106,32 @@ dd::before {
   background: green;
   color: white;
 }
-.bufferline-nvim kbd {
-  background: teal;
-  color: white;
-}
 .flash-nvim kbd {
   background: darkorange;
   color: white;
+}
+.diffview-nvim kbd {
+  background: purple;
+  color: white;
+}
+.lazyvim kbd {
+  background: maroon;
+  color: white;
+}
+.span-all {
+  column-span: all;
+}
+.scroll-x {
+  overflow-x: auto;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th,
+td {
+  border: 1px solid;
+  padding: 0.4em 0.6em;
+  text-align: left;
+  vertical-align: top;
 }

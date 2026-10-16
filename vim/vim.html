@@ -51,7 +51,7 @@
       <section>
         <h2>Help</h2>
         <dl>
-          <dt class="neovim">
+          <dt class="snacks-nvim">
             <kbd>&lt;leader&gt;sk</kbd>
           </dt>
           <dd>List all the keymaps and show the file of definition.</dd>
@@ -685,6 +685,23 @@
             <dd>insert the word under the cursor into the command line</dd>
           </dl>
         </article>
+        <article>
+          <h3>Pattern pieces (default magic; <kbd>\v</kbd> drops the backslashes)</h3>
+          <dl>
+            <dt><kbd>\(</kbd> <kbd>\)</kbd></dt>
+            <dd>group; reuse it as <kbd>\1</kbd> in the replacement</dd>
+            <dt><kbd>\|</kbd></dt>
+            <dd>or (alternation): <kbd>cat\|dog</kbd></dd>
+            <dt><kbd>\{n,m}</kbd></dt>
+            <dd>
+              count: n to m repeats (<kbd>\{3}</kbd> exactly 3,
+              <kbd>\{2,}</kbd> 2+)
+            </dd>
+            <dt><kbd>*</kbd> <span class="alt">/</span> <kbd>\+</kbd>
+              <span class="alt">/</span> <kbd>\?</kbd></dt>
+            <dd>zero+ / one+ / optional</dd>
+          </dl>
+        </article>
       </section>
       <section>
         <h2>Undo<span class="alt"> / </span>redo</h2>
@@ -717,7 +734,7 @@
           <dt><kbd>]c</kbd></dt>
           <dd>jump to start of next hunk</dd>
           <dt><kbd>[c</kbd></dt>
-          <dd>jump to start of</dd>
+          <dd>jump to start of previous hunk</dd>
           <dt><kbd>do or :diffg[et]</kbd></dt>
           <dd>obtain (get) difference (from other buffer)</dd>
           <dt><kbd>dp or :diffpu[t]</kbd></dt>
@@ -729,6 +746,30 @@
           <dt class="invisible"><kbd>:diffo[ff]</kbd></dt>
           <dd class="invisible">switch off diff mode for current window</dd>
         </dl>
+        <article>
+          <h3>Diffview</h3>
+          <dl>
+            <dt class="diffview-nvim"><kbd>:DiffviewOpen</kbd></dt>
+            <dd>open the diff view (working tree vs index)</dd>
+            <dt class="diffview-nvim"><kbd>:DiffviewFileHistory</kbd></dt>
+            <dd>browse the git history of the current file / project</dd>
+            <dt class="my-mapping"><kbd>:DiffOrig</kbd></dt>
+            <dd>
+              diff the buffer against the file on disk (custom command added in
+              keymaps.lua)
+            </dd>
+            <dt class="diffview-nvim">
+              <kbd>&lt;leader&gt;co</kbd><span class="opt"> / </span
+              ><kbd>&lt;leader&gt;ct</kbd><span class="opt"> / </span
+              ><kbd>&lt;leader&gt;cb</kbd>
+            </dt>
+            <dd>
+              resolve a merge conflict: choose the ours / theirs / base version
+            </dd>
+            <dt class="diffview-nvim"><kbd>dx</kbd></dt>
+            <dd>delete the conflict region (keep none)</dd>
+          </dl>
+        </article>
       </section>
       <section>
         <h2>Insert Mode</h2>
@@ -828,6 +869,17 @@
           <dd>Toggle comment uncomment a line</dd>
         </dl>
       </section>
+      <section>
+        <h2>Reflow / wrap</h2>
+        <dl>
+          <dt><kbd>gq</kbd></dt>
+          <dd>
+            reflow text to the set line width (<kbd>gggqG</kbd> = whole file)
+          </dd>
+          <dt><kbd>:set textwidth=80</kbd></dt>
+          <dd>set the wrap width (<kbd>:set tw?</kbd> to check the value)</dd>
+        </dl>
+      </section>
 
       <!-- Navigate files -->
       <section>
@@ -845,6 +897,14 @@
           <dd>quit and throw away unsaved changes</dd>
           <dt><kbd>:wqa</kbd></dt>
           <dd>write (save) and quit on all tabs</dd>
+          <dt><kbd>:cq</kbd></dt>
+          <dd>
+            quit with a non-zero exit code (error). Useful when git runs Vim as
+            its editor: exiting with an error makes git abort the operation.
+            Examples: during <kbd>git commit</kbd> it cancels the commit; during
+            <kbd>git rebase -i</kbd> it aborts the whole rebase; during
+            <kbd>git mergetool</kbd> it marks the merge as unresolved (not done).
+          </dd>
         </dl>
       </section>
       <section>
@@ -900,23 +960,32 @@
       <section>
         <h2>Buffers</h2>
         <dl>
-          <dt class="bufferline-nvim">
-            <kbd>&lt;S-h&gt;</kbd><span class="alt">/</span
+          <dt class="lazyvim">
+            <kbd>&lt;S-h&gt;</kbd><span class="alt"> / </span
             ><kbd>&lt;S-l&gt;</kbd>
           </dt>
           <dd>previous<span class="alt"> / </span>next buffer</dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;fb</kbd></dt>
           <dd>
             switch buffer (in the picker, <kbd>&lt;C-x&gt;</kbd> closes the
-            highlighted buffer)
+            highlighted buffer). Flags per row:
+            <kbd>%</kbd> current, <kbd>#</kbd> alternate, <kbd>a</kbd> active
+            (shown in a window), <kbd>h</kbd> hidden, <kbd>+</kbd> modified
+            (unsaved), <kbd>=</kbd> readonly, <kbd>-</kbd> not modifiable. The
+            <kbd>h</kbd> by the title is the "show hidden" toggle
+            (<kbd>&lt;A-h&gt;</kbd>).
           </dd>
           <dt><kbd>:e[dit] file</kbd></dt>
           <dd>edit a file in a new buffer</dd>
-          <dd>go to the previous buffer</dd>
+          <dt>
+            <kbd>:bn[ext]</kbd><span class="alt"> / </span
+            ><kbd>:bp[revious]</kbd>
+          </dt>
+          <dd>next<span class="alt"> / </span>previous buffer</dd>
           <dt><kbd>:bd[elete]</kbd></dt>
           <dd>delete a buffer (close a file)</dd>
-          <dt>&lt;leader&gt;bd</dt>
-          <dd>Delete current buffer</dd>
+          <dt class="lazyvim"><kbd>&lt;leader&gt;bd</kbd></dt>
+          <dd>delete the current buffer</dd>
         </dl>
       </section>
       <section>
@@ -976,9 +1045,16 @@
           <dd>git files</dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;fp</kbd></dt>
           <dd>
-            find projects. snacks defines them as a folder with a .git folder,
-            or under ~/dev folder. the definition can be changed in the plugin
-            configs.
+            find projects. snacks lists the git root of recently opened files,
+            plus folders under the configured <kbd>dev</kbd> dirs that contain a
+            marker (<kbd>.git</kbd>, <kbd>package.json</kbd>, <kbd>Makefile</kbd>…).
+            Change the dev dirs in the plugin config.
+          </dd>
+          <dt><kbd>:lua vim.v.oldfiles = {}</kbd></dt>
+          <dd>
+            clear the recent-files list for this session (trims stale entries
+            from projects / recent files; permanent removal needs clearing the
+            shada file)
           </dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;fr</kbd></dt>
           <dd>recent files</dd>
@@ -1108,22 +1184,60 @@
         </dl>
       </section>
       <section>
+        <h2>Scratch (Snacks)</h2>
+        <dl>
+          <dt class="snacks-nvim"><kbd>&lt;leader&gt;.</kbd></dt>
+          <dd>toggle the scratch buffer (per project + git branch)</dd>
+          <dt class="snacks-nvim"><kbd>{count}&lt;leader&gt;.</kbd></dt>
+          <dd>
+            toggle a numbered scratch (e.g. <kbd>2&lt;leader&gt;.</kbd>); re-use
+            the same count to close it
+          </dd>
+          <dt class="snacks-nvim"><kbd>&lt;leader&gt;S</kbd></dt>
+          <dd>select from the list of scratch buffers</dd>
+          <dt class="snacks-nvim"><kbd>:lua Snacks.scratch({ name = "x" })</kbd></dt>
+          <dd>
+            open a named scratch (shows as "x" in <kbd>&lt;leader&gt;S</kbd>)
+          </dd>
+        </dl>
+      </section>
+      <section>
         <h2>Config files (LazyVim)</h2>
         <dl>
+          <dt>Where things live (XDG dirs)</dt>
+          <dd>
+            <kbd>~/.config/nvim/</kbd> = your config, you edit these.
+            <kbd>~/.local/share/nvim/</kbd> = data: installed plugins
+            (<kbd>lazy/</kbd>), mason tools — managed, don't hand-edit.
+            <kbd>~/.local/state/nvim/</kbd> = state: shada (history, oldfiles),
+            swap, undo, logs. (<kbd>~/.local</kbd> is the XDG data/state home;
+            <kbd>~/.config</kbd> the config home.)
+          </dd>
           <dt><kbd>~/.config/nvim/init.lua</kbd></dt>
           <dd>entry point (bootstraps LazyVim)</dd>
-          <dt><kbd>lua/config/options.lua</kbd></dt>
+          <dt><kbd>~/.config/nvim/lua/config/options.lua</kbd></dt>
           <dd>vim options (set before plugins load)</dd>
-          <dt><kbd>lua/config/keymaps.lua</kbd></dt>
+          <dt><kbd>~/.config/nvim/lua/config/keymaps.lua</kbd></dt>
           <dd>your keymaps (loaded on VeryLazy)</dd>
-          <dt><kbd>lua/config/autocmds.lua</kbd></dt>
+          <dt><kbd>~/.config/nvim/lua/config/autocmds.lua</kbd></dt>
           <dd>autocommands</dd>
-          <dt><kbd>lua/config/lazy.lua</kbd></dt>
+          <dt><kbd>~/.config/nvim/lua/config/lazy.lua</kbd></dt>
           <dd>lazy.nvim setup and the plugin import list</dd>
-          <dt><kbd>lua/plugins/*.lua</kbd></dt>
-          <dd>plugin specs: each file returns a table to add or override</dd>
-          <dt><kbd>lazyvim.json</kbd></dt>
+          <dt><kbd>~/.config/nvim/lua/plugins/*.lua</kbd></dt>
+          <dd>
+            plugin specs: each file <kbd>return</kbd>s a table whose first
+            element is the plugin's GitHub <kbd>"owner/repo"</kbd> (lazy.nvim
+            fetches <kbd>github.com/owner/repo</kbd>), plus options like
+            <kbd>opts</kbd>, <kbd>keys</kbd>, <kbd>dependencies</kbd>. Reusing an
+            existing repo name overrides/extends that plugin's config.
+          </dd>
+          <dt><kbd>~/.config/nvim/lazyvim.json</kbd></dt>
           <dd>enabled LazyVim extras</dd>
+          <dt><kbd>~/.local/share/nvim/lazy/</kbd></dt>
+          <dd>
+            installed plugins' source — read to inspect; don't edit (overwritten
+            on update)
+          </dd>
         </dl>
       </section>
     </div>
