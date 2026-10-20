@@ -80,9 +80,8 @@
       </section>
 
       <section>
-        <h2>Revision operators</h2>
+        <h2>Ancestry operators</h2>
         <article>
-          <h3>Navigate the graph</h3>
           <dl>
             <dt>HEAD~4</dt>
             <dd>4 commits back along first parents</dd>
@@ -90,8 +89,21 @@
             <dd>first parent commit</dd>
             <dt>HEAD^2</dt>
             <dd>second parent (merge commit)</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Revision operators</h2>
+        <article>
+          <h3>^{...} peel by type</h3>
+          <dl>
             <dt>HEAD^{tree}</dt>
             <dd>peel HEAD to its tree object</dd>
+            <dt>HEAD^{commit}</dt>
+            <dd>peel to a commit</dd>
+            <dt><var>&lt;tag&gt;</var>^{}</dt>
+            <dd>peel a tag until it is no longer a tag</dd>
           </dl>
         </article>
 
@@ -281,10 +293,16 @@
           <article class="options">
             <h4>Conflict resolution</h4>
             <dl>
+              <dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt>
+              <dd>start of our side</dd>
+              <dt>=======</dt>
+              <dd>separator between the two sides</dd>
+              <dt>&gt;&gt;&gt;&gt;&gt;&gt;&gt; <var>&lt;branch&gt;</var></dt>
+              <dd>end, their incoming side</dd>
               <dt>git checkout --ours <var>&lt;file&gt;</var></dt>
-              <dd>keep our side (&lt;&lt;&lt;)</dd>
+              <dd>keep our side</dd>
               <dt>git checkout --theirs <var>&lt;file&gt;</var></dt>
-              <dd>keep their side (&gt;&gt;&gt;)</dd>
+              <dd>keep their side</dd>
             </dl>
           </article>
         </article>
