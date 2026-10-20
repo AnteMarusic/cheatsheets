@@ -1,103 +1,346 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../tmux/style.css" />
+    <title>Git cheatsheet</title>
+  </head>
+  <body>
+    <h1>Git cheatsheet</h1>
 
-Setup and Config
-man git-<command> // manual of a command
-ref (what is, what types are there)
-config (what is and git config command)
-git config (name, email, aliases, editor),
-git init
-.gitignore patterns
+    <div class="grid">
+      <section>
+        <h2>Setup &amp; Config</h2>
+        <article>
+          <h3>Basics</h3>
+          <dl>
+            <dt>man git-<var>&lt;command&gt;</var></dt>
+            <dd>manual of a command</dd>
+            <dt>git init</dt>
+            <dd>create a repository in the current folder</dd>
+          </dl>
+        </article>
 
-glossary
-ref(HEAD, commit sha, branch)
-repository: a folder tracked by git; git runs locally by storing data in the .git folder
-commit: a snapshot of the repository, identified by a hash
-branch: a pointer to a commit
-HEAD: a pointer representing the current position (cursor); it can point to a branch or directly to a commit
-- A commit is the actual object — a stored snapshot in Git's database, identified by its SHA-1/SHA-256 hash, with a parent, author, message, and tree.
-- A revision is a way of naming/referring to a commit. It's any expression that resolves to a commit.
-In detached HEAD state you are not on any branch — commits made here are temporary
-unless you create a branch from them.
-garbage collection
+        <article>
+          <h3>Config</h3>
+          <dl>
+            <dt>git config</dt>
+            <dd>get and set repository or global options</dd>
+            <dt>git config user.name <var>&lt;name&gt;</var></dt>
+            <dd>set the author name</dd>
+            <dt>git config user.email <var>&lt;email&gt;</var></dt>
+            <dd>set the author email</dd>
+            <dt>git config alias.<var>&lt;name&gt;</var> <var>&lt;cmd&gt;</var></dt>
+            <dd>create a command alias</dd>
+            <dt>git config core.editor <var>&lt;editor&gt;</var></dt>
+            <dd>set the default editor</dd>
+          </dl>
+        </article>
 
-HEAD~4
+        <article>
+          <h3>.gitignore</h3>
+          <dl>
+            <dt>*.log</dt>
+            <dd>any file ending in .log</dd>
+            <dt>build/</dt>
+            <dd>a directory named build</dd>
+            <dt>/secret.txt</dt>
+            <dd>secret.txt only in the repo root</dd>
+            <dt>doc/**/*.pdf</dt>
+            <dd>PDFs in doc/ at any depth</dd>
+            <dt>!important.log</dt>
+            <dd>negation: re-include a previously excluded file</dd>
+          </dl>
+        </article>
+      </section>
 
-rev-operators
-- HEAD^ — first parent commit (navigation along history).
-- HEAD^{tree} — peel HEAD to its tree object (change of object type, same snapshot).
-@{...} — time / position / upstream selectors
-Looks things up in refs and the reflog — the history of where a ref has been, or its relationships. It's about which state of a ref, not object type. Local, time-based, can expire.
+      <section>
+        <h2>Glossary</h2>
+        <article>
+          <dl>
+            <dt>repository</dt>
+            <dd>a folder tracked by git; git runs locally storing data in .git</dd>
+            <dt>commit</dt>
+            <dd>a snapshot of the repository, identified by a hash</dd>
+            <dt>branch</dt>
+            <dd>a pointer to a commit</dd>
+            <dt>HEAD</dt>
+            <dd>pointer to the current position; points to a branch or a commit</dd>
+            <dt>ref</dt>
+            <dd>a name pointing to a commit (HEAD, branch, tag)</dd>
+            <dt>object</dt>
+            <dd>stored content: blob, tree, commit, tag</dd>
+            <dt>revision</dt>
+            <dd>an expression that resolves to a commit</dd>
+            <dt>detached HEAD</dt>
+            <dd>not on any branch; commits here are lost unless you branch</dd>
+            <dt>garbage collection</dt>
+            <dd>removal of unreachable objects</dd>
+          </dl>
+        </article>
+      </section>
 
-HEAD@{2}            # where HEAD was 2 moves ago (reflog)
-main@{yesterday}    # where main pointed yesterday
-main@{upstream}     # the upstream branch main tracks  (also @{u})
-HEAD@{push}         # where main would push to
-@{-1}               # the previously checked-out branch
+      <section>
+        <h2>Revision operators</h2>
+        <article>
+          <h3>Navigate the graph</h3>
+          <dl>
+            <dt>HEAD~4</dt>
+            <dd>4 commits back along first parents</dd>
+            <dt>HEAD^</dt>
+            <dd>first parent commit</dd>
+            <dt>HEAD^2</dt>
+            <dd>second parent (merge commit)</dd>
+            <dt>HEAD^{tree}</dt>
+            <dd>peel HEAD to its tree object</dd>
+          </dl>
+        </article>
 
-index 
-git status
-git status -u                                # show status including untracked files
-git add
-git restore
-git commit
-git stash
-clean
-git rm -r --cached <file> # --cached removes it from the index but not from the working tree. (Used to stop tracking a file but keeping it locally).
-A worktree is a second checkout of the same repository in a different directory,
-sharing the same .git folder. Useful to work on two branches simultaneously.
-git worktree
+        <article>
+          <h3>@{...} selectors</h3>
+          <dl>
+            <dt>HEAD@{2}</dt>
+            <dd>where HEAD was 2 moves ago (reflog)</dd>
+            <dt>main@{yesterday}</dt>
+            <dd>where main pointed yesterday</dd>
+            <dt>main@{upstream}</dt>
+            <dd>the upstream branch main tracks (also @{u})</dd>
+            <dt>HEAD@{push}</dt>
+            <dd>where the branch would push to</dd>
+            <dt>@{-1}</dt>
+            <dd>the previously checked-out branch</dd>
+          </dl>
+        </article>
+      </section>
 
-Commit
-git log [<options>] [<revision-range>] [[--] <file-path>]
-revision-range is a way to identify the list of child of the commits that will be
-introduced in the log. By default is HEAD, --all is the children of all branches.
---oneline --graph --all --decorate 
+      <section>
+        <h2>Working tree &amp; Index</h2>
+        <article>
+          <h3>Status</h3>
+          <dl>
+            <dt>git status</dt>
+            <dd>show the working tree status</dd>
+            <dt>git status -u</dt>
+            <dd>show status including untracked files</dd>
+          </dl>
+        </article>
 
-git blame <file-path>  # git-blame - Show what revision and author last modified each line of a fileL 42,42 range of lines        
+        <article>
+          <h3>Stage &amp; restore</h3>
+          <dl>
+            <dt>git add</dt>
+            <dd>stage changes into the index</dd>
+            <dt>git restore</dt>
+            <dd>discard changes in the working tree</dd>
+            <dt>git commit</dt>
+            <dd>record the index as a new commit</dd>
+            <dt>git stash</dt>
+            <dd>save changes away and clean the working tree</dd>
+            <dt>git clean</dt>
+            <dd>remove untracked files</dd>
+          </dl>
+        </article>
 
-git show <object>                       # inspect an object
+        <article>
+          <h3>Untrack</h3>
+          <dl>
+            <dt>git rm -r --cached <var>&lt;file&gt;</var></dt>
+            <dd>stop tracking a file but keep it locally</dd>
+          </dl>
+        </article>
 
-git ls-tree                    # list the content of a tree
+        <article>
+          <h3>Worktree</h3>
+          <dl>
+            <dt>git worktree</dt>
+            <dd>
+              a second checkout of the same repo in another directory, sharing
+              .git; work on two branches at once
+            </dd>
+          </dl>
+        </article>
+      </section>
 
-git ls-files <file>                          # list the content of the index. 
+      <section>
+        <h2>Commits &amp; History</h2>
+        <article>
+          <h3>Inspect</h3>
+          <dl>
+            <dt>
+              git log
+              <span class="opt">[<var>&lt;options&gt;</var>]</span>
+              <span class="opt">[<var>&lt;revision-range&gt;</var>]</span>
+              <span class="opt">[-- <var>&lt;file-path&gt;</var>]</span>
+            </dt>
+            <dd>
+              show commit history; revision-range defaults to HEAD, --all is all
+              branches
+            </dd>
+            <dt>git blame <var>&lt;file-path&gt;</var></dt>
+            <dd>show revision and author that last modified each line</dd>
+            <dt>git show <var>&lt;object&gt;</var></dt>
+            <dd>inspect an object</dd>
+            <dt>git ls-tree</dt>
+            <dd>list the content of a tree</dd>
+            <dt>git ls-files <var>&lt;file&gt;</var></dt>
+            <dd>list the content of the index</dd>
+            <dt>git diff</dt>
+            <dd>
+              show changes between working tree, index, trees, blobs, or files
+            </dd>
+          </dl>
 
-git diff
-       Show changes between the working tree and the index or a tree, changes between the index and a tree, changes between two trees, changes resulting from a merge, changes
-       between two blob objects, or changes between two files on disk.
---stat
-git bisect
-git reflog
-git restore
-git revert
-git reset (soft/mixed/hard)
-git commit --amend
-git rebase -i
-cherrypick
+          <article class="options">
+            <h4>Options</h4>
+            <dl>
+              <dt>--oneline</dt>
+              <dd>one line per commit</dd>
+              <dt>--graph</dt>
+              <dd>draw the commit graph</dd>
+              <dt>--all</dt>
+              <dd>all branches</dd>
+              <dt>--decorate</dt>
+              <dd>show ref names</dd>
+              <dt>--stat</dt>
+              <dd>show changed files summary</dd>
+            </dl>
+          </article>
+        </article>
 
-References
-git tag, annotated vs lightweight, pushing tags
-git branch
-git branch -d <branch-name>                  # delete a branch (only if merged)
-git branch -D <branch-name>                  # force-delete a branch (even if not merged)
-git branch -m old-name new-name		     # renaming a branch
-git branch -f <branch-name> <commit-hash>     # force a branch to a commit without chekout
-git switch/checkout
-git checkout --ours <file> / --theirs <file>
-<< our
->> theirs
-git merge
-git rebase,
-git merge -ff
+        <article>
+          <h3>Rewrite &amp; undo</h3>
+          <dl>
+            <dt>git revert</dt>
+            <dd>create a commit that undoes another</dd>
+            <dt>git reset</dt>
+            <dd>move the current branch (soft / mixed / hard)</dd>
+            <dt>git commit --amend</dt>
+            <dd>replace the last commit</dd>
+            <dt>git rebase -i</dt>
+            <dd>interactively reorder, squash, edit commits</dd>
+            <dt>git cherry-pick</dt>
+            <dd>apply a commit from elsewhere</dd>
+          </dl>
+        </article>
 
-4. Remotes & Syncing
-- git remote, git fetch, git pull, git push, tracking branches
-git clone
-git branch -vv
-git branch --set-upstream-to=(remote_name)/(remote_branch_name) (local_branch_name).      
-git branch -r                                                      # list remote-tracking branches
-git branch -a                                                      # list local and remote branches
- git branch --unset-upstream
-git switch -c <local-name> origin/<remote-branch>               # create local branch tracking a remote branch
-git push <remote> <local-branch>:<remote-branch>                  # push to explicit remote branch
-git push -u <remote> <branch>                                      # push and set upstream tracking
-git switch -t origin/branchname
+        <article>
+          <h3>Debug &amp; recover</h3>
+          <dl>
+            <dt>git bisect</dt>
+            <dd>binary search for a bad commit</dd>
+            <dt>git reflog</dt>
+            <dd>history of where HEAD and branches pointed</dd>
+          </dl>
+        </article>
+      </section>
 
+      <section>
+        <h2>References</h2>
+        <article>
+          <h3>Tags</h3>
+          <dl>
+            <dt>git tag <var>&lt;name&gt;</var></dt>
+            <dd>lightweight tag (just a pointer)</dd>
+            <dt>git tag -a <var>&lt;name&gt;</var> -m <var>&lt;msg&gt;</var></dt>
+            <dd>annotated tag (object with author, date, message)</dd>
+            <dt>git push <var>&lt;remote&gt;</var> <var>&lt;tag&gt;</var></dt>
+            <dd>push a tag (not pushed by default)</dd>
+            <dt>git push --tags</dt>
+            <dd>push all tags</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Branches</h3>
+          <dl>
+            <dt>git branch</dt>
+            <dd>list branches</dd>
+            <dt>git branch -d <var>&lt;branch&gt;</var></dt>
+            <dd>delete a branch (only if merged)</dd>
+            <dt>git branch -D <var>&lt;branch&gt;</var></dt>
+            <dd>force-delete a branch (even if not merged)</dd>
+            <dt>git branch -m <var>&lt;old&gt;</var> <var>&lt;new&gt;</var></dt>
+            <dd>rename a branch</dd>
+            <dt>git branch -f <var>&lt;branch&gt;</var> <var>&lt;commit&gt;</var></dt>
+            <dd>force a branch to a commit without checkout</dd>
+            <dt>git switch / git checkout</dt>
+            <dd>change the checked-out branch</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Merge &amp; rebase</h3>
+          <dl>
+            <dt>git merge</dt>
+            <dd>join two branches with a merge commit</dd>
+            <dt>git merge --ff</dt>
+            <dd>fast-forward when possible</dd>
+            <dt>git rebase</dt>
+            <dd>replay commits onto another base</dd>
+          </dl>
+
+          <article class="options">
+            <h4>Conflict resolution</h4>
+            <dl>
+              <dt>git checkout --ours <var>&lt;file&gt;</var></dt>
+              <dd>keep our side (&lt;&lt;&lt;)</dd>
+              <dt>git checkout --theirs <var>&lt;file&gt;</var></dt>
+              <dd>keep their side (&gt;&gt;&gt;)</dd>
+            </dl>
+          </article>
+        </article>
+      </section>
+
+      <section>
+        <h2>Remotes &amp; Syncing</h2>
+        <article>
+          <h3>Transfer</h3>
+          <dl>
+            <dt>git clone</dt>
+            <dd>copy a remote repository</dd>
+            <dt>git remote</dt>
+            <dd>manage the set of tracked remotes</dd>
+            <dt>git fetch</dt>
+            <dd>download remote objects and refs</dd>
+            <dt>git pull</dt>
+            <dd>fetch and integrate</dd>
+            <dt>git push</dt>
+            <dd>upload local commits</dd>
+            <dt>
+              git push <var>&lt;remote&gt;</var>
+              <var>&lt;local&gt;</var>:<var>&lt;remote-branch&gt;</var>
+            </dt>
+            <dd>push to an explicit remote branch</dd>
+            <dt>git push -u <var>&lt;remote&gt;</var> <var>&lt;branch&gt;</var></dt>
+            <dd>push and set upstream tracking</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Tracking branches</h3>
+          <dl>
+            <dt>git branch -vv</dt>
+            <dd>list branches with upstream and ahead/behind</dd>
+            <dt>git branch -r</dt>
+            <dd>list remote-tracking branches</dd>
+            <dt>git branch -a</dt>
+            <dd>list local and remote branches</dd>
+            <dt>
+              git branch --set-upstream-to=<var>&lt;remote&gt;</var>/<var>&lt;branch&gt;</var>
+              <var>&lt;local&gt;</var>
+            </dt>
+            <dd>set the upstream of a local branch</dd>
+            <dt>git branch --unset-upstream</dt>
+            <dd>remove the upstream link</dd>
+            <dt>
+              git switch -c <var>&lt;local&gt;</var>
+              origin/<var>&lt;remote-branch&gt;</var>
+            </dt>
+            <dd>create a local branch tracking a remote branch</dd>
+            <dt>git switch -t origin/<var>&lt;branch&gt;</var></dt>
+            <dd>create a tracking branch of the same name</dd>
+          </dl>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>
