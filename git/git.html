@@ -1,308 +1,103 @@
 
-G I T
+Setup and Config
+man git-<command> // manual of a command
+ref (what is, what types are there)
+config (what is and git config command)
+git config (name, email, aliases, editor),
+git init
+.gitignore patterns
 
+glossary
+ref(HEAD, commit sha, branch)
 repository: a folder tracked by git; git runs locally by storing data in the .git folder
 commit: a snapshot of the repository, identified by a hash
 branch: a pointer to a commit
 HEAD: a pointer representing the current position (cursor); it can point to a branch or directly to a commit
+- A commit is the actual object — a stored snapshot in Git's database, identified by its SHA-1/SHA-256 hash, with a parent, author, message, and tree.
+- A revision is a way of naming/referring to a commit. It's any expression that resolves to a commit.
+In detached HEAD state you are not on any branch — commits made here are temporary
+unless you create a branch from them.
+garbage collection
 
-L O G
-git log --graph --all --pretty=format:"%C(yellow)%h%Creset %C(cyan)%ad%Creset %C(green)%an%Creset | %s" --date=short
-git log --oneline --graph --all --decorate   # ASCII graph of all branches
-git log origin/main                          # log of a remote-tracking branch
+HEAD~4
+
+rev-operators
+- HEAD^ — first parent commit (navigation along history).
+- HEAD^{tree} — peel HEAD to its tree object (change of object type, same snapshot).
+@{...} — time / position / upstream selectors
+Looks things up in refs and the reflog — the history of where a ref has been, or its relationships. It's about which state of a ref, not object type. Local, time-based, can expire.
+
+HEAD@{2}            # where HEAD was 2 moves ago (reflog)
+main@{yesterday}    # where main pointed yesterday
+main@{upstream}     # the upstream branch main tracks  (also @{u})
+HEAD@{push}         # where main would push to
+@{-1}               # the previously checked-out branch
+
+index 
+git status
 git status -u                                # show status including untracked files
+git add
+git restore
+git commit
+git stash
+clean
+git rm -r --cached <file> # --cached removes it from the index but not from the working tree. (Used to stop tracking a file but keeping it locally).
+A worktree is a second checkout of the same repository in a different directory,
+sharing the same .git folder. Useful to work on two branches simultaneously.
+git worktree
 
-Find which commit last changed a line:
-git blame path/to/file
-git blame -L 42,42 path/to/file             # specific line
-git show <commit-hash>                       # inspect the commit
-git ls-tree -r --name-only origin/KotlinExtension | grep -i 'claude\|\.claude'
+Commit
+git log [<options>] [<revision-range>] [[--] <file-path>]
+revision-range is a way to identify the list of child of the commits that will be
+introduced in the log. By default is HEAD, --all is the children of all branches.
+--oneline --graph --all --decorate 
 
-Check if a file is tracked:
-git ls-files <file>                          # prints filename if tracked, nothing if not
-git ls-files --error-unmatch <file>          # exit code 0 = tracked, non-zero = not tracked
+git blame <file-path>  # git-blame - Show what revision and author last modified each line of a fileL 42,42 range of lines        
 
-Untracking a file 
-```
-Add it to gitignore, then 
-git rm --cached <file> 			     # for a file
-git rm -r --cached <dir>	             # for a dir
+git show <object>                       # inspect an object
 
-```
- The --cached flag removes it from tracking only, the file stays on disk. 
+git ls-tree                    # list the content of a tree
 
+git ls-files <file>                          # list the content of the index. 
 
-### Branches
+git diff
+       Show changes between the working tree and the index or a tree, changes between the index and a tree, changes between two trees, changes resulting from a merge, changes
+       between two blob objects, or changes between two files on disk.
+--stat
+git bisect
+git reflog
+git restore
+git revert
+git reset (soft/mixed/hard)
+git commit --amend
+git rebase -i
+cherrypick
 
-```
-git branch                                   # list local branches
-git branch -v                                # show pointed commit and ahead/behind status
-git branch -vv                               # also show upstream tracking branch
-git branch <new-branch-name>                 # create a branch
-git switch -c <branch-name>                  # create a branch and switch to it
-git switch <branch-name>                     # switch to a branch
+References
+git tag, annotated vs lightweight, pushing tags
+git branch
 git branch -d <branch-name>                  # delete a branch (only if merged)
 git branch -D <branch-name>                  # force-delete a branch (even if not merged)
 git branch -m old-name new-name		     # renaming a branch
-```
+git branch -f <branch-name> <commit-hash>     # force a branch to a commit without chekout
+git switch/checkout
+git checkout --ours <file> / --theirs <file>
+<< our
+>> theirs
+git merge
+git rebase,
+git merge -ff
 
-### Navigation & HEAD
-
-```
-git checkout <commit-hash>                   # move HEAD to a commit (detached HEAD state)
-git checkout <branch-name>                   # exit detached HEAD by switching to a branch
-```
-
-In detached HEAD state you are not on any branch — commits made here are temporary
-unless you create a branch from them.
-
-### Reset
-
-Reset moves the current branch pointer to a target commit:
-```
-git reset --soft HEAD~n    # move branch only; keep changes staged
-git reset --mixed HEAD~n   # move branch; keep changes unstaged (default)
-git reset --hard HEAD~n    # move branch; discard all changes after target commit
-```
-
-Discard all local changes and return to last commit:
-```
-git reset --hard HEAD
-```
-
-Squash the last n commits into one:
-```
-git reset --soft HEAD~n
-git add .
-git commit -m "message"
-git push --force-with-lease   # safer than --force: refuses if remote moved unexpectedly
-```
-
-### Stash
-
-```
-git stash                           # stash current tracked changes
-git stash -u 			    # stash tracked and untracked changes
-git stash show                      # summary of latest stash
-git stash list			    # list of stashes
-git stash pop 			    # apply last stash and delete
-git stash drop stash@{x}	    # delete stash x
-git stash clear 		    # delete all stashes
-git stash show -p                   # full diff of latest stash
-git stash show -p stash@{1}         # full diff of a specific stash
-git stash apply stash@{1}           # re-apply a stash onto the current working tree
-git stash drop stash@{1}            # remove a stash from the list
-```
-
-
-## Remote Operations
-
-### Sinking with the server
- git fetch --prune		# syncs with the remote and removes any stale references to remote branches that don't exist anymore
-
-### Managing Remotes
-
-```
-git remote -v                                                      # list configured remotes
-git remote add <name> <url>                                        # add a remote
-git remote set-url <name> <new-url>                                # change remote URL
+4. Remotes & Syncing
+- git remote, git fetch, git pull, git push, tracking branches
+git clone
+git branch -vv
 git branch --set-upstream-to=(remote_name)/(remote_branch_name) (local_branch_name).      
-```
-
-### Remote Branches
-
-```
-git fetch --all                                                    # fetch latest refs from all remotes
 git branch -r                                                      # list remote-tracking branches
 git branch -a                                                      # list local and remote branches
  git branch --unset-upstream
-git branch -vv 							   # list local branches and the remote branch they are tracking
-git checkout -b <local-name> origin/<remote-branch>               # create local branch tracking a remote branch
-```
-
-### Push
-
-```
+git switch -c <local-name> origin/<remote-branch>               # create local branch tracking a remote branch
 git push <remote> <local-branch>:<remote-branch>                  # push to explicit remote branch
 git push -u <remote> <branch>                                      # push and set upstream tracking
-```
-
-
-## Advanced Workflows
-
-### Merge & Rebase
-
-Merge brings another branch into the current one (creates a merge commit if diverged):
-```
-git merge <branch-to-merge>          # must be on the receiving branch
-```
-- fast-forward: when git can move a branch pointer forward without creating a merge commit (no divergence)
-git merge -ff
-
-Put commits of feature on top of base
-```
-git switch feature
-git rebase <base>
-```
-
-you can rebase without checkout by
-git rebase <base> <branch>
-
-Git will ask you to choose merge/rebase/fast-forward when local and remote have diverged.
-
-Stacked PRs — each PR targets the previous branch, not main:
-```
-git switch chore/my-feature
-git rebase feature/base-branch
-```
-
-PR chain example:
-```
-main
-  └── logging/structured-logging        (base: main)
-        └── feature/separate-deps-jar   (base: logging/structured-logging)
-              └── chore/move-scripts    (base: feature/separate-deps-jar)
-```
-
-### Worktree
-
-A worktree is a second checkout of the same repository in a different directory,
-sharing the same .git folder. Useful to work on two branches simultaneously.
-
-```
-git worktree add <path> <branch>                     # check out an existing branch into a new dir
-git worktree add -b <new-branch> <path> <base>       # create a new branch and check it out
-git worktree add --detach <path> <commit-hash>        # detached HEAD at a specific commit
-git worktree list 
-git worktree remove /path/to/worktree        # errors if dirty
-  git worktree remove --force /path/to/worktree  # forces removal                                    # list all worktrees
-```
-
-### Submodules
-
-In a submodule, HEAD points to a specific commit, not a branch.
-
-Update the submodule to the latest commit from its remote:
-```
-git submodule update --remote --merge
-git add <submodule-path>
-git commit -m "update submodule to latest commit"
-```
-
-⏺ git push --force-with-lease
-
-git commit --amend
-git rebase -i
-
-pick: Keep commit as-is. 
-reword: Keep commit but edit message. 
-edit: Stop to modify the commit content. 
-squash: Combine with previous commit and keep messages. 
-fixup: Combine with previous commit but discard its message. 
-drop: Delete the commit entirely.
-
-
-## Open Questions
-
-- What exactly happens when you delete a branch? You're only removing a pointer —
-  the commits still exist until garbage collected.
-
-- If a branch was merged into main and main moved forward, where does the old branch
-  still point? Can you keep committing on it? What happens if you delete it?
-
-- What is the difference between merging from branch A into B vs. from B into A?
-
-- How do you move a branch pointer back in time?
-
-- What happens if you do git reset after the changes have already been pushed?
-
-- How do you navigate history with relative references instead of specifying full hashes?
-
-- How do you remove a file from tracking without deleting it from disk?
-
-- When you rebase onto main, does main see the changes? What is the standard PR workflow?
-
-
-
-how to git restore
-
-
-// show the content of a file in a commit
-git show commit-sha:path-to-file
-
-// restore the content of a file in a commit
-git restore --source=<commit-sha> path/to/file
-
-
-
-git diff 
-If you want to see it against a specific branch or commit:
-git diff --stat HEAD~1
-
-see the sha of a commit
-git rev-parse HEAD^^^
-
-
-rg --files | rg name
-
-find . -name "name"
-find . -name "*partialname*"
-
-
-Use git reflog to find the commit SHA you were on before the reset, then:
-
-git reflog          # find the SHA you want, e.g. abc1234
-git reset --hard abc1234
-
-reflog keeps a history of where HEAD has pointed, so even commits that were "lost" by a reset are still recoverable as long as you haven't garbage-collected (git gc).
-
-
-
-# rename current branch
-git branch -m newname
-
-# rename a specific branch
-git branch -m oldname newname
-
-
-When you rename and push:
-
-git branch -m oldname newname
-git push origin -u newname
-git push origin --delete oldname
-
-
-If the branch exists on the remote but not locally yet:
 git switch -t origin/branchname
-
-Git is smart enough to find it on the remote automatically if a local branch with that name doesn't exist.
-git switch branchname
-
-git clean # Remove untracked files from the working tree
-
-
-See its commit history
-git log origin/main
-git log origin/main --oneline -20
-
-See what files it contains at the tip
-git ls-tree -r origin/main --name-only
-
-See the diff between it and your current branch
-git diff main origin/main
-git diff HEAD origin/main
-
-// show the difference between two ls-tree
-diff <(git ls-tree -r --name-only origin/feature) <(git ls-tree -r --name-only origin/main)
-
-If you are not currently on the branch you wish to move, the git branch -f command is the most direct method.  It forces the branch reference to point to the specified commit without changing your working directory. 
-
-git branch -f <branch-name> <commit-hash>
-
-
-come si fa il comando git che leva i file non traccati da git? 
-
-
-git ls-trees -r text-fixtures
-git log --all --oneline -- path/-
 
