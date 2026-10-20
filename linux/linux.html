@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../tmux/style.css" />
+    <title>Linux cheatsheet</title>
+  </head>
+  <body>
+    <h1>Linux cheatsheet</h1>
+
+    <div class="grid">
+      <section>
+        <h2>Shell</h2>
+        <article>
+          <dl>
+            <dt>exit</dt>
+            <dd>kill the terminal</dd>
+            <dt>man <var>&lt;tool&gt;</var></dt>
+            <dd>manual of a tool</dd>
+            <dt>$<var>&lt;name&gt;</var></dt>
+            <dd>expand a variable</dd>
+            <dt>'...'</dt>
+            <dd>single quotes: literal, no expansion</dd>
+            <dt>"..."</dt>
+            <dd>double quotes: expand variables</dd>
+            <dt>&lt;(...)</dt>
+            <dd>process substitution: command output seen as a file</dd>
+            <dt>tty</dt>
+            <dd>print the terminal name</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Files &amp; search</h2>
+        <article>
+          <h3>List &amp; size</h3>
+          <dl>
+            <dt>ls -la</dt>
+            <dd>list all files with details</dd>
+            <dt>du -sh</dt>
+            <dd>summarized size of a folder</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Find</h3>
+          <dl>
+            <dt>find . -name "name"</dt>
+            <dd>find by exact name</dd>
+            <dt>find . -name "*partialname*"</dt>
+            <dd>find by partial name</dd>
+            <dt>rg --files | rg name</dt>
+            <dd>list files then filter by name</dd>
+            <dt>xargs</dt>
+            <dd>build commands from stdin</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Search &amp; text</h3>
+          <dl>
+            <dt>rg / grep</dt>
+            <dd>search file contents</dd>
+            <dt>sed</dt>
+            <dd>stream editor</dd>
+            <dt>awk</dt>
+            <dd>text processing language</dd>
+            <dt>lex</dt>
+            <dd>lexical analyzer generator</dd>
+            <dt>yacc</dt>
+            <dd>parser generator</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Processes &amp; monitoring</h2>
+        <article>
+          <dl>
+            <dt>pgrep</dt>
+            <dd>find process IDs by name</dd>
+            <dt>ps</dt>
+            <dd>list processes</dd>
+            <dt>top</dt>
+            <dd>live process monitor</dd>
+            <dt>lsof</dt>
+            <dd>list open files</dd>
+            <dt>fs_usage</dt>
+            <dd>report filesystem activity (macOS)</dd>
+            <dt>sample</dt>
+            <dd>profile a running process (macOS)</dd>
+            <dt>spindump</dt>
+            <dd>capture stack samples (macOS)</dd>
+            <dt>lldb bt</dt>
+            <dd>backtrace in the debugger</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Remote &amp; transfer</h2>
+        <article>
+          <h3>Sync &amp; copy</h3>
+          <dl>
+            <dt>
+              rsync -avz -e 'ssh -p 8120'
+              <var>&lt;user&gt;</var>@<var>&lt;host&gt;</var>:<var>&lt;src&gt;</var>
+              <var>&lt;dst&gt;</var>
+            </dt>
+            <dd>
+              sync folders, resume interrupted transfers, skip unchanged files
+            </dd>
+            <dt>ftp -b <var>&lt;batchfile&gt;</var></dt>
+            <dd>run ftp commands from a batch file</dd>
+            <dt>sshfs</dt>
+            <dd>mount a remote filesystem over ssh</dd>
+            <dt>telnet</dt>
+            <dd>plain-text remote connection</dd>
+            <dt>pread</dt>
+            <dd>read from a file descriptor at an offset</dd>
+          </dl>
+
+          <article class="options">
+            <h4>rsync options</h4>
+            <dl>
+              <dt>-a</dt>
+              <dd>archive (recursive, preserve metadata)</dd>
+              <dt>-v</dt>
+              <dd>verbose</dd>
+              <dt>-z</dt>
+              <dd>compress during transfer</dd>
+              <dt>-e <var>&lt;shell&gt;</var></dt>
+              <dd>specify the remote shell</dd>
+            </dl>
+          </article>
+        </article>
+
+        <article>
+          <h3>Clipboard over SSH</h3>
+          <dl>
+            <dt>ssh -X</dt>
+            <dd>
+              X11 forwarding: remote Vim's "+ talks to your local X server (needs
+              XQuartz on Mac)
+            </dd>
+            <dt>OSC 52</dt>
+            <dd>
+              terminals + Vim push a copy to your local clipboard via an escape
+              sequence; works over SSH
+            </dd>
+          </dl>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>
