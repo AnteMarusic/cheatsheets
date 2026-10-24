@@ -26,6 +26,24 @@
             <dd>process substitution: command output seen as a file</dd>
             <dt>tty</dt>
             <dd>print the terminal name</dd>
+            <dt>./program > out.txt 2> err.txt</dt>
+            <dd>stdout and stderr to separate files</dd>
+            <dt>./program > out.txt 2>&amp;1</dt>
+            <dd>both streams go to the same file</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Standard file descriptors</h2>
+        <article>
+          <dl>
+            <dt>0</dt>
+            <dd>stdin, standard input</dd>
+            <dt>1</dt>
+            <dd>stdout, standard output</dd>
+            <dt>2</dt>
+            <dd>stderr, standard error</dd>
           </dl>
         </article>
       </section>
@@ -39,6 +57,8 @@
             <dd>list all files with details</dd>
             <dt>du -sh</dt>
             <dd>summarized size of a folder</dd>
+            <dt>df -h</dt>
+            <dd>free space per mounted filesystem</dd>
           </dl>
         </article>
 
@@ -85,12 +105,6 @@
             <dd>live process monitor</dd>
             <dt>lsof</dt>
             <dd>list open files</dd>
-            <dt>fs_usage</dt>
-            <dd>report filesystem activity (macOS)</dd>
-            <dt>sample</dt>
-            <dd>profile a running process (macOS)</dd>
-            <dt>spindump</dt>
-            <dd>capture stack samples (macOS)</dd>
             <dt>lldb bt</dt>
             <dd>backtrace in the debugger</dd>
           </dl>
@@ -104,7 +118,9 @@
           <dl>
             <dt>
               rsync -avz -e 'ssh -p 8120'
-              <var>&lt;user&gt;</var>@<var>&lt;host&gt;</var>:<var>&lt;src&gt;</var>
+              <var>&lt;user&gt;</var>@<var>&lt;host&gt;</var>:<var
+                >&lt;src&gt;</var
+              >
               <var>&lt;dst&gt;</var>
             </dt>
             <dd>
@@ -140,14 +156,32 @@
           <dl>
             <dt>ssh -X</dt>
             <dd>
-              X11 forwarding: remote Vim's "+ talks to your local X server (needs
-              XQuartz on Mac)
+              X11 forwarding: remote Vim's "+ talks to your local X server
+              (needs XQuartz on Mac)
             </dd>
             <dt>OSC 52</dt>
             <dd>
               terminals + Vim push a copy to your local clipboard via an escape
               sequence; works over SSH
             </dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>macOS</h2>
+        <article>
+          <dl>
+            <dt>pbcopy</dt>
+            <dd>copy stdin to the clipboard</dd>
+            <dt>pbpaste</dt>
+            <dd>paste the clipboard to stdout</dd>
+            <dt>fs_usage</dt>
+            <dd>report filesystem activity</dd>
+            <dt>sample</dt>
+            <dd>profile a running process</dd>
+            <dt>spindump</dt>
+            <dd>capture stack samples</dd>
           </dl>
         </article>
       </section>
