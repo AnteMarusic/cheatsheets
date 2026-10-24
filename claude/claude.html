@@ -11,6 +11,21 @@
       Explain the context structure of claude Explain what is the sidecar chat
       <section>
         <dl>
+          <dt>context window</dt>
+          <dd>
+            loaded at startup: system prompt, output style, CLAUDE.md, auto
+            memory, MCP tool names, skill descriptions. Added while working:
+            your messages, Claude's replies, file reads, tool results, path
+            rules, hook output. A subagent has its own context window; only its
+            summary comes back.
+          </dd>
+          <dt>side chat</dt>
+          <dd>
+            a question or task that runs beside the main chat. /btw sees the
+            full conversation but has no tools, and its answer never enters the
+            history. A fork copies the conversation into a background subagent
+            that has tools.
+          </dd>
           <dt>/resume</dt>
           <dd>resume a chat (it shows the list with the names)</dd>
           <dt>/rename <var>[name]</var></dt>
@@ -36,12 +51,13 @@
             optional name
           </dd>
           <dt>/rewind</dt>
-          <dt>
-            Restore code and conversation if flag ---- is set then it will just
-            restore the context. There is no undo operation for rewind (if you
-            want to jump back to the old state, before rewinding perform a
-            branch).
-          </dt>
+          <dd>
+            (or Esc Esc) pick a past prompt, then: restore code and
+            conversation, restore conversation only, restore code only,
+            summarize from here, or summarize up to here. There is no undo
+            operation for rewind (if you want to jump back to the old state,
+            before rewinding perform a branch).
+          </dd>
           <dt>/context <var>[all]</var></dt>
           <dd>show context usage</dd>
           <dt>/cost</dt>
