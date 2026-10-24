@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../tmux/style.css" />
+    <title>Claude Code cheatsheet</title>
+  </head>
+  <body>
+    <h1>Claude Code cheatsheet</h1>
+
+    <div class="grid">
+      <section>
+        <h2>Sessions</h2>
+        <article>
+          <h3>Resume</h3>
+          <dl>
+            <dt>/resume <var>[session]</var></dt>
+            <dd>resume a conversation by ID or name, or open the session picker; alias /continue</dd>
+            <dt>claude -c</dt>
+            <dd>continue the most recent conversation in this directory</dd>
+            <dt>claude -r <var>[id|name]</var></dt>
+            <dd>resume a session by ID or name, or open the picker</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Rename</h3>
+          <dl>
+            <dt>/rename <var>[name]</var></dt>
+            <dd>rename the session; without a name, generate one from the history</dd>
+            <dt>claude -n <var>&lt;name&gt;</var></dt>
+            <dd>set the session name at startup</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Branch</h3>
+          <dl>
+            <dt>/branch <var>[name]</var></dt>
+            <dd>copy the conversation at this point and switch into the copy; return to the original with /resume</dd>
+            <dt>claude -c --fork-session</dt>
+            <dd>continue the last session under a new session ID</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Undo</h2>
+        <article>
+          <h3>Rewind</h3>
+          <dl>
+            <dt>/rewind</dt>
+            <dd>open the rewind menu; aliases /checkpoint, /undo</dd>
+            <dt>Esc Esc</dt>
+            <dd>open the rewind menu when the prompt is empty</dd>
+            <dt>Restore code and conversation</dt>
+            <dd>revert files and conversation to the selected prompt</dd>
+            <dt>Restore conversation</dt>
+            <dd>rewind the conversation, keep the current files</dd>
+            <dt>Restore code</dt>
+            <dd>revert files, keep the conversation</dd>
+            <dt>Summarize from here</dt>
+            <dd>compress messages after this point into a summary</dd>
+            <dt>Summarize up to here</dt>
+            <dd>compress messages before this point, keep later ones</dd>
+          </dl>
+          <p>Rewind does not restore files changed only by Bash commands. Use git for those.</p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Info</h2>
+        <article>
+          <dl>
+            <dt>/context <var>[all]</var></dt>
+            <dd>show context usage as a colored grid; all expands the per-item list</dd>
+            <dt>/cost</dt>
+            <dd>alias for /usage: session cost, plan limits, activity stats</dd>
+            <dt>/btw <var>[question]</var></dt>
+            <dd>ask a side question without adding it to the conversation; without a question, show the last one</dd>
+          </dl>
+        </article>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <article>
+          <dl>
+            <dt>/simplify <var>[target]</var></dt>
+            <dd>review changed code for reuse, simplification, efficiency and abstraction level, then apply fixes; does not look for bugs (use /code-review)</dd>
+          </dl>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>

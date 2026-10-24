@@ -1,0 +1,137 @@
+html * {
+  margin: 0;
+  color: black;
+  background-color: white;
+  font-family: monospace;
+}
+html {
+  margin: 0.5em;
+}
+h1,
+h2,
+h3,
+h4 {
+  color: #3d4d00;
+  margin-bottom: 0.9em;
+  text-align: center;
+}
+h1 {
+  text-align: center;
+  white-space: nowrap;
+  font-size: 9vw;
+  line-height: 1;
+  transform: scaleY(2.5);
+  transform-origin: top center;
+  margin-bottom: 14vw; /* reserve the stretched overflow: (2.5-1) x 9vw */
+}
+.grid {
+  column-width: 300px;
+  column-gap: 1em;
+}
+.grid > section {
+  break-inside: avoid;
+  margin-bottom: 1em;
+  border: 3px solid black;
+  padding: 1em;
+}
+section > article + article {
+  border-top: 2px solid black;
+  /* negative side margins cancel the section's 1em padding so the line spans full width */
+  margin: 1em -1em 0;
+  padding: 1em 1em 0;
+}
+article article {
+  margin-left: 1em;
+  margin-top: 1em;
+}
+.options {
+  padding: 1em;
+  border: 2px solid black;
+  margin-left: 1em;
+  margin-top: 1em;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: fit-content(50%) 1fr;
+  row-gap: 1em;
+}
+dt {
+  grid-column: 1;
+  padding-right: 1em;
+  font-weight: bold;
+}
+
+.opt {
+  white-space: nowrap;
+}
+
+var {
+  font-family: monospace;
+  font-weight: bold;
+  font-style: italic;
+  color: black;
+}
+
+dd {
+  display: inline;
+  font-family: Georgia, serif;
+  font-style: italic;
+  color: #333;
+}
+dd::before {
+  content: "// ";
+}
+.alt {
+  color: lightgray;
+  margin-left: 0.25em;
+  margin-right: 0.25em;
+  font-size: 0.85em;
+}
+.invisible {
+  opacity: 0;
+}
+.my-mapping {
+  background: cadetblue;
+}
+.marks-nvim kbd {
+  background: blue;
+  color: white;
+}
+.snacks-nvim kbd {
+  background: fuchsia;
+  color: white;
+}
+.lsp kbd {
+  background: green;
+  color: white;
+}
+.flash-nvim kbd {
+  background: darkorange;
+  color: white;
+}
+.diffview-nvim kbd {
+  background: purple;
+  color: white;
+}
+.lazyvim kbd {
+  background: maroon;
+  color: white;
+}
+.span-all {
+  column-span: all;
+}
+.scroll-x {
+  overflow-x: auto;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th,
+td {
+  border: 1px solid;
+  padding: 0.4em 0.6em;
+  text-align: left;
+  vertical-align: top;
+}
