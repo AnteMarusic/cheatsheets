@@ -686,7 +686,9 @@
           </dl>
         </article>
         <article>
-          <h3>Pattern pieces (default magic; <kbd>\v</kbd> drops the backslashes)</h3>
+          <h3>
+            Pattern pieces (default magic; <kbd>\v</kbd> drops the backslashes)
+          </h3>
           <dl>
             <dt><kbd>\(</kbd> <kbd>\)</kbd></dt>
             <dd>group; reuse it as <kbd>\1</kbd> in the replacement</dd>
@@ -697,8 +699,10 @@
               count: n to m repeats (<kbd>\{3}</kbd> exactly 3,
               <kbd>\{2,}</kbd> 2+)
             </dd>
-            <dt><kbd>*</kbd> <span class="alt">/</span> <kbd>\+</kbd>
-              <span class="alt">/</span> <kbd>\?</kbd></dt>
+            <dt>
+              <kbd>*</kbd> <span class="alt">/</span> <kbd>\+</kbd>
+              <span class="alt">/</span> <kbd>\?</kbd>
+            </dt>
             <dd>zero+ / one+ / optional</dd>
           </dl>
         </article>
@@ -903,7 +907,8 @@
             its editor: exiting with an error makes git abort the operation.
             Examples: during <kbd>git commit</kbd> it cancels the commit; during
             <kbd>git rebase -i</kbd> it aborts the whole rebase; during
-            <kbd>git mergetool</kbd> it marks the merge as unresolved (not done).
+            <kbd>git mergetool</kbd> it marks the merge as unresolved (not
+            done).
           </dd>
         </dl>
       </section>
@@ -925,7 +930,9 @@
         <h2>Grep</h2>
         <dl>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;/</kbd></dt>
-          <dd>search for pattern in multiple files</dd>
+          <dd>search for pattern in multiple files from root dir</dd>
+          <dt class="snacks-nvim"><kbd>&lt;leader&gt;sG</kbd></dt>
+          <dd>search for pattern in multiple files from cwd</dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;sw</kbd></dt>
           <dd>grep word under cursor</dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;sb</kbd></dt>
@@ -968,10 +975,10 @@
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;fb</kbd></dt>
           <dd>
             switch buffer (in the picker, <kbd>&lt;C-x&gt;</kbd> closes the
-            highlighted buffer). Flags per row:
-            <kbd>%</kbd> current, <kbd>#</kbd> alternate, <kbd>a</kbd> active
-            (shown in a window), <kbd>h</kbd> hidden, <kbd>+</kbd> modified
-            (unsaved), <kbd>=</kbd> readonly, <kbd>-</kbd> not modifiable. The
+            highlighted buffer). Flags per row: <kbd>%</kbd> current,
+            <kbd>#</kbd> alternate, <kbd>a</kbd> active (shown in a window),
+            <kbd>h</kbd> hidden, <kbd>+</kbd> modified (unsaved),
+            <kbd>=</kbd> readonly, <kbd>-</kbd> not modifiable. The
             <kbd>h</kbd> by the title is the "show hidden" toggle
             (<kbd>&lt;A-h&gt;</kbd>).
           </dd>
@@ -1047,8 +1054,8 @@
           <dd>
             find projects. snacks lists the git root of recently opened files,
             plus folders under the configured <kbd>dev</kbd> dirs that contain a
-            marker (<kbd>.git</kbd>, <kbd>package.json</kbd>, <kbd>Makefile</kbd>…).
-            Change the dev dirs in the plugin config.
+            marker (<kbd>.git</kbd>, <kbd>package.json</kbd>,
+            <kbd>Makefile</kbd>…). Change the dev dirs in the plugin config.
           </dd>
           <dt><kbd>:lua vim.v.oldfiles = {}</kbd></dt>
           <dd>
@@ -1195,7 +1202,9 @@
           </dd>
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;S</kbd></dt>
           <dd>select from the list of scratch buffers</dd>
-          <dt class="snacks-nvim"><kbd>:lua Snacks.scratch({ name = "x" })</kbd></dt>
+          <dt class="snacks-nvim">
+            <kbd>:lua Snacks.scratch({ name = "x" })</kbd>
+          </dt>
           <dd>
             open a named scratch (shows as "x" in <kbd>&lt;leader&gt;S</kbd>)
           </dd>
@@ -1228,8 +1237,8 @@
             plugin specs: each file <kbd>return</kbd>s a table whose first
             element is the plugin's GitHub <kbd>"owner/repo"</kbd> (lazy.nvim
             fetches <kbd>github.com/owner/repo</kbd>), plus options like
-            <kbd>opts</kbd>, <kbd>keys</kbd>, <kbd>dependencies</kbd>. Reusing an
-            existing repo name overrides/extends that plugin's config.
+            <kbd>opts</kbd>, <kbd>keys</kbd>, <kbd>dependencies</kbd>. Reusing
+            an existing repo name overrides/extends that plugin's config.
           </dd>
           <dt><kbd>~/.config/nvim/lazyvim.json</kbd></dt>
           <dd>enabled LazyVim extras</dd>
