@@ -56,6 +56,33 @@
           </dd>
         </dl>
       </section>
+      <section>
+        <h2>Agent view (background sessions)</h2>
+        <dl>
+          <dt>claude agents</dt>
+          <dd>open agent view: list and dispatch background sessions</dd>
+          <dt>claude agents --json <var>[--all]</var></dt>
+          <dd>
+            print active sessions as JSON and exit; --all adds completed ones
+          </dd>
+          <dt>claude agents --cwd <var>&lt;path&gt;</var></dt>
+          <dd>show only sessions started under path</dd>
+          <dt>claude agents --model / --effort / --permission-mode</dt>
+          <dd>defaults for sessions dispatched from agent view</dd>
+          <dt>claude --bg <var>"prompt"</var></dt>
+          <dd>start a session in the background and print its id</dd>
+          <dt>claude attach <var>&lt;id|name&gt;</var></dt>
+          <dd>open a background session in this terminal</dd>
+          <dt>claude logs <var>&lt;id|name&gt;</var></dt>
+          <dd>print recent terminal output of a session</dd>
+          <dt>claude stop <var>&lt;id&gt;</var></dt>
+          <dd>stop a session; the conversation is kept</dd>
+          <dt>claude rm <var>&lt;id&gt;</var></dt>
+          <dd>delete a session and its worktree when safe</dd>
+          <dt>claude respawn <var>[id | --all]</var></dt>
+          <dd>restart sessions on the current Claude Code version</dd>
+        </dl>
+      </section>
     </div>
   </body>
 </html>
