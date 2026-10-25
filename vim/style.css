@@ -114,6 +114,10 @@ dd::before {
   background: purple;
   color: white;
 }
+.gitsigns-nvim kbd {
+  background: teal;
+  color: white;
+}
 .lazyvim kbd {
   background: maroon;
   color: white;
