@@ -79,3 +79,12 @@ dd {
 dd::before {
   content: "// ";
 }
+
+.grid > section.snippets {
+  column-span: all;
+}
+pre {
+  overflow-x: auto;
+  padding: 1em;
+  border: 2px solid black;
+}

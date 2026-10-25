@@ -392,6 +392,18 @@
           </dl>
         </article>
       </section>
+
+      <section class="snippets">
+        <h2>Snippets</h2>
+        <article>
+          <h3>Delete all branches except a whitelist</h3>
+          <pre><code>git config --global alias.br-except '!f() { ex=; for b; do ex="$ex --exclude=refs/heads/$b"; done; git for-each-ref --format="%(refname:short)" $ex refs/heads | xargs git branch -d; }; f'
+
+git br-except main                    # keep only main
+git br-except main feature-x fix-y    # keep several
+git br-except 'feat/*'                # patterns work</code></pre>
+        </article>
+      </section>
     </div>
   </body>
 </html>
