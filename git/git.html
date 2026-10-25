@@ -318,6 +318,26 @@
               <dd>keep their side</dd>
             </dl>
           </article>
+
+          <article class="options">
+            <h4>Stack branches on main with review</h4>
+            <dl>
+              <dt>git rebase -i main</dt>
+              <dd>on main: todo list opens with only noop, replace it</dd>
+              <dt>:r !git log --reverse --format='pick \%h \%s' main..<var>&lt;branch&gt;</var></dt>
+              <dd>in nvim: paste the branch's commits as picks</dd>
+              <dt>break</dt>
+              <dd>todo line after each branch: pause for review</dd>
+              <dt>:DiffviewOpen main</dt>
+              <dd>at a break: all stacked changes, right side editable</dd>
+              <dt>git commit --amend -a</dt>
+              <dd>fold review edits into the last commit</dd>
+              <dt>git rebase --continue</dt>
+              <dd>go on to the next branch</dd>
+              <dt>git rebase --abort</dt>
+              <dd>stop and put main back where it started</dd>
+            </dl>
+          </article>
         </article>
       </section>
 
