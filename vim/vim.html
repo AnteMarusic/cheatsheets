@@ -1022,7 +1022,9 @@
           <dt class="snacks-nvim"><kbd>&lt;leader&gt;fb</kbd></dt>
           <dd>
             switch buffer (in the picker, <kbd>&lt;C-x&gt;</kbd> closes the
-            highlighted buffer). Flags per row: <kbd>%</kbd> current,
+            highlighted buffer; if it has unsaved changes, snacks asks
+            <kbd>Y</kbd>es save and close, <kbd>N</kbd>o close without saving,
+            or <kbd>C</kbd>ancel keep it open). Flags per row: <kbd>%</kbd> current,
             <kbd>#</kbd> alternate, <kbd>a</kbd> active (shown in a window),
             <kbd>h</kbd> hidden, <kbd>+</kbd> modified (unsaved),
             <kbd>=</kbd> readonly, <kbd>-</kbd> not modifiable. The
