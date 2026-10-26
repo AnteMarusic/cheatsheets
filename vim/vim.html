@@ -266,10 +266,24 @@
       <section>
         <h2>Code</h2>
         <dl>
+          <dt class="lsp"><kbd>K</kbd></dt>
+          <dd>
+            show the hover popup (type and docs). Press <kbd>K</kbd> again to
+            move into the popup and scroll.
+          </dd>
           <dt class="lsp"><kbd>gd</kbd></dt>
-          <dd>go to definition</dd>
+          <dd>
+            go to the definition. For a library, Metals opens the library's
+            source in a read-only buffer. <kbd>&lt;C-o&gt;</kbd> takes you back.
+          </dd>
+          <dt class="lsp"><kbd>gK</kbd></dt>
+          <dd>signature help (the method's parameters)</dd>
           <dt class="lsp"><kbd>gr</kbd></dt>
           <dd>references</dd>
+          <dt class="lsp"><kbd>gI</kbd></dt>
+          <dd>implementations</dd>
+          <dt class="lsp"><kbd>gy</kbd></dt>
+          <dd>type definition</dd>
           <dt class="lsp"><kbd>gD</kbd></dt>
           <dd>declaration</dd>
         </dl>
