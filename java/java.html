@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../tmux/style.css" />
+    <title>Java cheatsheet</title>
+  </head>
+  <body>
+    <h1>Java</h1>
+
+    <div class="grid">
+      <section><h2>Files</h2></section>
+
+      <section>
+        <h2>Streams</h2>
+        <article>
+          <h3>Intermediate operations</h3>
+          <dl>
+            <dt>filter(<var>predicate</var>)</dt>
+            <dd>keep elements where the predicate returns true</dd>
+            <dt>map(<var>function</var>)</dt>
+            <dd>transform each element into one new element</dd>
+            <dt>flatMap(<var>function</var>)</dt>
+            <dd>transform each element into a stream, then merge all streams into one</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Examples</h3>
+          <pre><code>List&lt;String&gt; names = List.of("ann", "bob", "carla");
+
+names.stream()
+    .filter(n -&gt; n.length() &gt; 3)
+    .toList();                    // [carla]
+
+names.stream()
+    .map(String::toUpperCase)
+    .toList();                    // [ANN, BOB, CARLA]
+
+List&lt;List&lt;Integer&gt;&gt; nested = List.of(List.of(1, 2), List.of(3));
+nested.stream()
+    .flatMap(List::stream)
+    .toList();                    // [1, 2, 3]</code></pre>
+        </article>
+
+        <article>
+          <h3>Notes</h3>
+          <dl>
+            <dt>lazy</dt>
+            <dd>intermediate operations run only when a terminal operation (toList, forEach, collect) runs</dd>
+            <dt>single use</dt>
+            <dd>a stream can be consumed once; create a new one to iterate again</dd>
+            <dt>map vs flatMap</dt>
+            <dd>map on a List&lt;List&lt;T&gt;&gt; gives Stream&lt;List&lt;T&gt;&gt;; flatMap gives Stream&lt;T&gt;</dd>
+            <dt>toList()</dt>
+            <dd>Java 16+, returns an unmodifiable list; use collect(Collectors.toList()) on older versions</dd>
+          </dl>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>
