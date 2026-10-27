@@ -8,7 +8,64 @@
     <h1>Java</h1>
 
     <div class="grid">
-      <section><h2>Files</h2></section>
+      <section>
+        <h2>Files</h2>
+        <article>
+          <h3>Read and write (java.nio.file)</h3>
+          <dl>
+            <dt>Path.of(<var>"dir"</var>, <var>"a.txt"</var>)</dt>
+            <dd>build a path from parts</dd>
+            <dt>Files.readString(<var>path</var>)</dt>
+            <dd>whole file as one String, UTF-8 (Java 11+)</dd>
+            <dt>Files.readAllLines(<var>path</var>)</dt>
+            <dd>whole file as List&lt;String&gt;, UTF-8</dd>
+            <dt>Files.lines(<var>path</var>)</dt>
+            <dd>lazy Stream&lt;String&gt;, UTF-8; keeps the file open until closed</dd>
+            <dt>Files.writeString(<var>path</var>, <var>text</var>)</dt>
+            <dd>creates the file, or truncates it if it exists (Java 11+)</dd>
+            <dt>Files.write(<var>path</var>, <var>lines</var>)</dt>
+            <dd>write an Iterable of lines; same create/truncate default</dd>
+            <dt>StandardOpenOption.APPEND</dt>
+            <dd>pass as last argument to append instead of truncating</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Manage files</h3>
+          <dl>
+            <dt>Files.exists(<var>path</var>)</dt>
+            <dd>true if the file exists; the result can be outdated right away</dd>
+            <dt>Files.createDirectories(<var>dir</var>)</dt>
+            <dd>create dir and missing parents; no error if dir already exists</dd>
+            <dt>Files.copy(<var>src</var>, <var>dst</var>)</dt>
+            <dd>fails if dst exists; add StandardCopyOption.REPLACE_EXISTING to overwrite</dd>
+            <dt>Files.move(<var>src</var>, <var>dst</var>)</dt>
+            <dd>same rule as copy for an existing dst</dd>
+            <dt>Files.delete(<var>path</var>)</dt>
+            <dd>throws NoSuchFileException if the file is missing</dd>
+            <dt>Files.deleteIfExists(<var>path</var>)</dt>
+            <dd>returns false if the file is missing</dd>
+            <dt>Files.list(<var>dir</var>)</dt>
+            <dd>Stream&lt;Path&gt; of direct entries</dd>
+            <dt>Files.walk(<var>dir</var>)</dt>
+            <dd>Stream&lt;Path&gt; of all entries, recursive</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Examples</h3>
+          <pre><code>Path p = Path.of("notes.txt");
+
+Files.writeString(p, "hello\n");
+Files.writeString(p, "world\n", StandardOpenOption.APPEND);
+String all = Files.readString(p);  // "hello\nworld\n"
+
+// lines, list, walk hold the file open: close with try-with-resources
+try (Stream&lt;String&gt; lines = Files.lines(p)) {
+    long n = lines.filter(l -&gt; !l.isBlank()).count();  // 2
+}</code></pre>
+        </article>
+      </section>
 
       <section>
         <h2>Streams</h2>
