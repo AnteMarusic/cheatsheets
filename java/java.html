@@ -56,6 +56,27 @@ nested.stream()
           </dl>
         </article>
       </section>
+
+      <section>
+        <h2>Strings</h2>
+        <article>
+          <h3>endsWith</h3>
+          <dl>
+            <dt>s.endsWith(<var>&lt;suffix&gt;</var>)</dt>
+            <dd>true if s ends with suffix</dd>
+            <dt>"report.pdf".endsWith(".pdf")</dt>
+            <dd>true</dd>
+            <dt>"report.PDF".endsWith(".pdf")</dt>
+            <dd>false: the match is case-sensitive</dd>
+            <dt>s.toLowerCase().endsWith(".pdf")</dt>
+            <dd>case-insensitive check</dd>
+            <dt>"abc".endsWith("")</dt>
+            <dd>true: every string ends with the empty string</dd>
+            <dt>"abc".endsWith(null)</dt>
+            <dd>throws NullPointerException</dd>
+          </dl>
+        </article>
+      </section>
     </div>
   </body>
 </html>
