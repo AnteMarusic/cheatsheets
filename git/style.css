@@ -80,11 +80,16 @@ dd::before {
   content: "// ";
 }
 
-.grid > section.snippets {
-  column-span: all;
+body > section {
+  max-width: 90ch;
+  margin: 0 auto 1em;
+  border: 3px solid black;
+  padding: 1em;
 }
 pre {
   overflow-x: auto;
-  padding: 1em;
-  border: 2px solid black;
+}
+/* html * paints every token white on top of the theme's gray block */
+.hljs * {
+  background-color: transparent;
 }

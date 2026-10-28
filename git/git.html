@@ -1,7 +1,9 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="stylesheet" href="../tmux/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/styles/default.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/highlight.min.js"></script>
     <title>Git cheatsheet</title>
   </head>
   <body>
@@ -392,18 +394,17 @@
           </dl>
         </article>
       </section>
+    </div>
 
-      <section class="snippets">
-        <h2>Snippets</h2>
-        <article>
-          <h3>Delete all branches except a whitelist</h3>
-          <pre><code>git config --global alias.br-except '!f() { ex=; for b; do ex="$ex --exclude=refs/heads/$b"; done; git for-each-ref --format="%(refname:short)" $ex refs/heads | xargs git branch -d; }; f'
+    <section>
+      <h2>Snippets</h2>
+      <pre><code class="language-bash"># delete all branches except a whitelist
+git config --global alias.br-except '!f() { ex=; for b; do ex="$ex --exclude=refs/heads/$b"; done; git for-each-ref --format="%(refname:short)" $ex refs/heads | xargs git branch -d; }; f'
 
 git br-except main                    # keep only main
 git br-except main feature-x fix-y    # keep several
 git br-except 'feat/*'                # patterns work</code></pre>
-        </article>
-      </section>
-    </div>
+    </section>
+    <script>hljs.highlightAll();</script>
   </body>
 </html>
