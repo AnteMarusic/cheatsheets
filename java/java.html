@@ -45,8 +45,20 @@ mvn compile exec:java -Dexec.mainClass=com.example.Main -Dexec.args="a b"
 mvn package
 java -cp target/app-1.0-SNAPSHOT.jar com.example.Main a b
 
-# java -jar needs a Main-Class entry in the jar manifest; without it:
-java -jar target/app-1.0-SNAPSHOT.jar              # no main manifest attribute</code></pre>
+# java -jar runs the class named by Main-Class in the jar's manifest
+# a plain `mvn package` jar has no Main-Class, so java -jar fails:
+java -jar target/app-1.0-SNAPSHOT.jar              # no main manifest attribute
+
+# fix: set the main class in pom.xml, then run mvn package again
+#   &lt;plugin&gt;
+#     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+#     &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+#     &lt;configuration&gt;&lt;archive&gt;&lt;manifest&gt;
+#       &lt;mainClass&gt;com.example.Main&lt;/mainClass&gt;
+#     &lt;/manifest&gt;&lt;/archive&gt;&lt;/configuration&gt;
+#   &lt;/plugin&gt;
+mvn package
+java -jar target/app-1.0-SNAPSHOT.jar a b          # args: a, b</code></pre>
     </section>
 
     <section>
