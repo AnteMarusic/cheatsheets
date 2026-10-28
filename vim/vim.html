@@ -780,6 +780,17 @@
           <dl>
             <dt class="diffview-nvim"><kbd>:DiffviewOpen</kbd></dt>
             <dd>open the diff view (working tree vs index)</dd>
+            <dt class="diffview-nvim"><kbd>:DiffviewOpen <var>commit</var></kbd></dt>
+            <dd>
+              diff the working tree against a commit, e.g.
+              <kbd>:DiffviewOpen HEAD~2</kbd> or <kbd>:DiffviewOpen d4a7b0d</kbd>
+            </dd>
+            <dt class="diffview-nvim">
+              <kbd>:DiffviewOpen <var>commit</var> -- <var>paths</var></kbd>
+            </dt>
+            <dd>same, but only show the given files or folders</dd>
+            <dt class="diffview-nvim"><kbd>:DiffviewClose</kbd></dt>
+            <dd>close the diff view</dd>
             <dt class="diffview-nvim"><kbd>:DiffviewFileHistory</kbd></dt>
             <dd>browse the git history of the current file / project</dd>
             <dt class="my-mapping"><kbd>:DiffOrig</kbd></dt>
