@@ -1,7 +1,9 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/styles/default.min.css" />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.12.0/highlight.min.js"></script>
     <title>Java cheatsheet</title>
   </head>
   <body>
@@ -9,7 +11,7 @@
 
     <section>
       <h2>Files</h2>
-      <pre><code>// java.nio.file: Path, Files, StandardOpenOption, StandardCopyOption
+      <pre><code class="language-java">// java.nio.file: Path, Files, StandardOpenOption, StandardCopyOption
 Path dir = Path.of("dir");
 Path p = Path.of("dir", "notes.txt");              // build a path from parts
 
@@ -54,7 +56,7 @@ Files.deleteIfExists(moved);                       // true</code></pre>
 
     <section>
       <h2>Streams</h2>
-      <pre><code>List&lt;String&gt; names = List.of("ann", "bob", "carla");
+      <pre><code class="language-java">List&lt;String&gt; names = List.of("ann", "bob", "carla");
 
 // filter: keep elements where the predicate returns true
 names.stream()
@@ -90,12 +92,13 @@ names.stream().toList().add("dan");                // UnsupportedOperationExcept
 
     <section>
       <h2>Strings</h2>
-      <pre><code>// s.endsWith(suffix): true if s ends with suffix
+      <pre><code class="language-java">// s.endsWith(suffix): true if s ends with suffix
 "report.pdf".endsWith(".pdf");                     // true
 "report.PDF".endsWith(".pdf");                     // false: the match is case-sensitive
 "report.PDF".toLowerCase().endsWith(".pdf");       // true: case-insensitive check
 "abc".endsWith("");                                // true: every string ends with ""
 "abc".endsWith(null);                              // NullPointerException</code></pre>
     </section>
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

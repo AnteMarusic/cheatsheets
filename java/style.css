@@ -29,3 +29,7 @@ section {
 pre {
   overflow-x: auto;
 }
+/* html * paints every token white on top of the theme's gray block */
+.hljs * {
+  background-color: transparent;
+}
