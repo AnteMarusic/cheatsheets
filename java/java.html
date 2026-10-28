@@ -7,133 +7,95 @@
   <body>
     <h1>Java</h1>
 
-    <div class="grid">
-      <section>
-        <h2>Files</h2>
-        <article>
-          <h3>Read and write (java.nio.file)</h3>
-          <dl>
-            <dt>Path.of(<var>"dir"</var>, <var>"a.txt"</var>)</dt>
-            <dd>build a path from parts</dd>
-            <dt>Files.readString(<var>path</var>)</dt>
-            <dd>whole file as one String, UTF-8 (Java 11+)</dd>
-            <dt>Files.readAllLines(<var>path</var>)</dt>
-            <dd>whole file as List&lt;String&gt;, UTF-8</dd>
-            <dt>Files.lines(<var>path</var>)</dt>
-            <dd>lazy Stream&lt;String&gt;, UTF-8; keeps the file open until closed</dd>
-            <dt>Files.writeString(<var>path</var>, <var>text</var>)</dt>
-            <dd>creates the file, or truncates it if it exists (Java 11+)</dd>
-            <dt>Files.write(<var>path</var>, <var>lines</var>)</dt>
-            <dd>write an Iterable of lines; same create/truncate default</dd>
-            <dt>StandardOpenOption.APPEND</dt>
-            <dd>pass as last argument to append instead of truncating</dd>
-          </dl>
-        </article>
+    <section>
+      <h2>Files</h2>
+      <pre><code>// java.nio.file: Path, Files, StandardOpenOption, StandardCopyOption
+Path dir = Path.of("dir");
+Path p = Path.of("dir", "notes.txt");              // build a path from parts
 
-        <article>
-          <h3>Manage files</h3>
-          <dl>
-            <dt>Files.exists(<var>path</var>)</dt>
-            <dd>true if the file exists; the result can be outdated right away</dd>
-            <dt>Files.createDirectories(<var>dir</var>)</dt>
-            <dd>create dir and missing parents; no error if dir already exists</dd>
-            <dt>Files.copy(<var>src</var>, <var>dst</var>)</dt>
-            <dd>fails if dst exists; add StandardCopyOption.REPLACE_EXISTING to overwrite</dd>
-            <dt>Files.move(<var>src</var>, <var>dst</var>)</dt>
-            <dd>same rule as copy for an existing dst</dd>
-            <dt>Files.delete(<var>path</var>)</dt>
-            <dd>throws NoSuchFileException if the file is missing</dd>
-            <dt>Files.deleteIfExists(<var>path</var>)</dt>
-            <dd>returns false if the file is missing</dd>
-            <dt>Files.list(<var>dir</var>)</dt>
-            <dd>Stream&lt;Path&gt; of direct entries</dd>
-            <dt>Files.walk(<var>dir</var>)</dt>
-            <dd>Stream&lt;Path&gt; of all entries, recursive</dd>
-          </dl>
-        </article>
+Files.createDirectories(dir);                      // creates missing parents; no error if dir exists
+Files.exists(p);                                   // false; the result can be outdated right away
 
-        <article>
-          <h3>Examples</h3>
-          <pre><code>Path p = Path.of("notes.txt");
-
+// write: creates the file, or truncates it if it exists (Java 11+)
 Files.writeString(p, "hello\n");
+// APPEND as last argument adds to the end instead of truncating
 Files.writeString(p, "world\n", StandardOpenOption.APPEND);
-String all = Files.readString(p);  // "hello\nworld\n"
 
-// lines, list, walk hold the file open: close with try-with-resources
+// read the whole file, UTF-8
+Files.readString(p);                               // "hello\nworld\n" (Java 11+)
+Files.readAllLines(p);                             // [hello, world]
+
+// lines, list, walk return lazy streams that keep the file open:
+// close them with try-with-resources
 try (Stream&lt;String&gt; lines = Files.lines(p)) {
-    long n = lines.filter(l -&gt; !l.isBlank()).count();  // 2
-}</code></pre>
-        </article>
-      </section>
+    lines.filter(l -&gt; !l.isBlank()).count();      // 2
+}
+try (Stream&lt;Path&gt; entries = Files.list(dir)) {     // direct entries only
+    entries.toList();                              // [dir/notes.txt]
+}
+try (Stream&lt;Path&gt; all = Files.walk(dir)) {        // all entries, recursive, dir included
+    all.toList();                                  // [dir, dir/notes.txt]
+}
 
-      <section>
-        <h2>Streams</h2>
-        <article>
-          <h3>Intermediate operations</h3>
-          <dl>
-            <dt>filter(<var>predicate</var>)</dt>
-            <dd>keep elements where the predicate returns true</dd>
-            <dt>map(<var>function</var>)</dt>
-            <dd>transform each element into one new element</dd>
-            <dt>flatMap(<var>function</var>)</dt>
-            <dd>transform each element into a stream, then merge all streams into one</dd>
-          </dl>
-        </article>
+// write an Iterable of lines; same create/truncate default as writeString
+Path copy = Path.of("dir", "copy.txt");
+Files.write(copy, List.of("a", "b"));
 
-        <article>
-          <h3>Examples</h3>
-          <pre><code>List&lt;String&gt; names = List.of("ann", "bob", "carla");
+Files.copy(p, copy);                               // FileAlreadyExistsException: copy exists
+Files.copy(p, copy, StandardCopyOption.REPLACE_EXISTING);   // overwrites copy
+Files.move(copy, p);                               // FileAlreadyExistsException: same rule as copy
+Path moved = Path.of("dir", "moved.txt");
+Files.move(copy, moved);                           // copy.txt is now moved.txt
 
+Files.delete(copy);                                // NoSuchFileException: copy was moved
+Files.deleteIfExists(copy);                        // false: nothing to delete
+Files.deleteIfExists(moved);                       // true</code></pre>
+    </section>
+
+    <section>
+      <h2>Streams</h2>
+      <pre><code>List&lt;String&gt; names = List.of("ann", "bob", "carla");
+
+// filter: keep elements where the predicate returns true
 names.stream()
     .filter(n -&gt; n.length() &gt; 3)
-    .toList();                    // [carla]
+    .toList();                                     // [carla]
 
+// map: transform each element into one new element
 names.stream()
     .map(String::toUpperCase)
-    .toList();                    // [ANN, BOB, CARLA]
+    .toList();                                     // [ANN, BOB, CARLA]
 
+// flatMap: transform each element into a stream, then merge all streams into one
+// map on a List&lt;List&lt;T&gt;&gt; gives Stream&lt;List&lt;T&gt;&gt;; flatMap gives Stream&lt;T&gt;
 List&lt;List&lt;Integer&gt;&gt; nested = List.of(List.of(1, 2), List.of(3));
 nested.stream()
     .flatMap(List::stream)
-    .toList();                    // [1, 2, 3]</code></pre>
-        </article>
+    .toList();                                     // [1, 2, 3]
 
-        <article>
-          <h3>Notes</h3>
-          <dl>
-            <dt>lazy</dt>
-            <dd>intermediate operations run only when a terminal operation (toList, forEach, collect) runs</dd>
-            <dt>single use</dt>
-            <dd>a stream can be consumed once; create a new one to iterate again</dd>
-            <dt>map vs flatMap</dt>
-            <dd>map on a List&lt;List&lt;T&gt;&gt; gives Stream&lt;List&lt;T&gt;&gt;; flatMap gives Stream&lt;T&gt;</dd>
-            <dt>toList()</dt>
-            <dd>Java 16+, returns an unmodifiable list; use collect(Collectors.toList()) on older versions</dd>
-          </dl>
-        </article>
-      </section>
+// lazy: intermediate operations run only when a terminal operation
+// (toList, forEach, collect) runs
+names.stream().peek(System.out::println);          // prints nothing
+names.stream().peek(System.out::println).toList(); // prints ann, bob, carla
 
-      <section>
-        <h2>Strings</h2>
-        <article>
-          <h3>endsWith</h3>
-          <dl>
-            <dt>s.endsWith(<var>&lt;suffix&gt;</var>)</dt>
-            <dd>true if s ends with suffix</dd>
-            <dt>"report.pdf".endsWith(".pdf")</dt>
-            <dd>true</dd>
-            <dt>"report.PDF".endsWith(".pdf")</dt>
-            <dd>false: the match is case-sensitive</dd>
-            <dt>s.toLowerCase().endsWith(".pdf")</dt>
-            <dd>case-insensitive check</dd>
-            <dt>"abc".endsWith("")</dt>
-            <dd>true: every string ends with the empty string</dd>
-            <dt>"abc".endsWith(null)</dt>
-            <dd>throws NullPointerException</dd>
-          </dl>
-        </article>
-      </section>
-    </div>
+// single use: a stream can be consumed once; create a new one to iterate again
+Stream&lt;String&gt; s = names.stream();
+s.count();                                         // 3
+s.count();                                         // IllegalStateException
+
+// toList(): Java 16+, returns an unmodifiable list
+// on older versions use collect(Collectors.toList())
+names.stream().toList().add("dan");                // UnsupportedOperationException</code></pre>
+    </section>
+
+    <section>
+      <h2>Strings</h2>
+      <pre><code>// s.endsWith(suffix): true if s ends with suffix
+"report.pdf".endsWith(".pdf");                     // true
+"report.PDF".endsWith(".pdf");                     // false: the match is case-sensitive
+"report.PDF".toLowerCase().endsWith(".pdf");       // true: case-insensitive check
+"abc".endsWith("");                                // true: every string ends with ""
+"abc".endsWith(null);                              // NullPointerException</code></pre>
+    </section>
   </body>
 </html>
