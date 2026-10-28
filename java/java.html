@@ -10,6 +10,46 @@
     <h1>Java</h1>
 
     <section>
+      <h2>Main</h2>
+      <pre><code class="language-java">// src/main/java/com/example/Main.java
+package com.example;                               // matches the folder com/example
+
+public class Main {
+    // entry point: the launcher calls public static void main(String[])
+    public static void main(String[] args) {
+        System.out.println("args: " + String.join(", ", args));
+    }
+}
+
+// Java 25+: compact source file, no class, no static, no args
+// java.base is imported automatically
+void main() {
+    IO.println("Hello, World!");
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Run</h2>
+      <pre><code class="language-bash"># single file, no build step (Java 11+): compiles in memory, writes no .class files
+java src/main/java/com/example/Main.java a b       # args: a, b
+
+# compile to .class files in out/, then run by full class name
+javac -d out src/main/java/com/example/Main.java
+java -cp out com.example.Main a b                  # args: a, b
+
+# Maven (pom.xml in the project root)
+# exec:java does not compile: run compile first
+mvn compile exec:java -Dexec.mainClass=com.example.Main -Dexec.args="a b"
+
+# build target/&lt;artifactId&gt;-&lt;version&gt;.jar (runs the tests), then run it
+mvn package
+java -cp target/app-1.0-SNAPSHOT.jar com.example.Main a b
+
+# java -jar needs a Main-Class entry in the jar manifest; without it:
+java -jar target/app-1.0-SNAPSHOT.jar              # no main manifest attribute</code></pre>
+    </section>
+
+    <section>
       <h2>Files</h2>
       <pre><code class="language-java">// java.nio.file: Path, Files, StandardOpenOption, StandardCopyOption
 Path dir = Path.of("dir");
