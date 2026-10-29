@@ -404,6 +404,17 @@ git config --global alias.br-except '!f() { ex=; for b; do ex="$ex --exclude=ref
 git br-except main                    # keep only main
 git br-except main feature-x fix-y    # keep several
 git br-except 'feat/*'                # patterns work</code></pre>
+      <pre><code class="language-bash"># bring one file's change from a commit into the working tree
+
+# commit header (hash, author, date, message), then a diff
+# starting at "diff --git a/pom.xml b/pom.xml"
+git show 6ec39f9 -- pom.xml
+git show 6ec39f9 -- pom.xml | git apply   # apply skips the header, applies the diff
+
+# the whole file as it was in that commit, no diff
+git show 6ec39f9:pom.xml
+git show 6ec39f9:pom.xml > pom.xml        # overwrite the file with that version
+# git apply rejects this form: "No valid patches in input"</code></pre>
     </section>
     <script>hljs.highlightAll();</script>
   </body>
