@@ -415,6 +415,18 @@ git show 6ec39f9 -- pom.xml | git apply   # apply skips the header, applies the 
 git show 6ec39f9:pom.xml
 git show 6ec39f9:pom.xml > pom.xml        # overwrite the file with that version
 # git apply rejects this form: "No valid patches in input"</code></pre>
+      <pre><code class="language-bash"># compare one file between two branches
+
+# blob vs blob: file at the tip of origin/main vs file at the tip of config-refactor
+git diff origin/main:pom.xml config-refactor:pom.xml
+
+# path limit with three dots: compares against the merge base, not the tip of origin/main,
+# so it shows only the branch's changes; same as the blob form only if
+# origin/main did not change pom.xml after the branch split
+git diff origin/main...config-refactor -- pom.xml
+
+# branch vs your working copy of that file
+git diff config-refactor -- pom.xml</code></pre>
     </section>
     <script>hljs.highlightAll();</script>
   </body>
