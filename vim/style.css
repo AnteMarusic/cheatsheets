@@ -91,8 +91,14 @@ dd::before {
 .invisible {
   opacity: 0;
 }
-.my-mapping {
+/* this is necessary to break lines that are wider than the
+ * 50% allowed by the dl rule.*/
+kbd {
+  overflow-wrap: anywhere;
+}
+.my-mapping kbd {
   background: cadetblue;
+  color: white;
 }
 .marks-nvim kbd {
   background: blue;

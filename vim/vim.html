@@ -815,12 +815,17 @@
               keymaps.lua)
             </dd>
             <dt class="diffview-nvim">
-              <kbd>&lt;leader&gt;co</kbd><span class="opt"> / </span
-              ><kbd>&lt;leader&gt;ct</kbd><span class="opt"> / </span
-              ><kbd>&lt;leader&gt;cb</kbd>
+              <dl>
+                <dt><kbd>&lt;leader&gt;co</kbd></dt>
+                <dt><kbd>&lt;leader&gt;ct</kbd></dt>
+                <dt><kbd>&lt;leader&gt;cb</kbd></dt>
+                <dt><kbd>&lt;leader&gt;cT</kbd></dt>
+                <dt><kbd>&lt;leader&gt;cO</kbd></dt>
+              </dl>
             </dt>
             <dd>
-              resolve a merge conflict: choose the ours / theirs / base version
+              resolve a merge conflict: choose the ours / theirs / base / all
+              theirs / all ours version
             </dd>
             <dt class="diffview-nvim"><kbd>dx</kbd></dt>
             <dd>delete the conflict region (keep none)</dd>
@@ -1365,15 +1370,6 @@
       <section>
         <h2>Config files (LazyVim)</h2>
         <dl>
-          <dt>Where things live (XDG dirs)</dt>
-          <dd>
-            <kbd>~/.config/nvim/</kbd> = your config, you edit these.
-            <kbd>~/.local/share/nvim/</kbd> = data: installed plugins
-            (<kbd>lazy/</kbd>), mason tools — managed, don't hand-edit.
-            <kbd>~/.local/state/nvim/</kbd> = state: shada (history, oldfiles),
-            swap, undo, logs. (<kbd>~/.local</kbd> is the XDG data/state home;
-            <kbd>~/.config</kbd> the config home.)
-          </dd>
           <dt><kbd>~/.config/nvim/init.lua</kbd></dt>
           <dd>entry point (bootstraps LazyVim)</dd>
           <dt><kbd>~/.config/nvim/lua/config/options.lua</kbd></dt>
