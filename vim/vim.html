@@ -294,8 +294,8 @@
             ><kbd>grn</kbd>
           </dt>
           <dd>
-            rename the variable, method or class under the cursor in every
-            file. Type the new name, press <kbd>&lt;CR&gt;</kbd>.
+            rename the variable, method or class under the cursor in every file.
+            Type the new name, press <kbd>&lt;CR&gt;</kbd>.
           </dd>
           <dt class="lsp"><kbd>&lt;leader&gt;cR</kbd></dt>
           <dd>
@@ -793,10 +793,13 @@
           <dl>
             <dt class="diffview-nvim"><kbd>:DiffviewOpen</kbd></dt>
             <dd>open the diff view (working tree vs index)</dd>
-            <dt class="diffview-nvim"><kbd>:DiffviewOpen <var>commit</var></kbd></dt>
+            <dt class="diffview-nvim">
+              <kbd>:DiffviewOpen <var>commit</var></kbd>
+            </dt>
             <dd>
               diff the working tree against a commit, e.g.
-              <kbd>:DiffviewOpen HEAD~2</kbd> or <kbd>:DiffviewOpen d4a7b0d</kbd>
+              <kbd>:DiffviewOpen HEAD~2</kbd> or
+              <kbd>:DiffviewOpen d4a7b0d</kbd>
             </dd>
             <dt class="diffview-nvim">
               <kbd>:DiffviewOpen <var>commit</var> -- <var>paths</var></kbd>
@@ -1048,10 +1051,10 @@
             switch buffer (in the picker, <kbd>&lt;C-x&gt;</kbd> closes the
             highlighted buffer; if it has unsaved changes, snacks asks
             <kbd>Y</kbd>es save and close, <kbd>N</kbd>o close without saving,
-            or <kbd>C</kbd>ancel keep it open). Flags per row: <kbd>%</kbd> current,
-            <kbd>#</kbd> alternate, <kbd>a</kbd> active (shown in a window),
-            <kbd>h</kbd> hidden, <kbd>+</kbd> modified (unsaved),
-            <kbd>=</kbd> readonly, <kbd>-</kbd> not modifiable. The
+            or <kbd>C</kbd>ancel keep it open). Flags per row:
+            <kbd>%</kbd> current, <kbd>#</kbd> alternate, <kbd>a</kbd> active
+            (shown in a window), <kbd>h</kbd> hidden, <kbd>+</kbd> modified
+            (unsaved), <kbd>=</kbd> readonly, <kbd>-</kbd> not modifiable. The
             <kbd>h</kbd> by the title is the "show hidden" toggle
             (<kbd>&lt;A-h&gt;</kbd>).
           </dd>
@@ -1170,6 +1173,13 @@
           <dd>refresh the tree</dd>
           <dt class="snacks-nvim"><kbd>.</kbd></dt>
           <dd>set the directory under the cursor as root</dd>
+          <dt class="snacks-nvim"><kbd>&lt;C-c&gt;</kbd></dt>
+          <dd>
+            set the directory under the cursor as root and as the tab cwd
+            (<kbd>:tcd</kbd>)
+          </dd>
+          <dt class="snacks-nvim"><kbd>&lt;BS&gt;</kbd></dt>
+          <dd>go up one level and set the parent directory as root</dd>
           <dt class="snacks-nvim"><kbd>Z</kbd></dt>
           <dd>close all directories</dd>
           <dt class="snacks-nvim">
@@ -1193,7 +1203,9 @@
             <kbd>&lt;leader&gt;uf</kbd><span class="alt"> / </span
             ><kbd>&lt;leader&gt;uF</kbd>
           </dt>
-          <dd>auto format on save (global<span class="alt"> / </span>buffer)</dd>
+          <dd>
+            auto format on save (global<span class="alt"> / </span>buffer)
+          </dd>
           <dt class="lazyvim"><kbd>&lt;leader&gt;us</kbd></dt>
           <dd>spelling</dd>
           <dt class="lazyvim"><kbd>&lt;leader&gt;uw</kbd></dt>
